@@ -1,0 +1,4196 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="normal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>のべすけ</title>
+  <!-- PWA Manifest (Data URI) — iconsフィールド入り -->
+  <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22%E3%81%AE%E3%81%B9%E3%81%99%E3%81%91%22%2C%22short_name%22%3A%22%E3%81%AE%E3%81%B9%E3%81%99%E3%81%91%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f0f4f8%22%2C%22theme_color%22%3A%22%23667eea%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE5MiAxOTIiPjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDgiIGZpbGw9IiM2NjdlZWEiLz48ZWxsaXBzZSBjeD0iOTYiIGN5PSIxMDgiIHJ4PSI1NCIgcnk9IjYwIiBmaWxsPSIjMWExYTJlIi8%2BPGVsbGlwc2UgY3g9Ijk2IiBjeT0iMTE4IiByeD0iMzQiIHJ5PSI0NCIgZmlsbD0iI2U4ZThmMCIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9IjYyIiByeD0iNDQiIHJ5PSI0MCIgZmlsbD0iIzFhMWEyZSIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9IjY1IiByeD0iMzAiIHJ5PSIyNiIgZmlsbD0iI2U4ZThmMCIvPjxjaXJjbGUgY3g9Ijc4IiBjeT0iNTgiIHI9IjkiIGZpbGw9IiMyMjIiLz48Y2lyY2xlIGN4PSI4MCIgY3k9IjU1IiByPSIzIiBmaWxsPSIjZmZmIi8%2BPGNpcmNsZSBjeD0iMTE0IiBjeT0iNTgiIHI9IjkiIGZpbGw9IiMyMjIiLz48Y2lyY2xlIGN4PSIxMTYiIGN5PSI1NSIgcj0iMyIgZmlsbD0iI2ZmZiIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9Ijc0IiByeD0iMTAiIHJ5PSI2IiBmaWxsPSIjZjZhNjIzIi8%2BPGVsbGlwc2UgY3g9Ijk2IiBjeT0iMjgiIHJ4PSI0MiIgcnk9IjEyIiBmaWxsPSIjZjZhNjIzIi8%2BPHJlY3QgeD0iNTYiIHk9IjE2IiB3aWR0aD0iODAiIGhlaWdodD0iMjQiIHJ4PSIxMCIgZmlsbD0iI2Y2YTYyMyIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9IjM4IiByeD0iNTIiIHJ5PSI5IiBmaWxsPSIjZTg4NjFhIi8%2BPHRleHQgeD0iOTYiIHk9IjE0MCIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzY2N2VlYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiPk48L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <!-- Apple Touch Icon（ホーム画面アイコン） -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE5MiAxOTIiPjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iNDgiIGZpbGw9IiM2NjdlZWEiLz48ZWxsaXBzZSBjeD0iOTYiIGN5PSIxMDgiIHJ4PSI1NCIgcnk9IjYwIiBmaWxsPSIjMWExYTJlIi8+PGVsbGlwc2UgY3g9Ijk2IiBjeT0iMTE4IiByeD0iMzQiIHJ5PSI0NCIgZmlsbD0iI2U4ZThmMCIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9IjYyIiByeD0iNDQiIHJ5PSI0MCIgZmlsbD0iIzFhMWEyZSIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9IjY1IiByeD0iMzAiIHJ5PSIyNiIgZmlsbD0iI2U4ZThmMCIvPjxjaXJjbGUgY3g9Ijc4IiBjeT0iNTgiIHI9IjkiIGZpbGw9IiMyMjIiLz48Y2lyY2xlIGN4PSI4MCIgY3k9IjU1IiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTE0IiBjeT0iNTgiIHI9IjkiIGZpbGw9IiMyMjIiLz48Y2lyY2xlIGN4PSIxMTYiIGN5PSI1NSIgcj0iMyIgZmlsbD0iI2ZmZiIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9Ijc0IiByeD0iMTAiIHJ5PSI2IiBmaWxsPSIjZjZhNjIzIi8+PGVsbGlwc2UgY3g9Ijk2IiBjeT0iMjgiIHJ4PSI0MiIgcnk9IjEyIiBmaWxsPSIjZjZhNjIzIi8+PHJlY3QgeD0iNTYiIHk9IjE2IiB3aWR0aD0iODAiIGhlaWdodD0iMjQiIHJ4PSIxMCIgZmlsbD0iI2Y2YTYyMyIvPjxlbGxpcHNlIGN4PSI5NiIgY3k9IjM4IiByeD0iNTIiIHJ5PSI5IiBmaWxsPSIjZTg4NjFhIi8+PHRleHQgeD0iOTYiIHk9IjE0MCIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzY2N2VlYSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiPk48L3RleHQ+PC9zdmc+">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="のべすけ">
+  <meta name="theme-color" content="#667eea" id="pwa-theme-color">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+/* ==============================
+   テーマ変数
+============================== */
+:root {
+  --accent:     #667eea;
+  --bg:         #f0f4f8;
+  --surface:    #ffffff;
+  --surface2:   #f7f9fc;
+  --border:     #e2e8f0;
+  --text:       #2d3748;
+  --muted:      #718096;
+  --header-bg:  linear-gradient(135deg, #667eea, #764ba2);
+  --nav-bg:     #ffffff;
+  --nav-border: #e2e8f0;
+  --pill-bg:    #ebf0ff;
+  --pill-color: #5a67d8;
+  --tag-bg:     #667eea;
+}
+[data-theme="dark"] {
+  --accent:     #7f9cf5;
+  --bg:         #1a202c;
+  --surface:    #2d3748;
+  --surface2:   #3a4a5c;
+  --border:     #4a5568;
+  --text:       #e2e8f0;
+  --muted:      #a0aec0;
+  --header-bg:  linear-gradient(135deg, #2d3748, #1a202c);
+  --nav-bg:     #2d3748;
+  --nav-border: #4a5568;
+  --pill-bg:    #3a4a6a;
+  --pill-color: #a3b4f8;
+  --tag-bg:     #7f9cf5;
+}
+[data-theme="sunset"] {
+  --accent:     #e53e3e;
+  --bg:         #fff5eb;
+  --surface:    #ffffff;
+  --surface2:   #fff8f0;
+  --border:     #fed7aa;
+  --text:       #7b341e;
+  --muted:      #c05621;
+  --header-bg:  linear-gradient(135deg, #f6ad55, #e53e3e);
+  --nav-bg:     #fff5eb;
+  --nav-border: #fed7aa;
+  --pill-bg:    #fff0e0;
+  --pill-color: #c05621;
+  --tag-bg:     #e53e3e;
+}
+
+/* ==============================
+   リセット・ベース
+============================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 66px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ==============================
+   ヘッダー
+============================== */
+#app-header {
+  background: var(--header-bg);
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.header-title { font-size: 1.15rem; font-weight: 700; }
+.today-label  { font-size: 0.75rem; opacity: 0.85; margin-top: 2px; }
+.day-selector { display: flex; gap: 6px; }
+.day-selector.hidden { display: none; }
+.day-btn {
+  width: 38px; height: 38px;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  background: transparent; color: #fff;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.day-btn:hover  { background: rgba(255,255,255,0.25); transform: scale(1.08); }
+.day-btn.active { background: #fff; color: var(--accent); border-color: #fff; }
+
+/* ==============================
+   タブページ
+============================== */
+.tab-page        { display: none; }
+.tab-page.active { display: block; }
+#app-main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+.col-title {
+  font-size: 1rem; font-weight: 700; color: var(--text);
+  border-left: 4px solid var(--accent);
+  padding-left: 10px; margin-bottom: 12px;
+}
+
+/* ==============================
+   タブ① 時間割 ― 2カラム
+============================== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+/* 時間割カード */
+.period-card {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border); background: var(--surface);
+  margin-bottom: 8px;
+  transition: box-shadow 0.15s;
+}
+.period-card:hover { box-shadow: 0 3px 10px rgba(102,126,234,0.15); }
+.card-period {
+  background: var(--accent); color: #fff;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 8px 0; min-height: 58px;
+}
+.period-num { font-size: 1.25rem; font-weight: 800; line-height: 1; }
+.period-lbl { font-size: 0.6rem; }
+.card-body {
+  background: var(--surface2); padding: 8px 12px;
+  display: flex; flex-direction: column; justify-content: center; gap: 5px;
+}
+.period-card:nth-child(even) .card-body { background: var(--surface); }
+.card-subject { font-size: 0.95rem; font-weight: 700; }
+.card-items { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; }
+.card-items li {
+  font-size: 0.68rem;
+  background: var(--pill-bg); color: var(--pill-color);
+  border-radius: 20px; padding: 2px 8px; white-space: nowrap;
+}
+.card-no-items { font-size: 0.7rem; color: var(--muted); }
+
+/* 持ち物チェックリスト */
+.col-right {
+  background: var(--surface); border-radius: 14px;
+  padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  position: sticky; top: 72px;
+  max-height: calc(100vh - 140px); overflow-y: auto;
+}
+@media (max-width: 700px) { .col-right { position: static; max-height: none; } }
+.checklist-status { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; }
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.checklist li {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px; border-radius: 9px;
+  background: var(--surface2); border: 1px solid var(--border);
+  cursor: pointer; user-select: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.checklist li:hover { background: var(--pill-bg); border-color: var(--accent); }
+.checklist li.checked { background: #f0fff4; border-color: #48bb78; }
+.checklist li.checked .item-text { text-decoration: line-through; color: var(--muted); }
+.checklist li.checked .subject-tag { background: #48bb78; }
+[data-theme="dark"] .checklist li.checked { background: #1c3a2a; }
+.checklist input[type="checkbox"] {
+  width: 17px; height: 17px; accent-color: #48bb78;
+  flex-shrink: 0; cursor: pointer;
+}
+.subject-tag {
+  display: inline-block; background: var(--tag-bg); color: #fff;
+  font-size: 0.65rem; font-weight: 700; border-radius: 4px;
+  padding: 1px 5px; white-space: nowrap; flex-shrink: 0;
+}
+.item-text { font-size: 0.87rem; color: var(--text); flex: 1; }
+.complete-message {
+  margin-top: 14px; text-align: center;
+  font-size: 1.1rem; font-weight: 700; color: #38a169;
+  padding: 12px; border-radius: 10px;
+  background: #f0fff4; border: 2px solid #48bb78;
+  animation: pop-in 0.4s ease;
+}
+@keyframes pop-in {
+  0%   { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ==============================
+   タブ② ポモドーロ ― シンプル版
+============================== */
+.pomodoro-wrap {
+  max-width: 400px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 24px; padding: 8px 0 24px;
+}
+
+/* タイマー本体 */
+.timer-card {
+  width: 100%;
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 36px 32px 28px;
+  text-align: center;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.09);
+}
+.timer-mode-label {
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--muted); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.timer-display {
+  font-size: 4rem; font-weight: 800;
+  letter-spacing: 0.06em; color: var(--text);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+/* プログレスバー */
+.timer-prog-wrap {
+  background: var(--border); border-radius: 99px;
+  height: 6px; overflow: hidden;
+}
+.timer-prog-bar {
+  height: 100%; background: var(--accent);
+  border-radius: 99px; transition: width 0.8s linear;
+}
+
+/* プリセットボタン */
+.preset-btns {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+}
+.preset-btn {
+  padding: 8px 18px; border-radius: 99px;
+  border: 2px solid var(--accent);
+  background: transparent; color: var(--accent);
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+}
+.preset-btn:hover { background: var(--accent); color: #fff; }
+.preset-btn.active-preset {
+  background: var(--accent); color: #fff;
+  box-shadow: 0 3px 10px rgba(102,126,234,0.35);
+}
+
+/* カスタム時間入力 */
+.custom-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.85rem; color: var(--muted);
+}
+.custom-row input {
+  width: 64px; padding: 6px 8px; text-align: center;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--text); font-size: 0.9rem;
+}
+.small-btn {
+  padding: 6px 14px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.small-btn:hover { opacity: 0.85; }
+
+/* 操作ボタン */
+.timer-controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.ctrl-btn {
+  padding: 12px 28px; border-radius: 99px; border: none;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.18s, transform 0.12s;
+}
+.ctrl-btn:hover:not(:disabled) { transform: scale(1.05); }
+.ctrl-btn:disabled { opacity: 0.35; cursor: default; transform: none; }
+.start-btn { background: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(102,126,234,0.35); }
+.pause-btn { background: #ed8936; color: #fff; box-shadow: 0 4px 14px rgba(237,137,54,0.3); }
+.reset-btn {
+  background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* ==============================
+   今日の合計集中時間バナー
+============================== */
+.today-study-banner {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent), #764ba2);
+  border-radius: 18px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 20px rgba(102,126,234,0.35);
+  color: #fff;
+}
+[data-theme="dark"] .today-study-banner {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+[data-theme="sunset"] .today-study-banner {
+  background: linear-gradient(135deg, #f6ad55, #e53e3e);
+  box-shadow: 0 4px 20px rgba(229,62,62,0.35);
+}
+.today-study-icon { font-size: 2.2rem; line-height: 1; flex-shrink: 0; }
+.today-study-info { display: flex; flex-direction: column; gap: 2px; }
+.today-study-label {
+  font-size: 0.78rem; font-weight: 600;
+  opacity: 0.88; letter-spacing: 0.05em;
+}
+.today-study-total {
+  font-size: 2rem; font-weight: 800;
+  letter-spacing: 0.04em; line-height: 1;
+}
+
+/* ==============================
+   学習グラフカード
+============================== */
+.study-graph-card {
+  width: 100%;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 20px 20px 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.graph-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.graph-toggle-btns { display: flex; gap: 6px; }
+.graph-toggle {
+  padding: 6px 18px;
+  border-radius: 99px;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.82rem; font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.graph-toggle:hover { background: var(--accent); color: #fff; }
+.graph-toggle.active-graph-toggle {
+  background: var(--accent); color: #fff;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.3);
+}
+.graph-canvas-wrap {
+  position: relative;
+  width: 100%; height: 200px;
+}
+
+/* ==============================
+   タブ③ リマインダー
+============================== */
+.reminder-wrap { display: flex; flex-direction: column; gap: 16px; }
+.reminder-form-box, .reminder-list-box {
+  background: var(--surface); border-radius: 14px;
+  padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.reminder-form { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* テキスト入力 */
+.reminder-form input[type="text"] {
+  flex: 1 1 200px;
+  padding: 11px 14px;
+  border: 1px solid var(--border); border-radius: 9px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.93rem;
+}
+.reminder-form input[type="text"]:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+/* 日付ピッカー ― 大きく・押しやすく */
+.reminder-form input[type="date"] {
+  padding: 11px 13px;
+  border: 1px solid var(--border); border-radius: 9px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.93rem;
+  min-width: 148px;
+  cursor: pointer;
+}
+.reminder-form input[type="date"]:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+.add-btn {
+  padding: 11px 20px; border: none; border-radius: 9px;
+  background: var(--accent); color: #fff;
+  font-size: 0.92rem; font-weight: 700; cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.add-btn:hover { opacity: 0.85; }
+
+.reminder-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.reminder-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px; border-radius: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.deadline-badge {
+  font-size: 0.72rem; font-weight: 700; border-radius: 5px;
+  padding: 3px 8px; white-space: nowrap; flex-shrink: 0;
+}
+.badge-safe    { background: #c6f6d5; color: #276749; }
+.badge-soon    { background: #fefcbf; color: #744210; }
+.badge-urgent  { background: #fed7d7; color: #c53030; }
+.badge-overdue { background: #9b2c2c; color: #fff; }
+.reminder-text { flex: 1; font-size: 0.92rem; }
+.reminder-date-text { font-size: 0.74rem; color: var(--muted); white-space: nowrap; }
+.del-btn {
+  background: none; border: none; color: var(--muted);
+  font-size: 1rem; cursor: pointer; padding: 3px 6px;
+  border-radius: 6px; line-height: 1; flex-shrink: 0;
+}
+.del-btn:hover { background: #fed7d7; color: #c53030; }
+.reminder-empty {
+  font-size: 0.85rem; color: var(--muted);
+  text-align: center; padding: 20px 0;
+}
+.reminder-badge {
+  position: absolute; top: 5px; right: 8px;
+  background: #e53e3e; color: #fff;
+  font-size: 0.58rem; font-weight: 700;
+  border-radius: 50%; width: 15px; height: 15px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ==============================
+   次の授業バッジ（ヘッダー内）
+============================== */
+#next-class-badge {
+  display: none;
+  align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 99px;
+  padding: 4px 12px 4px 8px;
+  font-size: 0.75rem; font-weight: 600;
+  color: #fff; white-space: nowrap;
+  backdrop-filter: blur(4px);
+  cursor: default;
+}
+#next-class-badge.show { display: flex; }
+.next-class-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #68d391; flex-shrink: 0;
+  animation: pulse-dot 1.8s infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.7); }
+}
+.next-class-sep { opacity: 0.5; margin: 0 2px; }
+
+/* ==============================
+   単発持ち物メモ
+============================== */
+.today-items-box {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  margin-bottom: 10px;
+}
+.today-items-form {
+  display: flex; gap: 8px; margin-bottom: 10px;
+}
+.today-item-input {
+  flex: 1; padding: 8px 12px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.88rem; outline: none;
+}
+.today-item-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.12);
+}
+.today-item-add-btn {
+  padding: 8px 14px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  white-space: nowrap; transition: opacity 0.15s;
+}
+.today-item-add-btn:hover { opacity: 0.85; }
+.today-items-list {
+  list-style: none; display: flex; flex-direction: column; gap: 6px;
+}
+.today-item-li {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; border-radius: 8px;
+  background: var(--surface2); border: 1px solid var(--border);
+  cursor: pointer; user-select: none;
+  transition: background 0.15s;
+}
+.today-item-li.done { background: #f0fff4; border-color: #48bb78; }
+.today-item-li.done .today-item-text {
+  text-decoration: line-through; color: var(--muted);
+}
+.today-item-check {
+  width: 16px; height: 16px; accent-color: #48bb78;
+  flex-shrink: 0; cursor: pointer;
+}
+.today-item-text { flex: 1; font-size: 0.85rem; color: var(--text); }
+.today-item-del {
+  background: none; border: none; color: var(--muted);
+  font-size: 0.85rem; cursor: pointer; padding: 2px 4px;
+  border-radius: 4px; line-height: 1;
+}
+.today-item-del:hover { color: #e53e3e; background: #fed7d7; }
+
+/* ==============================
+   学習カレンダー
+============================== */
+.study-calendar-wrap { display: flex; flex-direction: column; gap: 10px; }
+.cal-nav {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cal-nav-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 1rem;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.cal-nav-btn:hover { background: var(--pill-bg); color: var(--accent); }
+.cal-month-title {
+  font-size: 0.9rem; font-weight: 700; color: var(--text);
+}
+.cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.cal-weekday {
+  text-align: center; font-size: 0.62rem; font-weight: 700;
+  color: var(--muted); padding: 3px 0;
+}
+.cal-weekday:first-child { color: #e53e3e; }
+.cal-weekday:last-child  { color: #4299e1; }
+.cal-day {
+  aspect-ratio: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border-radius: 8px; font-size: 0.7rem;
+  position: relative; cursor: default;
+  color: var(--text);
+}
+.cal-day.other-month { color: var(--border); }
+.cal-day.today { font-weight: 800; color: var(--accent); }
+.cal-day.has-study { background: var(--accent); color: #fff; border-radius: 50%; }
+.cal-day.has-study.today { box-shadow: 0 0 0 2px var(--accent), 0 0 0 4px rgba(102,126,234,0.25); }
+.cal-day-min {
+  font-size: 0.5rem; opacity: 0.8; line-height: 1;
+}
+.cal-summary {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  font-size: 0.78rem; color: var(--muted);
+  padding-top: 8px; border-top: 1px solid var(--border);
+}
+.cal-summary strong { color: var(--text); }
+
+/* ==============================
+   バックアップ
+============================== */
+.backup-btns {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px;
+}
+.backup-btn {
+  flex: 1; min-width: 120px;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 14px; border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--surface); color: var(--text);
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+}
+.backup-btn:hover { border-color: var(--accent); background: var(--pill-bg); }
+.backup-import-input { display: none; }
+.backup-msg {
+  font-size: 0.75rem; color: #38a169; margin-top: 6px;
+  min-height: 18px; font-weight: 600;
+}
+
+/* ==============================
+   クイック検索バー
+============================== */
+.search-bar-wrap {
+  padding: 10px 0 2px;
+  position: relative;
+}
+.search-bar-inner {
+  display: flex; align-items: center;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 99px;
+  padding: 0 14px 0 12px;
+  gap: 8px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.search-bar-inner:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.12);
+}
+.search-icon { font-size: 0.95rem; color: var(--muted); flex-shrink: 0; }
+#timetable-search {
+  flex: 1; border: none; background: transparent;
+  padding: 10px 0; font-size: 0.9rem; color: var(--text);
+  outline: none;
+}
+#timetable-search::placeholder { color: var(--muted); }
+.search-clear-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 0.85rem; padding: 2px 4px;
+  border-radius: 50%; transition: background 0.15s;
+  display: none;
+}
+.search-clear-btn.visible { display: block; }
+.search-clear-btn:hover { background: var(--surface2); }
+.search-result-count {
+  font-size: 0.72rem; color: var(--accent); font-weight: 700;
+  text-align: right; padding: 4px 4px 0;
+  min-height: 18px;
+}
+/* ハイライト */
+.period-card.search-match {
+  box-shadow: 0 0 0 2px var(--accent), 0 4px 16px rgba(102,126,234,0.25);
+}
+.period-card.search-dim { opacity: 0.3; transition: opacity 0.2s; }
+.checklist li.search-match-item {
+  border-color: var(--accent);
+  background: var(--pill-bg);
+}
+.checklist li.search-dim-item { opacity: 0.3; }
+mark.search-hl {
+  background: #fef08a; color: #713f12;
+  border-radius: 2px; padding: 0 1px;
+}
+[data-theme="dark"] mark.search-hl { background: #854d0e; color: #fef9c3; }
+
+/* ==============================
+   学習アナリティクス
+============================== */
+.analytics-card {
+  width: 100%;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 20px 20px 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; gap: 16px;
+}
+/* 週間目標プログレス */
+.goal-section { display: flex; flex-direction: column; gap: 10px; }
+.goal-header {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.goal-label { font-size: 0.78rem; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; }
+.goal-edit-row {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; color: var(--muted);
+}
+#goal-hours-input {
+  width: 52px; padding: 5px 6px; text-align: center;
+  border: 1px solid var(--border); border-radius: 7px;
+  background: var(--surface); color: var(--text);
+  font-size: 0.85rem;
+}
+.goal-set-btn {
+  padding: 5px 12px; border-radius: 7px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.78rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.goal-set-btn:hover { opacity: 0.85; }
+.goal-progress-nums {
+  display: flex; justify-content: space-between;
+  font-size: 0.78rem; color: var(--muted); margin-bottom: 4px;
+}
+.goal-current-val {
+  font-size: 1.1rem; font-weight: 800; color: var(--text);
+}
+.goal-pct { font-weight: 700; color: var(--accent); }
+.goal-bar-track {
+  height: 10px; background: var(--border); border-radius: 99px; overflow: hidden;
+}
+.goal-bar-fill {
+  height: 100%; background: var(--accent); border-radius: 99px;
+  transition: width 0.8s cubic-bezier(0.34,1.2,0.64,1);
+  width: 0%;
+}
+.goal-bar-fill.over-goal { background: #38a169; }
+
+/* 円グラフ */
+.pie-section { display: flex; flex-direction: column; gap: 10px; }
+.pie-canvas-wrap {
+  position: relative; width: 100%; max-width: 220px;
+  margin: 0 auto; aspect-ratio: 1;
+}
+.pie-center-label {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.pie-center-val  { font-size: 1.3rem; font-weight: 800; color: var(--text); line-height: 1; }
+.pie-center-unit { font-size: 0.65rem; color: var(--muted); }
+.pie-legend {
+  display: flex; flex-wrap: wrap; gap: 6px 12px;
+  justify-content: center; font-size: 0.72rem;
+}
+.pie-legend-item {
+  display: flex; align-items: center; gap: 4px; color: var(--text);
+}
+.pie-legend-dot {
+  width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+}
+.analytics-empty {
+  font-size: 0.82rem; color: var(--muted);
+  text-align: center; padding: 16px 0;
+}
+
+/* ==============================
+   ① おみくじポップアップ
+============================== */
+#omikuji-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 10001;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+}
+#omikuji-overlay.show { opacity: 1; pointer-events: auto; }
+.omikuji-popup {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 32px 28px 24px;
+  max-width: 320px; width: 90%;
+  text-align: center;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.3);
+  transform: scale(0.82) translateY(24px);
+  transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+#omikuji-overlay.show .omikuji-popup { transform: scale(1) translateY(0); }
+.omikuji-scroll-img { font-size: 3.2rem; animation: scroll-drop 0.5s 0.15s both; }
+@keyframes scroll-drop {
+  from { transform: scale(0) rotate(-15deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg);  opacity: 1; }
+}
+.omikuji-rank {
+  font-size: 2rem; font-weight: 900; letter-spacing: 0.06em;
+  background: linear-gradient(135deg, #f6a623, #e53e3e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.omikuji-item-label {
+  font-size: 0.72rem; font-weight: 700; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.omikuji-item-name {
+  font-size: 1.1rem; font-weight: 800; color: var(--text);
+  background: var(--pill-bg); border-radius: 8px; padding: 4px 14px;
+}
+.omikuji-msg {
+  font-size: 0.85rem; color: var(--muted); line-height: 1.6;
+  white-space: pre-line;
+}
+.omikuji-draw-btn {
+  padding: 11px 28px; border-radius: 99px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(102,126,234,0.35);
+  transition: opacity 0.15s, transform 0.12s;
+}
+.omikuji-draw-btn:hover { opacity: 0.88; transform: scale(1.04); }
+.omikuji-close-btn {
+  background: none; border: none; font-size: 0.8rem;
+  color: var(--muted); cursor: pointer; padding: 4px 10px;
+}
+/* 全チェック後のおみくじ誘導ボタン */
+.omikuji-trigger-btn {
+  margin-top: 10px; width: 100%;
+  padding: 11px 0; border-radius: 12px; border: none;
+  background: linear-gradient(135deg, #f6a623, #e53e3e);
+  color: #fff; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; letter-spacing: 0.04em;
+  box-shadow: 0 4px 14px rgba(246,166,35,0.35);
+  animation: pop-in 0.4s ease;
+  transition: opacity 0.15s;
+}
+.omikuji-trigger-btn:hover { opacity: 0.88; }
+
+/* ==============================
+   ② 教科メモ
+============================== */
+.card-memo-icon {
+  display: inline-block; font-size: 0.72rem;
+  background: #fefcbf; color: #744210;
+  border-radius: 4px; padding: 1px 5px;
+  margin-left: 4px; vertical-align: middle;
+  font-weight: 700; cursor: pointer;
+  border: 1px solid #f6e05e;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.card-memo-icon:hover { background: #f6e05e; }
+.card-subject-row {
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+}
+/* メモダイアログ */
+#memo-dialog-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 10002;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+}
+#memo-dialog-overlay.show { opacity: 1; pointer-events: auto; }
+.memo-dialog {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 24px 22px 18px;
+  max-width: 340px; width: 92%;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+  transform: scale(0.88) translateY(16px);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; flex-direction: column; gap: 12px;
+}
+#memo-dialog-overlay.show .memo-dialog { transform: scale(1) translateY(0); }
+.memo-dialog-title {
+  font-size: 0.9rem; font-weight: 800; color: var(--text);
+  display: flex; align-items: center; gap: 6px;
+}
+.memo-dialog-subject-tag {
+  background: var(--accent); color: #fff;
+  font-size: 0.72rem; font-weight: 700;
+  border-radius: 6px; padding: 2px 8px;
+}
+#memo-textarea {
+  width: 100%; height: 90px;
+  padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.88rem; resize: none; outline: none;
+  font-family: inherit; line-height: 1.5;
+  transition: border-color 0.18s;
+}
+#memo-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(102,126,234,0.12); }
+.memo-dialog-footer {
+  display: flex; justify-content: flex-end; gap: 8px;
+}
+.memo-cancel-btn {
+  padding: 8px 16px; border-radius: 8px; border: none;
+  background: var(--surface2); color: var(--muted);
+  font-size: 0.84rem; font-weight: 600; cursor: pointer;
+}
+.memo-save-btn {
+  padding: 8px 20px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.84rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.memo-save-btn:hover { opacity: 0.85; }
+.memo-clear-btn {
+  padding: 8px 14px; border-radius: 8px; border: none;
+  background: none; color: #e53e3e;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  margin-right: auto;
+}
+
+/* ==============================
+   ③ 準備忘れアラートバナー
+============================== */
+#prep-alert-banner {
+  display: none;
+  background: linear-gradient(135deg, #f6ad55, #e53e3e);
+  color: #fff;
+  padding: 12px 16px;
+  font-size: 0.84rem; font-weight: 600;
+  line-height: 1.5;
+  position: relative;
+}
+#prep-alert-banner.show { display: block; }
+.prep-alert-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.prep-alert-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+.prep-alert-text { flex: 1; }
+.prep-alert-close {
+  background: none; border: none; color: rgba(255,255,255,0.8);
+  font-size: 1rem; cursor: pointer; padding: 0 4px; flex-shrink: 0;
+}
+.prep-alert-close:hover { color: #fff; }
+
+/* ==============================
+   ストリーク＆称号カード
+============================== */
+
+/* 設定タブ内ストリークカード */
+.streak-card {
+  background: linear-gradient(135deg, #ff6b35, #f7c59f);
+  border-radius: 18px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.28);
+  color: #fff;
+}
+[data-theme="dark"] .streak-card {
+  background: linear-gradient(135deg, #c0392b, #6d1f1f);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.streak-top {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px;
+}
+.streak-flame-count {
+  display: flex; align-items: center; gap: 8px;
+}
+.streak-flame { font-size: 2.2rem; line-height: 1; }
+.streak-count-wrap { display: flex; flex-direction: column; }
+.streak-count {
+  font-size: 2rem; font-weight: 800; line-height: 1;
+  letter-spacing: 0.04em;
+}
+.streak-count-label {
+  font-size: 0.72rem; opacity: 0.85; font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.streak-best-badge {
+  background: rgba(255,255,255,0.25);
+  border-radius: 99px; padding: 4px 12px;
+  font-size: 0.72rem; font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+
+/* 現在の称号 */
+.streak-title-row {
+  background: rgba(255,255,255,0.18);
+  border-radius: 10px; padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px;
+  backdrop-filter: blur(4px);
+}
+.streak-title-icon { font-size: 1.4rem; line-height: 1; }
+.streak-title-info { display: flex; flex-direction: column; gap: 1px; }
+.streak-title-sub  { font-size: 0.68rem; opacity: 0.8; font-weight: 600; }
+.streak-title-name { font-size: 1rem; font-weight: 800; }
+
+/* 称号一覧グリッド */
+.titles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+.title-item {
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 10px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 6px; text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative; overflow: hidden;
+}
+.title-item.unlocked {
+  border-color: #f6a623;
+  background: linear-gradient(135deg, #fffaf0, #fff3cd);
+  box-shadow: 0 3px 12px rgba(246,166,35,0.25);
+}
+[data-theme="dark"] .title-item.unlocked {
+  background: linear-gradient(135deg, #3d2f00, #2a2000);
+  border-color: #f6a623;
+}
+.title-item.unlocked:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(246,166,35,0.3); }
+.title-item.locked { opacity: 0.45; filter: grayscale(0.6); }
+.title-emoji { font-size: 1.6rem; line-height: 1; }
+.title-name {
+  font-size: 0.75rem; font-weight: 700; color: var(--text);
+  line-height: 1.3;
+}
+.title-req {
+  font-size: 0.65rem; color: var(--muted);
+}
+.title-lock-icon {
+  position: absolute; top: 6px; right: 7px;
+  font-size: 0.65rem; opacity: 0.5;
+}
+.title-new-badge {
+  position: absolute; top: 6px; left: 6px;
+  background: #e53e3e; color: #fff;
+  font-size: 0.55rem; font-weight: 800;
+  border-radius: 4px; padding: 1px 5px;
+  letter-spacing: 0.04em;
+}
+
+/* ストリークリセット注記 */
+.streak-reset-note {
+  font-size: 0.72rem; color: var(--muted);
+  text-align: center; margin-top: 4px;
+}
+
+/* ==============================
+   称号解放ポップアップ
+============================== */
+#title-unlock-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+#title-unlock-overlay.show {
+  opacity: 1; pointer-events: auto;
+}
+.title-unlock-popup {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 36px 32px 28px;
+  text-align: center;
+  max-width: 320px; width: 90%;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.3);
+  transform: scale(0.8) translateY(30px);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+#title-unlock-overlay.show .title-unlock-popup {
+  transform: scale(1) translateY(0);
+}
+.popup-trophy  { font-size: 3.5rem; line-height: 1; animation: trophy-bounce 0.6s 0.2s both; }
+@keyframes trophy-bounce {
+  0%   { transform: scale(0);   opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+.popup-congrats {
+  font-size: 0.78rem; font-weight: 700; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.popup-title-name {
+  font-size: 1.3rem; font-weight: 800; color: var(--text);
+  background: linear-gradient(135deg, #f6a623, #e53e3e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.popup-msg { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+.popup-close-btn {
+  margin-top: 6px;
+  padding: 10px 32px; border-radius: 99px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.88rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.popup-close-btn:hover { opacity: 0.85; }
+
+/* ==============================
+   タブ④ 設定
+============================== */
+.settings-wrap { max-width: 520px; display: flex; flex-direction: column; gap: 18px; }
+.settings-box {
+  background: var(--surface); border-radius: 16px;
+  padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.info-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.info-list li { font-size: 0.86rem; color: var(--muted); }
+.info-list li::before { content: "• "; color: var(--accent); font-weight: 700; }
+
+/* ── ダーク / ライト モード切り替え ── */
+.mode-btns { display: flex; gap: 10px; }
+.mode-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 10px 0; border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--surface); color: var(--text);
+  font-size: 0.88rem; font-weight: 600; cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+}
+.mode-btn:hover { border-color: var(--accent); }
+.mode-btn.active-mode {
+  border-color: var(--accent); background: var(--pill-bg); color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+/* ── プリセットカラーパレット ── */
+.color-section-label {
+  font-size: 0.72rem; font-weight: 700; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin: 0 0 10px;
+}
+.preset-palette {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.color-swatch-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: none; cursor: pointer; position: relative;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.color-swatch-btn:hover { transform: scale(1.15); }
+/* 選択中：二重リング */
+.color-swatch-btn.active-color::before {
+  content: '';
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 3px solid var(--text);
+  opacity: 0.55;
+}
+.color-swatch-btn.active-color::after {
+  content: '';
+  position: absolute; inset: -7px;
+  border-radius: 50%;
+  border: 2px solid var(--text);
+  opacity: 0.22;
+}
+
+/* ── カスタムカラーピッカー行 ── */
+.custom-color-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.custom-color-row label {
+  font-size: 0.82rem; color: var(--muted); white-space: nowrap;
+}
+#custom-color-picker {
+  width: 44px; height: 44px; padding: 2px;
+  border: 2px solid var(--border); border-radius: 10px;
+  background: var(--surface); cursor: pointer;
+}
+#custom-color-picker::-webkit-color-swatch-wrapper { padding: 0; }
+#custom-color-picker::-webkit-color-swatch { border-radius: 7px; border: none; }
+.custom-color-apply {
+  padding: 8px 16px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.custom-color-apply:hover { opacity: 0.85; }
+#custom-color-hex {
+  font-size: 0.8rem; color: var(--muted); font-family: monospace;
+}
+
+/* ── プレビューエリア ── */
+.preview-area {
+  margin-top: 18px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.preview-area-title {
+  font-size: 0.72rem; font-weight: 700; color: var(--muted);
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;
+}
+.preview-widgets {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start;
+}
+/* ボタンプレビュー */
+.preview-btn-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+#preview-btn-primary {
+  padding: 9px 20px; border-radius: 99px; border: none;
+  font-size: 0.82rem; font-weight: 700; cursor: default;
+  color: #fff; background: var(--accent);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+}
+#preview-btn-outline {
+  padding: 8px 18px; border-radius: 99px;
+  border: 2px solid var(--accent);
+  background: transparent; color: var(--accent);
+  font-size: 0.82rem; font-weight: 700; cursor: default;
+}
+/* ナビプレビュー */
+.preview-nav {
+  display: flex; gap: 2px;
+  background: var(--surface2); border-radius: 12px;
+  border: 1px solid var(--border); overflow: hidden;
+  flex-shrink: 0;
+}
+.preview-nav-item {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 14px; gap: 3px; cursor: default;
+  font-size: 0.6rem; font-weight: 600; color: var(--muted);
+}
+.preview-nav-item.active {
+  color: var(--accent);
+  border-top: 3px solid var(--accent);
+}
+.preview-nav-icon { font-size: 1rem; line-height: 1; }
+
+/* ==============================
+   ボトムナビ
+============================== */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 62px;
+  background: var(--nav-bg); border-top: 1px solid var(--nav-border);
+  display: flex; align-items: stretch;
+  z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+}
+.nav-btn {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2px;
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); position: relative; transition: color 0.2s;
+}
+.nav-btn:hover, .nav-btn.active { color: var(--accent); }
+.nav-btn.active::before {
+  content: ''; position: absolute; top: 0; left: 20%; right: 20%;
+  height: 3px; background: var(--accent); border-radius: 0 0 3px 3px;
+}
+.nav-icon  { font-size: 1.2rem; line-height: 1; }
+.nav-label { font-size: 0.58rem; font-weight: 600; }
+
+/* 紙吹雪キャンバス */
+#confetti-canvas {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 9999;
+}
+
+/* ==============================
+   Material Design 風 日付ピッカー
+============================== */
+
+/* 日付トリガーボタン */
+.md-date-trigger {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 16px;
+  border: 1px solid var(--border); border-radius: 9px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.93rem; font-weight: 500;
+  cursor: pointer; white-space: nowrap;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  min-width: 148px;
+}
+.md-date-trigger:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.12);
+}
+.md-date-trigger .cal-icon { font-size: 1rem; flex-shrink: 0; }
+
+/* オーバーレイ */
+.md-cal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.22s;
+}
+.md-cal-overlay.open {
+  opacity: 1; pointer-events: auto;
+}
+
+/* ダイアログ本体 */
+.md-cal-dialog {
+  background: var(--surface);
+  border-radius: 20px;
+  width: 320px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.28);
+  overflow: hidden;
+  transform: scale(0.88) translateY(16px);
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+}
+.md-cal-overlay.open .md-cal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+/* ヘッダー部 */
+.md-cal-header {
+  background: #1565c0;
+  padding: 18px 20px 14px;
+  color: #fff;
+  position: relative;
+}
+[data-theme="sunset"] .md-cal-header { background: #c0392b; }
+[data-theme="dark"]   .md-cal-header { background: #2c3e6b; }
+
+.md-cal-header-top {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  opacity: 0.75; margin-bottom: 4px;
+}
+.md-cal-header-date {
+  font-size: 1.65rem; font-weight: 700; line-height: 1.2;
+  cursor: pointer; border-radius: 6px;
+  padding: 2px 4px; margin-left: -4px;
+  transition: background 0.15s;
+  display: inline-block;
+}
+.md-cal-header-date:hover { background: rgba(255,255,255,0.15); }
+
+/* ペンアイコン */
+.md-cal-pen-btn {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.8); font-size: 1rem;
+  padding: 5px; border-radius: 50%;
+  transition: background 0.15s;
+}
+.md-cal-pen-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+
+/* テキスト入力モード（ペンアイコン押下時） */
+.md-cal-text-input-wrap { display: none; padding: 12px 20px 4px; }
+.md-cal-text-input-wrap.active { display: block; }
+.md-cal-text-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: none; border-bottom: 2px solid #1565c0;
+  background: transparent; color: var(--text);
+  font-size: 1rem; outline: none;
+}
+[data-theme="sunset"] .md-cal-text-input { border-bottom-color: #c0392b; }
+[data-theme="dark"]   .md-cal-text-input { border-bottom-color: #7f9cf5; }
+
+/* カレンダー本体 */
+.md-cal-body { padding: 8px 16px 4px; }
+
+/* 月ナビ */
+.md-cal-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.md-cal-nav-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 1.1rem;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.md-cal-nav-btn:hover { background: var(--pill-bg); color: var(--accent); }
+.md-cal-month-label {
+  font-size: 0.88rem; font-weight: 700; color: var(--text);
+  cursor: pointer; padding: 4px 10px; border-radius: 6px;
+  transition: background 0.15s;
+}
+.md-cal-month-label:hover { background: var(--pill-bg); }
+
+/* 曜日ヘッダー */
+.md-cal-weekdays {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 2px;
+}
+.md-cal-weekday {
+  text-align: center; font-size: 0.7rem;
+  font-weight: 700; color: var(--muted);
+  padding: 4px 0;
+}
+.md-cal-weekday:first-child { color: #e53e3e; }
+.md-cal-weekday:last-child  { color: #4299e1; }
+
+/* 日付グリッド */
+.md-cal-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.md-cal-day {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: none; background: none;
+  font-size: 0.82rem; cursor: pointer; color: var(--text);
+  transition: background 0.12s, color 0.12s;
+}
+.md-cal-day:hover:not(:disabled):not(.selected) {
+  background: var(--pill-bg); color: var(--accent);
+}
+.md-cal-day.other-month { color: var(--border); cursor: default; }
+.md-cal-day.today:not(.selected) {
+  color: #1565c0; font-weight: 800;
+  border: 2px solid #1565c0;
+}
+[data-theme="sunset"] .md-cal-day.today:not(.selected) {
+  color: #c0392b; border-color: #c0392b;
+}
+[data-theme="dark"] .md-cal-day.today:not(.selected) {
+  color: #7f9cf5; border-color: #7f9cf5;
+}
+.md-cal-day.selected {
+  background: #1565c0; color: #fff; font-weight: 700;
+}
+[data-theme="sunset"] .md-cal-day.selected { background: #c0392b; }
+[data-theme="dark"]   .md-cal-day.selected { background: #5a7fd4; }
+.md-cal-day.sunday { color: #e53e3e; }
+.md-cal-day.sunday.selected, .md-cal-day.saturday.selected { color: #fff; }
+.md-cal-day.saturday { color: #4299e1; }
+
+/* フッター */
+.md-cal-footer {
+  display: flex; justify-content: flex-end; gap: 6px;
+  padding: 10px 14px 14px;
+}
+.md-cal-action-btn {
+  padding: 7px 18px; border: none; border-radius: 6px;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.md-cal-cancel {
+  background: none; color: var(--muted);
+}
+.md-cal-cancel:hover { background: var(--surface2); }
+.md-cal-ok {
+  background: #1565c0; color: #fff;
+}
+[data-theme="sunset"] .md-cal-ok { background: #c0392b; }
+[data-theme="dark"]   .md-cal-ok { background: #5a7fd4; }
+.md-cal-ok:hover { opacity: 0.88; }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header id="app-header">
+  <div class="header-left">
+    <div id="header-title" class="header-title">📅 時間割</div>
+    <div id="today-label" class="today-label">読み込み中...</div>
+  </div>
+  <div id="day-selector" class="day-selector">
+    <button class="day-btn" data-day="0">月</button>
+    <button class="day-btn" data-day="1">火</button>
+    <button class="day-btn" data-day="2">水</button>
+    <button class="day-btn" data-day="3">木</button>
+    <button class="day-btn" data-day="4">金</button>
+  </div>
+  <!-- 次の授業バッジ -->
+  <div id="next-class-badge">
+    <span class="next-class-dot"></span>
+    <span id="next-class-text">次：--</span>
+  </div>
+</header>
+
+<main id="app-main">
+
+  <!-- ===== タブ① 時間割 ===== -->
+  <div id="tab-timetable" class="tab-page active">
+
+    <!-- ③ 準備忘れアラートバナー（16時以降表示） -->
+    <div id="prep-alert-banner">
+      <div class="prep-alert-inner">
+        <span class="prep-alert-icon">⚠️</span>
+        <span class="prep-alert-text" id="prep-alert-text">明日の準備はできてる？</span>
+        <button class="prep-alert-close" id="prep-alert-close" title="閉じる">✕</button>
+      </div>
+    </div>
+
+    <div class="two-col">
+
+      <!-- クイック検索バー -->
+      <div style="grid-column:1/-1;">
+        <div class="search-bar-wrap">
+          <div class="search-bar-inner">
+            <span class="search-icon">🔍</span>
+            <input id="timetable-search" type="search"
+              placeholder="教科名・持ち物を検索（例：ファイル、数Ⅰ）" autocomplete="off">
+            <button class="search-clear-btn" id="search-clear-btn" title="クリア">✕</button>
+          </div>
+          <div class="search-result-count" id="search-result-count"></div>
+        </div>
+      </div>
+
+      <!-- 左：時間割カード -->
+      <div class="col-left">
+        <div id="timetable-cards"></div>
+      </div>
+
+      <!-- 右：持ち物チェックリスト -->
+      <div class="col-right">
+        <h2 class="col-title">🎒 今日の準備物</h2>
+        <p id="checklist-status" class="checklist-status">チェックして確認しよう！</p>
+        <ul id="checklist" class="checklist"></ul>
+        <div id="complete-message" class="complete-message" style="display:none;">🎉 準備完了！</div>
+        <button id="omikuji-trigger-btn" class="omikuji-trigger-btn" style="display:none;">🎯 明日の運勢おみくじを引く</button>
+
+        <!-- 単発持ち物メモ -->
+        <div class="today-items-box" style="margin-top:14px;">
+          <h3 class="col-title" style="font-size:0.85rem;">📌 今日だけの持ち物</h3>
+          <div class="today-items-form">
+            <input id="today-item-input" class="today-item-input"
+              type="text" placeholder="例：集金・提出物…" maxlength="30">
+            <button class="today-item-add-btn" id="today-item-add-btn">追加</button>
+          </div>
+          <ul id="today-items-list" class="today-items-list"></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== タブ② ポモドーロタイマー（シンプル版） ===== -->
+  <div id="tab-pomodoro" class="tab-page">
+    <div class="pomodoro-wrap">
+
+      <!-- 今日の合計集中時間バナー -->
+      <div class="today-study-banner">
+        <div class="today-study-icon">🎯</div>
+        <div class="today-study-info">
+          <div class="today-study-label">今日の合計集中時間</div>
+          <div id="today-total-display" class="today-study-total">0 分</div>
+        </div>
+      </div>
+
+      <!-- タイマー本体カード -->
+      <div class="timer-card">
+        <div id="timer-mode-label" class="timer-mode-label">作業</div>
+        <div id="timer-time" class="timer-display">25:00</div>
+        <div class="timer-prog-wrap">
+          <div id="timer-prog-bar" class="timer-prog-bar" style="width:100%;"></div>
+        </div>
+      </div>
+
+      <!-- プリセット時間 -->
+      <div class="preset-btns">
+        <button class="preset-btn active-preset" data-min="25">25分（作業）</button>
+        <button class="preset-btn" data-min="5">5分（休憩）</button>
+        <button class="preset-btn" data-min="15">15分（長休憩）</button>
+      </div>
+
+      <!-- 自由入力 -->
+      <div class="custom-row">
+        <label for="custom-min">自由入力：</label>
+        <input id="custom-min" type="number" min="1" max="180" value="30">
+        <span>分</span>
+        <button id="custom-set-btn" class="small-btn">セット</button>
+      </div>
+
+      <!-- 操作ボタン -->
+      <div class="timer-controls">
+        <button id="timer-start" class="ctrl-btn start-btn">▶ スタート</button>
+        <button id="timer-pause" class="ctrl-btn pause-btn" disabled>⏸ 一時停止</button>
+        <button id="timer-reset" class="ctrl-btn reset-btn">↺ リセット</button>
+      </div>
+
+      <!-- 学習グラフ -->
+      <div class="study-graph-card">
+        <div class="graph-header">
+          <h2 class="col-title" style="margin-bottom:0;">📊 学習グラフ</h2>
+          <div class="graph-toggle-btns">
+            <button id="graph-week-btn" class="graph-toggle active-graph-toggle">今週</button>
+            <button id="graph-month-btn" class="graph-toggle">今月</button>
+          </div>
+        </div>
+        <div class="graph-canvas-wrap">
+          <canvas id="study-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- 学習アナリティクス -->
+      <div class="analytics-card">
+        <h2 class="col-title" style="margin-bottom:0;">📈 学習アナリティクス</h2>
+
+        <!-- 週間目標プログレス -->
+        <div class="goal-section">
+          <div class="goal-header">
+            <span class="goal-label">📅 週間学習目標</span>
+            <div class="goal-edit-row">
+              <input id="goal-hours-input" type="number" min="1" max="100" value="10">
+              <span>時間</span>
+              <button class="goal-set-btn" id="goal-set-btn">セット</button>
+            </div>
+          </div>
+          <div class="goal-progress-nums">
+            <span><span id="goal-current-val" class="goal-current-val">0</span>
+              <span style="font-size:0.75rem;color:var(--muted);"> / <span id="goal-target-val">10</span>時間</span>
+            </span>
+            <span class="goal-pct" id="goal-pct">0%</span>
+          </div>
+          <div class="goal-bar-track">
+            <div class="goal-bar-fill" id="goal-bar-fill"></div>
+          </div>
+        </div>
+
+        <!-- 教科別円グラフ -->
+        <div class="pie-section">
+          <span class="goal-label">🥧 今週の教科別学習時間</span>
+          <div id="pie-chart-area">
+            <p class="analytics-empty" id="pie-empty">今週の記録がありません</p>
+            <div class="pie-canvas-wrap" id="pie-canvas-wrap" style="display:none;">
+              <canvas id="subject-pie-chart"></canvas>
+              <div class="pie-center-label">
+                <span class="pie-center-val" id="pie-center-val">0</span>
+                <span class="pie-center-unit">分</span>
+              </div>
+            </div>
+            <div class="pie-legend" id="pie-legend"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== タブ③ リマインダー ===== -->
+  <div id="tab-reminder" class="tab-page">
+    <div class="reminder-wrap">
+
+      <div class="reminder-form-box">
+        <h2 class="col-title">➕ 忘れ物を追加</h2>
+        <div class="reminder-form">
+          <input id="reminder-text" type="text"
+            placeholder="例：レポート提出、電卓持参…" maxlength="40">
+          <button type="button" id="md-date-trigger-btn" class="md-date-trigger">
+            <span class="cal-icon">📅</span>
+            <span id="md-date-trigger-label">日付を選択</span>
+          </button>
+          <!-- 隠しフィールド：選択した日付値を保持 -->
+          <input id="reminder-date" type="hidden" value="">
+          <button id="reminder-add-btn" class="add-btn">追加</button>
+        </div>
+      </div>
+
+      <div class="reminder-list-box">
+        <h2 class="col-title">📋 リマインダー一覧</h2>
+        <ul id="reminder-list" class="reminder-list"></ul>
+        <p id="reminder-empty" class="reminder-empty">まだリマインダーはありません</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== タブ④ 設定 ===== -->
+  <div id="tab-settings" class="tab-page">
+    <div class="settings-wrap">
+
+      <!-- ストリーク＆称号カード -->
+      <div class="streak-card" id="streak-card">
+        <div class="streak-top">
+          <div class="streak-flame-count">
+            <span class="streak-flame">🔥</span>
+            <div class="streak-count-wrap">
+              <span id="streak-count" class="streak-count">0</span>
+              <span class="streak-count-label">日連続達成中！</span>
+            </div>
+          </div>
+          <div id="streak-best-badge" class="streak-best-badge">最高 0日</div>
+        </div>
+        <div class="streak-title-row">
+          <span id="streak-title-icon" class="streak-title-icon">🔰</span>
+          <div class="streak-title-info">
+            <span class="streak-title-sub">現在の称号</span>
+            <span id="streak-title-name" class="streak-title-name">まだ称号がありません</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 称号一覧 -->
+      <div class="settings-box">
+        <h2 class="col-title">🏅 称号コレクション</h2>
+        <div id="titles-grid" class="titles-grid"></div>
+        <p class="streak-reset-note">毎日持ち物チェックまたはタイマー完了でストリーク継続！</p>
+      </div>
+
+      <!-- ダーク／ライト モード -->
+      <div class="settings-box">
+        <h2 class="col-title">� 表示モード</h2>
+        <div class="mode-btns">
+          <button class="mode-btn active-mode" id="mode-light-btn">☀️ ライト</button>
+          <button class="mode-btn" id="mode-dark-btn">🌙 ダーク</button>
+        </div>
+      </div>
+
+      <!-- アクセントカラー設定 -->
+      <div class="settings-box">
+        <h2 class="col-title">🎨 アクセントカラー</h2>
+
+        <!-- プリセットパレット -->
+        <p class="color-section-label">プリセット</p>
+        <div class="preset-palette" id="preset-palette"></div>
+
+        <!-- カスタムカラーピッカー -->
+        <div class="custom-color-row">
+          <label for="custom-color-picker">カスタム</label>
+          <input type="color" id="custom-color-picker" value="#667eea">
+          <span id="custom-color-hex">#667eea</span>
+          <button class="custom-color-apply" id="custom-color-apply-btn">適用</button>
+        </div>
+
+        <!-- プレビュー -->
+        <div class="preview-area">
+          <p class="preview-area-title">プレビュー</p>
+          <div class="preview-widgets">
+            <div class="preview-btn-group">
+              <button id="preview-btn-primary">スタート</button>
+              <button id="preview-btn-outline">リセット</button>
+            </div>
+            <nav class="preview-nav">
+              <div class="preview-nav-item active">
+                <span class="preview-nav-icon">📅</span>時間割
+              </div>
+              <div class="preview-nav-item">
+                <span class="preview-nav-icon">⏱️</span>タイマー
+              </div>
+              <div class="preview-nav-item">
+                <span class="preview-nav-icon">🚨</span>通知
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- アプリ情報 -->
+      <div class="settings-box">
+        <h2 class="col-title">ℹ️ アプリ情報</h2>
+        <ul class="info-list">
+          <li>アプリ名：のべすけ</li>
+          <li>外部ライブラリ：Chart.js（グラフ描画）</li>
+          <li>チャイム音：Web Audio APIで合成</li>
+          <li>データ保存：ブラウザのlocalStorage</li>
+          <li>学習ログ：タイマー完了ごとに自動記録</li>
+        </ul>
+      </div>
+
+      <!-- 学習カレンダー -->
+      <div class="settings-box">
+        <h2 class="col-title">📅 学習カレンダー</h2>
+        <div class="study-calendar-wrap">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" id="cal-prev">&#8249;</button>
+            <span class="cal-month-title" id="cal-month-title">2026年8月</span>
+            <button class="cal-nav-btn" id="cal-next">&#8250;</button>
+          </div>
+          <div class="cal-grid" id="cal-weekdays">
+            <div class="cal-weekday">日</div>
+            <div class="cal-weekday">月</div>
+            <div class="cal-weekday">火</div>
+            <div class="cal-weekday">水</div>
+            <div class="cal-weekday">木</div>
+            <div class="cal-weekday">金</div>
+            <div class="cal-weekday">土</div>
+          </div>
+          <div class="cal-grid" id="cal-days-grid"></div>
+          <div class="cal-summary" id="cal-summary"></div>
+        </div>
+      </div>
+
+      <!-- データバックアップ -->
+      <div class="settings-box">
+        <h2 class="col-title">💾 データのバックアップ</h2>
+        <div class="backup-btns">
+          <button class="backup-btn" id="backup-export-btn">
+            ⬇️ データを保存
+          </button>
+          <label class="backup-btn" for="backup-import-input">
+            ⬆️ データを復元
+          </label>
+          <input type="file" id="backup-import-input" class="backup-import-input" accept=".json">
+        </div>
+        <p class="backup-msg" id="backup-msg"></p>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ボトムナビゲーション -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-tab="timetable">
+    <span class="nav-icon">📅</span>
+    <span class="nav-label">時間割</span>
+  </button>
+  <button class="nav-btn" data-tab="pomodoro">
+    <span class="nav-icon">⏱️</span>
+    <span class="nav-label">タイマー</span>
+  </button>
+  <button class="nav-btn" data-tab="reminder">
+    <span class="nav-icon">🚨</span>
+    <span class="nav-label">リマインダー</span>
+    <span id="reminder-badge" class="reminder-badge" style="display:none;">0</span>
+  </button>
+  <button class="nav-btn" data-tab="settings">
+    <span class="nav-icon">⚙️</span>
+    <span class="nav-label">設定</span>
+  </button>
+</nav>
+
+<!-- 紙吹雪キャンバス -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ① おみくじポップアップ -->
+<div id="omikuji-overlay">
+  <div class="omikuji-popup">
+    <div class="omikuji-scroll-img">📜</div>
+    <div class="omikuji-rank" id="omikuji-rank">大吉</div>
+    <div class="omikuji-item-label">🍀 ラッキーアイテム</div>
+    <div class="omikuji-item-name" id="omikuji-item">パラレルノート</div>
+    <p class="omikuji-msg" id="omikuji-msg">メッセージ</p>
+    <button class="omikuji-draw-btn" id="omikuji-draw-btn">🎲 もう一度引く</button>
+    <button class="omikuji-close-btn" id="omikuji-close-btn">閉じる</button>
+  </div>
+</div>
+
+<!-- ② 教科メモダイアログ -->
+<div id="memo-dialog-overlay">
+  <div class="memo-dialog">
+    <div class="memo-dialog-title">
+      📝 <span class="memo-dialog-subject-tag" id="memo-dialog-subject">教科名</span>
+      のメモ
+    </div>
+    <textarea id="memo-textarea" placeholder="例：P.25の課題提出、次回テスト範囲…" maxlength="120"></textarea>
+    <div class="memo-dialog-footer">
+      <button class="memo-clear-btn" id="memo-clear-btn">🗑 削除</button>
+      <button class="memo-cancel-btn" id="memo-cancel-btn">キャンセル</button>
+      <button class="memo-save-btn" id="memo-save-btn">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 称号解放ポップアップ -->
+<div id="title-unlock-overlay">
+  <div class="title-unlock-popup">
+    <div class="popup-trophy" id="popup-trophy">🏆</div>
+    <div class="popup-congrats">🎉 新しい称号を獲得！</div>
+    <div class="popup-title-name" id="popup-title-name">称号名</div>
+    <p class="popup-msg" id="popup-msg">おめでとうございます！</p>
+    <button class="popup-close-btn" id="popup-close-btn">やったー！</button>
+  </div>
+</div>
+
+<!-- Material Design 風 日付ピッカー ダイアログ -->
+<div id="md-cal-overlay" class="md-cal-overlay" role="dialog" aria-modal="true" aria-label="日付を選択">
+  <div class="md-cal-dialog">
+
+    <!-- ヘッダー -->
+    <div class="md-cal-header">
+      <div class="md-cal-header-top">SELECT DATE</div>
+      <div id="md-cal-header-date" class="md-cal-header-date">日付を選択</div>
+      <button class="md-cal-pen-btn" id="md-cal-pen-btn" title="テキスト入力に切り替え">✏️</button>
+    </div>
+
+    <!-- テキスト直接入力モード -->
+    <div id="md-cal-text-wrap" class="md-cal-text-input-wrap">
+      <input id="md-cal-text-input" class="md-cal-text-input"
+        type="text" placeholder="YYYY-MM-DD" maxlength="10">
+    </div>
+
+    <!-- カレンダー本体 -->
+    <div id="md-cal-body-wrap" class="md-cal-body">
+      <div class="md-cal-nav">
+        <button class="md-cal-nav-btn" id="md-cal-prev">&#8249;</button>
+        <span class="md-cal-month-label" id="md-cal-month-label">2026年1月</span>
+        <button class="md-cal-nav-btn" id="md-cal-next">&#8250;</button>
+      </div>
+      <div class="md-cal-weekdays">
+        <div class="md-cal-weekday">日</div>
+        <div class="md-cal-weekday">月</div>
+        <div class="md-cal-weekday">火</div>
+        <div class="md-cal-weekday">水</div>
+        <div class="md-cal-weekday">木</div>
+        <div class="md-cal-weekday">金</div>
+        <div class="md-cal-weekday">土</div>
+      </div>
+      <div id="md-cal-grid" class="md-cal-grid"></div>
+    </div>
+
+    <!-- フッター -->
+    <div class="md-cal-footer">
+      <button class="md-cal-action-btn md-cal-cancel" id="md-cal-cancel">キャンセル</button>
+      <button class="md-cal-action-btn md-cal-ok"     id="md-cal-ok">OK</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ============================================================
+// 【1】時間割データ  [曜日0=月〜4=金][時限0=1限〜5=6限]
+// ============================================================
+var TIMETABLE = [
+  // 月曜
+  ['プロ技', 'プロ技', '回路', '英コⅠ', '数Ⅰ', '回路'],
+  // 火曜
+  ['現国', '歴総', '工情数', '工情数', '科人', '数Ⅰ'],
+  // 水曜
+  ['芸術', '数Ⅰ', '体育', '英コⅠ', '現国', '科人'],
+  // 木曜
+  ['回路', '工業基礎', '工業基礎', '工業基礎', '保健', 'LHR'],
+  // 金曜
+  ['芸術', '体育', '工情数', '回路', '英コⅠ', '歴総']
+];
+
+// ============================================================
+// 【2】教科ごとの持ち物データ
+// ============================================================
+var BELONGINGS = {
+  '現国':     ['教科書', 'ノート', 'ダブルクリア', 'ファイル'],
+  '歴総':     ['教科書', 'ノート'],
+  '数Ⅰ':     ['教科書', 'ノート', 'ファイル', 'パラレルノート'],
+  '科人':     ['教科書', 'ファイル'],
+  '英コⅠ':   ['教科書', 'ファイル'],
+  '回路':     ['教科書', 'ファイル'],
+  '工業基礎': ['教科書', 'ファイル'],
+  'プロ技':   ['教科書', 'ノート'],
+  '工情数':   ['教科書', 'ノート', 'ファイル', '問題集'],
+  '芸術':     ['教科書', '用具'],
+  '体育':     ['体操服', '体育館シューズ'],
+  '保健':     ['教科書', 'ノート'],
+  'LHR':      ['筆記用具', '連絡帳']
+};
+
+var DAY_NAMES = ['月', '火', '水', '木', '金'];
+
+// ============================================================
+// 【3】タイマー用グローバル変数
+// ============================================================
+var timerTotal     = 25 * 60;  // セット時間（秒）
+var timerRemaining = 25 * 60;  // 残り時間（秒）
+var timerRunning   = false;
+var timerInterval  = null;
+var confettiId     = null;
+
+// ============================================================
+// 【3-2】学習記録用ユーティリティ
+//   localStorage のキー: 'studyLog'
+//   形式: { "YYYY-MM-DD": <分数合計(number)>, ... }
+// ============================================================
+
+// 今日の日付文字列 "YYYY-MM-DD" を返す
+function todayKey() {
+  var d = new Date();
+  return d.getFullYear() + '-' +
+    String(d.getMonth() + 1).padStart(2, '0') + '-' +
+    String(d.getDate()).padStart(2, '0');
+}
+
+// studyLog を localStorage から読み込む
+function loadStudyLog() {
+  try {
+    var raw = localStorage.getItem('studyLog');
+    var obj = raw ? JSON.parse(raw) : {};
+    return (obj && typeof obj === 'object' && !Array.isArray(obj)) ? obj : {};
+  } catch (e) { return {}; }
+}
+
+// studyLog を localStorage へ書き込む
+function saveStudyLog(log) {
+  try { localStorage.setItem('studyLog', JSON.stringify(log)); } catch (e) {}
+}
+
+// 指定した分数を今日の記録に加算して保存
+function saveStudyTime(minutes) {
+  if (!minutes || minutes <= 0) { return; }
+  var log = loadStudyLog();
+  var key = todayKey();
+  log[key] = (log[key] || 0) + Math.round(minutes);
+  saveStudyLog(log);
+  updateTodayTotal();
+  renderStudyChart(currentGraphMode);
+  updateAnalytics();
+  renderStudyCalendar();         // � カレンダーも更新
+  incrementStreak('timer');
+}
+
+// 今日の合計分数をバナーに反映
+function updateTodayTotal() {
+  var log   = loadStudyLog();
+  var total = log[todayKey()] || 0;
+  var el    = document.getElementById('today-total-display');
+  if (!el) { return; }
+  if (total >= 60) {
+    var h = Math.floor(total / 60);
+    var m = total % 60;
+    el.textContent = h + ' 時間 ' + (m > 0 ? m + ' 分' : '');
+  } else {
+    el.textContent = total + ' 分';
+  }
+}
+
+// グラフの現在モード（'week' or 'month'）
+var currentGraphMode = 'week';
+// Chart.js インスタンス保持
+var studyChartInstance = null;
+
+// グラフを描画（mode: 'week' | 'month'）
+function renderStudyChart(mode) {
+  currentGraphMode = mode;
+  var log    = loadStudyLog();
+  var labels = [];
+  var data   = [];
+
+  if (mode === 'week') {
+    // 今日を含む直近7日（曜日ラベル）
+    var DAY_JA = ['日', '月', '火', '水', '木', '金', '土'];
+    for (var i = 6; i >= 0; i--) {
+      var d = new Date();
+      d.setDate(d.getDate() - i);
+      var key = d.getFullYear() + '-' +
+        String(d.getMonth() + 1).padStart(2, '0') + '-' +
+        String(d.getDate()).padStart(2, '0');
+      labels.push((i === 0 ? '今日' : DAY_JA[d.getDay()] + '曜') );
+      data.push(log[key] || 0);
+    }
+  } else {
+    // 今月の1日〜今日（日付ラベル）
+    var now   = new Date();
+    var year  = now.getFullYear();
+    var month = now.getMonth();
+    var today = now.getDate();
+    for (var dd = 1; dd <= today; dd++) {
+      var key2 = year + '-' +
+        String(month + 1).padStart(2, '0') + '-' +
+        String(dd).padStart(2, '0');
+      labels.push(dd + '日');
+      data.push(log[key2] || 0);
+    }
+  }
+
+  // アクセントカラーをCSS変数から取得（フォールバックあり）
+  var accentColor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--accent').trim() || '#667eea';
+
+  // 既存グラフを破棄
+  if (studyChartInstance) {
+    studyChartInstance.destroy();
+    studyChartInstance = null;
+  }
+
+  var canvas = document.getElementById('study-chart');
+  if (!canvas) { return; }
+  var ctx = canvas.getContext('2d');
+
+  // グラデーション背景
+  var gradient = ctx.createLinearGradient(0, 0, 0, 200);
+  gradient.addColorStop(0, accentColor + 'cc');
+  gradient.addColorStop(1, accentColor + '22');
+
+  studyChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '集中時間（分）',
+        data: data,
+        backgroundColor: gradient,
+        borderColor: accentColor,
+        borderWidth: 2,
+        borderRadius: 8,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function (ctx) {
+              var v = ctx.parsed.y;
+              if (v >= 60) {
+                return Math.floor(v / 60) + '時間' + (v % 60 > 0 ? (v % 60) + '分' : '');
+              }
+              return v + '分';
+            }
+          },
+          backgroundColor: 'rgba(30,30,50,0.85)',
+          titleColor: '#fff',
+          bodyColor: '#e2e8f0',
+          borderColor: accentColor,
+          borderWidth: 1,
+          cornerRadius: 8
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: {
+            color: getComputedStyle(document.documentElement)
+              .getPropertyValue('--muted').trim() || '#718096',
+            font: { size: 11, weight: '600' }
+          }
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: getComputedStyle(document.documentElement)
+              .getPropertyValue('--border').trim() || '#e2e8f0'
+          },
+          ticks: {
+            color: getComputedStyle(document.documentElement)
+              .getPropertyValue('--muted').trim() || '#718096',
+            font: { size: 11 },
+            callback: function (v) { return v + '分'; }
+          }
+        }
+      }
+    }
+  });
+}
+
+// ============================================================
+// 【4】起動
+// ============================================================
+document.addEventListener('DOMContentLoaded', function () {
+  // 18時以降の自動ダークモード判定
+  (function() {
+    var h = new Date().getHours();
+    if (h >= 18 || h < 6) {
+      var savedDark = localStorage.getItem('darkMode');
+      if (savedDark === null) {       // ユーザー設定がない場合のみ自動適用
+        localStorage.setItem('darkMode', '1');
+      }
+    }
+  })();
+
+  initTheme();
+  initNav();
+  initTimetableTab();
+  initPomodoroTab();
+  initReminderTab();
+  initSettingsTab();
+  initStreakCard();
+  initOmikuji();
+  initMemoDialog();
+  initSearch();
+  initTodayItems();      // 📌 単発持ち物メモ
+  initStudyCalendar();   // 📅 学習カレンダー
+  initBackup();          // � バックアップ
+
+  // 次の授業表示（初回 + 1分ごと更新）
+  updateNextClass();
+  setInterval(updateNextClass, 60000);
+});
+
+// ============================================================
+// 【5】ユーティリティ
+// ============================================================
+
+// 月曜=0〜金曜=4 を返す。16時以降は翌営業日。
+function getTargetDayIndex() {
+  var now   = new Date();
+  var jsDay = now.getDay(); // 0=日, 1=月 … 6=土
+  if (now.getHours() >= 16) { jsDay = jsDay + 1; }
+  if (jsDay === 0 || jsDay === 7) { return 0; } // 日・土+1 → 月
+  if (jsDay === 6)                { return 0; } // 土 → 月
+  return jsDay - 1;                              // 1〜5 → 0〜4
+}
+
+// HTML特殊文字エスケープ
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ============================================================
+// 【6】ボトムナビ ― タブ切り替え
+// ============================================================
+function initNav() {
+  var navBtns = document.querySelectorAll('.nav-btn');
+  for (var i = 0; i < navBtns.length; i++) {
+    navBtns[i].addEventListener('click', function () {
+      var target = this.dataset.tab;
+
+      // ナビボタンのアクティブ切り替え
+      for (var j = 0; j < navBtns.length; j++) { navBtns[j].classList.remove('active'); }
+      this.classList.add('active');
+
+      // タブページの切り替え
+      var pages = document.querySelectorAll('.tab-page');
+      for (var k = 0; k < pages.length; k++) { pages[k].classList.remove('active'); }
+      document.getElementById('tab-' + target).classList.add('active');
+
+      // ヘッダータイトルを更新
+      var titles = {
+        timetable: '📅 時間割',
+        pomodoro:  '⏱️ 集中タイマー',
+        reminder:  '🚨 リマインダー',
+        settings:  '⚙️ 設定'
+      };
+      document.getElementById('header-title').textContent = titles[target] || '';
+
+      // 曜日ボタンは時間割タブのみ表示
+      var ds = document.getElementById('day-selector');
+      if (target === 'timetable') { ds.classList.remove('hidden'); }
+      else { ds.classList.add('hidden'); }
+    });
+  }
+}
+
+// ============================================================
+// 【7】タブ① 時間割
+// ============================================================
+function initTimetableTab() {
+  var targetDay = getTargetDayIndex();
+  var now = new Date();
+  var h   = now.getHours();
+  var lbl = document.getElementById('today-label');
+
+  if (h >= 16) {
+    lbl.textContent = h + ':' + String(now.getMinutes()).padStart(2, '0') +
+      ' 以降 → ' + DAY_NAMES[targetDay] + '曜日を表示中';
+    showAlertBanner(targetDay);   // ③ 16時以降のアラートバナー表示
+  } else if (now.getDay() === 0 || now.getDay() === 6) {
+    lbl.textContent = '週末のため、月曜日を表示中';
+  } else {
+    lbl.textContent = DAY_NAMES[targetDay] + '曜日の時間割を表示中';
+  }
+
+  var dayBtns = document.querySelectorAll('.day-btn');
+  for (var i = 0; i < dayBtns.length; i++) {
+    dayBtns[i].addEventListener('click', function () {
+      for (var j = 0; j < dayBtns.length; j++) { dayBtns[j].classList.remove('active'); }
+      this.classList.add('active');
+      var idx = parseInt(this.dataset.day, 10);
+      renderTimetable(idx);
+      renderChecklist(idx);
+    });
+  }
+
+  var ab = document.querySelector('.day-btn[data-day="' + targetDay + '"]');
+  if (ab) { ab.classList.add('active'); }
+  renderTimetable(targetDay);
+  renderChecklist(targetDay);
+}
+
+// 時間割カードを描画
+function renderTimetable(dayIndex) {
+  var container = document.getElementById('timetable-cards');
+  container.innerHTML = '';
+  var periods = TIMETABLE[dayIndex];
+
+  for (var i = 0; i < periods.length; i++) {
+    var subject = periods[i];
+    var items   = BELONGINGS[subject] || [];
+
+    var card = document.createElement('div');
+    card.className = 'period-card';
+
+    // 左帯（時限番号）
+    var pe = document.createElement('div');
+    pe.className = 'card-period';
+    pe.innerHTML = '<span class="period-num">' + (i + 1) + '</span>' +
+                   '<span class="period-lbl">限</span>';
+
+    // 右エリア（教科名＋持ち物ピル）
+    var be = document.createElement('div');
+    be.className = 'card-body';
+
+    var se = document.createElement('p');
+    se.className   = 'card-subject';
+    se.textContent = subject;
+
+    // ② 教科メモアイコン（メモあり時に📝バッジ表示）
+    var memos = loadMemos();
+    var subjectRow = document.createElement('div');
+    subjectRow.className = 'card-subject-row';
+    subjectRow.appendChild(se);
+    if (memos[subject]) {
+      var memoIcon = document.createElement('span');
+      memoIcon.className   = 'card-memo-icon';
+      memoIcon.textContent = '📝';
+      memoIcon.title       = memos[subject];
+      subjectRow.appendChild(memoIcon);
+    }
+    // カード全体クリックでメモダイアログを開く
+    (function(subj) {
+      subjectRow.style.cursor = 'pointer';
+      subjectRow.addEventListener('click', function(e) {
+        openMemoDialog(subj);
+      });
+    })(subject);
+    be.appendChild(subjectRow);
+
+    if (items.length > 0) {
+      var ul = document.createElement('ul');
+      ul.className = 'card-items';
+      for (var j = 0; j < items.length; j++) {
+        var li = document.createElement('li');
+        li.textContent = items[j];
+        ul.appendChild(li);
+      }
+      be.appendChild(ul);
+    } else {
+      var ni = document.createElement('span');
+      ni.className   = 'card-no-items';
+      ni.textContent = '持ち物なし';
+      be.appendChild(ni);
+    }
+
+    card.appendChild(pe);
+    card.appendChild(be);
+    container.appendChild(card);
+  }
+}
+
+// 持ち物チェックリストを描画
+function renderChecklist(dayIndex) {
+  var listEl = document.getElementById('checklist');
+  var stEl   = document.getElementById('checklist-status');
+  var msgEl  = document.getElementById('complete-message');
+
+  msgEl.style.display = 'none';
+  listEl.innerHTML    = '';
+
+  // 教科×持ち物の組み合わせを重複なく収集
+  var seen = {}, checkItems = [], periods = TIMETABLE[dayIndex];
+  for (var i = 0; i < periods.length; i++) {
+    var subject = periods[i];
+    var items   = BELONGINGS[subject] || [];
+    for (var j = 0; j < items.length; j++) {
+      var key = subject + ':' + items[j];
+      if (!seen[key]) {
+        seen[key] = true;
+        checkItems.push({ subject: subject, item: items[j], key: key });
+      }
+    }
+  }
+
+  if (checkItems.length === 0) {
+    stEl.textContent = '今日は持ち物がありません 🎈';
+    return;
+  }
+  stEl.textContent = checkItems.length + ' 個のアイテムを確認しよう！';
+
+  // クロージャを避けるため IIFE で各アイテムを生成
+  for (var c = 0; c < checkItems.length; c++) {
+    (function (info, total) {
+      var li  = document.createElement('li');
+      var cb  = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id   = 'chk_' + info.key.replace(/[^a-zA-Z0-9]/g, '_');
+
+      var lbl = document.createElement('label');
+      lbl.htmlFor       = cb.id;
+      lbl.style.cssText = 'cursor:pointer;flex:1;display:flex;align-items:center;gap:5px;';
+
+      var tag = document.createElement('span');
+      tag.className   = 'subject-tag';
+      tag.textContent = info.subject;
+
+      var txt = document.createElement('span');
+      txt.className   = 'item-text';
+      txt.textContent = 'の' + info.item;
+
+      lbl.appendChild(tag);
+      lbl.appendChild(txt);
+
+      cb.addEventListener('change', function () {
+        haptic(18);  // ✅ チェック振動
+        if (this.checked) { li.classList.add('checked'); }
+        else              { li.classList.remove('checked'); }
+        checkAllDone(total);
+      });
+
+      // li全体クリックでもチェック切り替え
+      li.addEventListener('click', function (e) {
+        if (e.target !== cb) {
+          cb.checked = !cb.checked;
+          var ev = document.createEvent('Event');
+          ev.initEvent('change', true, true);
+          cb.dispatchEvent(ev);
+        }
+      });
+
+      li.appendChild(cb);
+      li.appendChild(lbl);
+      listEl.appendChild(li);
+    })(checkItems[c], checkItems.length);
+  }
+}
+
+// 全チェック完了を判定
+function checkAllDone(total) {
+  var checked = document.querySelectorAll('#checklist input[type="checkbox"]:checked').length;
+  document.getElementById('checklist-status').textContent =
+    checked + ' / ' + total + ' 個チェック済み';
+  var msgEl = document.getElementById('complete-message');
+  var omikujiBtn = document.getElementById('omikuji-trigger-btn');
+  if (checked === total && total > 0) {
+    msgEl.style.display = 'block';
+    if (omikujiBtn) { omikujiBtn.style.display = 'block'; }
+    hideAlertBanner();
+    haptic(30);                   // ✅ 完了振動（少し長め）
+    launchConfettiLight();        // 🎊 控えめ紙吹雪
+    incrementStreak('checklist');
+  } else {
+    msgEl.style.display = 'none';
+    if (omikujiBtn) { omikujiBtn.style.display = 'none'; }
+  }
+}
+
+// ============================================================
+// 【8】紙吹雪（Canvas アニメーション）
+// ============================================================
+function launchConfetti() {
+  var canvas = document.getElementById('confetti-canvas');
+  var ctx    = canvas.getContext('2d');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  var COLORS = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#ff922b','#cc5de8','#f06595','#20c997'];
+  var ps = [];
+  for (var i = 0; i < 150; i++) {
+    ps.push({
+      x:     Math.random() * canvas.width,
+      y:     Math.random() * -canvas.height,
+      w:     Math.random() * 10 + 6,
+      h:     Math.random() * 6  + 4,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      speed: Math.random() * 3 + 2,
+      angle: Math.random() * Math.PI * 2,
+      spin:  (Math.random() - 0.5) * 0.2,
+      drift: (Math.random() - 0.5) * 1.5
+    });
+  }
+
+  var elapsed = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < ps.length; i++) {
+      var p = ps[i];
+      p.y += p.speed; p.x += p.drift; p.angle += p.spin;
+      if (p.y > canvas.height + 10) {
+        p.x     = Math.random() * canvas.width;
+        p.y     = -10;
+        p.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      }
+      ctx.save();
+      ctx.translate(p.x, p.y); ctx.rotate(p.angle);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    elapsed++;
+    if (elapsed < 240) {
+      confettiId = requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiId = null;
+    }
+  }
+
+  if (confettiId) { cancelAnimationFrame(confettiId); }
+  animate();
+}
+
+// ============================================================
+// 【9】タブ② ポモドーロタイマー
+// ============================================================
+
+// ── アナリティクス：週間目標＆円グラフ ──
+var pieChartInstance = null;
+
+function loadGoalHours() {
+  try { return parseInt(localStorage.getItem('goalHours') || '10', 10); } catch(e) { return 10; }
+}
+function saveGoalHours(h) {
+  try { localStorage.setItem('goalHours', String(h)); } catch(e) {}
+}
+
+// 直近7日間の合計学習時間（分）を返す
+function getWeekTotalMinutes() {
+  var log = loadStudyLog();
+  var total = 0;
+  for (var i = 0; i < 7; i++) {
+    var d = new Date(); d.setDate(d.getDate() - i);
+    var k = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    total += log[k] || 0;
+  }
+  return total;
+}
+
+// 今週の教科別学習時間（ダミーデータ：実際はタイマー完了時に教科を記録する拡張が必要なため、全体を均等分配）
+function getSubjectPieData() {
+  var weekTotal = getWeekTotalMinutes();
+  if (weekTotal === 0) { return null; }
+  // 今週の曜日ごとの時間割から教科出現数を集計して比率を算出
+  var subjectCount = {};
+  for (var d = 0; d < 7; d++) {
+    var dow = (new Date().getDay() - d + 7) % 7; // 0=日
+    var tIdx = dow === 0 || dow === 6 ? -1 : dow - 1; // 月=0〜金=4
+    if (tIdx < 0) { continue; }
+    var periods = TIMETABLE[tIdx];
+    for (var p = 0; p < periods.length; p++) {
+      var s = periods[p];
+      subjectCount[s] = (subjectCount[s] || 0) + 1;
+    }
+  }
+  var totalCount = 0;
+  for (var k in subjectCount) { totalCount += subjectCount[k]; }
+  if (totalCount === 0) { return null; }
+  var labels = [], data = [];
+  for (var subj in subjectCount) {
+    labels.push(subj);
+    data.push(Math.round(weekTotal * subjectCount[subj] / totalCount));
+  }
+  return { labels: labels, data: data };
+}
+
+function updateAnalytics() {
+  var goalH  = loadGoalHours();
+  var totalMin = getWeekTotalMinutes();
+  var totalH   = totalMin / 60;
+  var pct      = Math.min(100, Math.round(totalH / goalH * 100));
+
+  // 目標入力欄
+  var inp = document.getElementById('goal-hours-input');
+  if (inp) { inp.value = goalH; }
+
+  // 数値表示
+  var curEl = document.getElementById('goal-current-val');
+  var tgtEl = document.getElementById('goal-target-val');
+  var pctEl = document.getElementById('goal-pct');
+  if (curEl) { curEl.textContent = totalH >= 1 ? totalH.toFixed(1) : totalMin + '分'; }
+  if (tgtEl) { tgtEl.textContent = goalH; }
+  if (pctEl) { pctEl.textContent = pct + '%'; }
+
+  // プログレスバー
+  var bar = document.getElementById('goal-bar-fill');
+  if (bar) {
+    bar.style.width = pct + '%';
+    bar.classList.toggle('over-goal', pct >= 100);
+  }
+
+  // 円グラフ
+  var pieData = getSubjectPieData();
+  var emptyEl = document.getElementById('pie-empty');
+  var wrapEl  = document.getElementById('pie-canvas-wrap');
+  var centerEl = document.getElementById('pie-center-val');
+  var legendEl = document.getElementById('pie-legend');
+
+  if (!pieData) {
+    if (emptyEl) { emptyEl.style.display = 'block'; }
+    if (wrapEl)  { wrapEl.style.display  = 'none'; }
+    if (legendEl){ legendEl.innerHTML = ''; }
+    return;
+  }
+  if (emptyEl) { emptyEl.style.display = 'none'; }
+  if (wrapEl)  { wrapEl.style.display  = 'block'; }
+  if (centerEl){ centerEl.textContent  = totalMin; }
+
+  var PIE_COLORS = ['#667eea','#e53e3e','#ed64a6','#9f7aea','#4299e1',
+                    '#38b2ac','#48bb78','#f6e05e','#ed8936','#a0aec0','#00b5d8'];
+
+  if (pieChartInstance) { pieChartInstance.destroy(); pieChartInstance = null; }
+  var canvas = document.getElementById('subject-pie-chart');
+  if (!canvas) { return; }
+  pieChartInstance = new Chart(canvas.getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: pieData.labels,
+      datasets: [{
+        data: pieData.data,
+        backgroundColor: PIE_COLORS.slice(0, pieData.labels.length),
+        borderWidth: 2,
+        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--surface').trim() || '#fff'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      cutout: '62%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) { return ctx.label + ': ' + ctx.parsed + '分'; }
+          }
+        }
+      }
+    }
+  });
+
+  // 凡例
+  if (legendEl) {
+    legendEl.innerHTML = '';
+    for (var i = 0; i < pieData.labels.length; i++) {
+      var item = document.createElement('div');
+      item.className = 'pie-legend-item';
+      item.innerHTML = '<span class="pie-legend-dot" style="background:' + PIE_COLORS[i % PIE_COLORS.length] + '"></span>' +
+        '<span>' + pieData.labels[i] + '</span>';
+      legendEl.appendChild(item);
+    }
+  }
+}
+
+function initAnalytics() {
+  var setBtn = document.getElementById('goal-set-btn');
+  if (setBtn) {
+    setBtn.addEventListener('click', function() {
+      var val = parseInt(document.getElementById('goal-hours-input').value, 10);
+      if (val >= 1 && val <= 200) {
+        saveGoalHours(val);
+        updateAnalytics();
+      }
+    });
+  }
+  updateAnalytics();
+}
+
+function initPomodoroTab() {
+  updateTimerDisplay();
+  updateTodayTotal();
+  renderStudyChart('week');
+  initAnalytics();   // 📈 アナリティクス初期化
+
+  // 今週/今月 切り替えボタン
+  document.getElementById('graph-week-btn').addEventListener('click', function () {
+    document.getElementById('graph-week-btn').classList.add('active-graph-toggle');
+    document.getElementById('graph-month-btn').classList.remove('active-graph-toggle');
+    renderStudyChart('week');
+  });
+  document.getElementById('graph-month-btn').addEventListener('click', function () {
+    document.getElementById('graph-month-btn').classList.add('active-graph-toggle');
+    document.getElementById('graph-week-btn').classList.remove('active-graph-toggle');
+    renderStudyChart('month');
+  });
+
+  // プリセットボタン
+  var presetBtns = document.querySelectorAll('.preset-btn');
+  for (var i = 0; i < presetBtns.length; i++) {
+    presetBtns[i].addEventListener('click', function () {
+      for (var j = 0; j < presetBtns.length; j++) {
+        presetBtns[j].classList.remove('active-preset');
+      }
+      this.classList.add('active-preset');
+      setTimerMinutes(parseInt(this.dataset.min, 10));
+    });
+  }
+
+  // カスタム入力
+  document.getElementById('custom-set-btn').addEventListener('click', function () {
+    var val = parseInt(document.getElementById('custom-min').value, 10);
+    if (!val || val < 1 || val > 180) { return; }
+    for (var j = 0; j < presetBtns.length; j++) {
+      presetBtns[j].classList.remove('active-preset');
+    }
+    setTimerMinutes(val);
+  });
+
+  // ▶ スタート
+  document.getElementById('timer-start').addEventListener('click', function () {
+    if (timerRemaining <= 0) { return; }
+    timerRunning = true;
+    document.getElementById('timer-start').disabled = true;
+    document.getElementById('timer-pause').disabled = false;
+    document.getElementById('timer-mode-label').textContent = '作業中';
+
+    timerInterval = setInterval(function () {
+      timerRemaining--;
+      updateTimerDisplay();
+      if (timerRemaining <= 0) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        // 集中時間を記録（セット時間を分単位で保存）
+        var studiedMin = Math.round(timerTotal / 60);
+        saveStudyTime(studiedMin);
+        playChime();  // 終了チャイム
+        document.getElementById('timer-mode-label').textContent = '完了！';
+        document.getElementById('timer-start').disabled = false;
+        document.getElementById('timer-pause').disabled = true;
+      }
+    }, 1000);
+  });
+
+  // ⏸ 一時停止
+  document.getElementById('timer-pause').addEventListener('click', function () {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById('timer-mode-label').textContent = '一時停止';
+    document.getElementById('timer-start').disabled = false;
+    document.getElementById('timer-pause').disabled = true;
+  });
+
+  // ↺ リセット
+  document.getElementById('timer-reset').addEventListener('click', function () {
+    clearInterval(timerInterval);
+    timerRunning   = false;
+    timerRemaining = timerTotal;
+    updateTimerDisplay();
+    document.getElementById('timer-mode-label').textContent = '作業';
+    document.getElementById('timer-start').disabled = false;
+    document.getElementById('timer-pause').disabled = true;
+  });
+}
+
+// タイマー表示を更新
+function updateTimerDisplay() {
+  var m = String(Math.floor(timerRemaining / 60)).padStart(2, '0');
+  var s = String(timerRemaining % 60).padStart(2, '0');
+  document.getElementById('timer-time').textContent = m + ':' + s;
+  var ratio = timerTotal > 0 ? timerRemaining / timerTotal : 0;
+  document.getElementById('timer-prog-bar').style.width = (ratio * 100) + '%';
+}
+
+// タイマーを指定分数にセット（リセット込み）
+function setTimerMinutes(min) {
+  clearInterval(timerInterval);
+  timerRunning   = false;
+  timerTotal     = min * 60;
+  timerRemaining = min * 60;
+  updateTimerDisplay();
+  document.getElementById('timer-mode-label').textContent = '作業';
+  document.getElementById('timer-start').disabled = false;
+  document.getElementById('timer-pause').disabled = true;
+}
+
+// ============================================================
+// 【10】チャイム音（タイマー終了時）― Web Audio API で合成
+//  「ポーン」という優しい4音のチャイムを鳴らす。外部ファイル不要。
+// ============================================================
+function playChime() {
+  try {
+    var ctx   = new (window.AudioContext || window.webkitAudioContext)();
+    // G5 E5 C5 E5 の順で優しく鳴らす
+    var freqs = [784, 659, 523, 659];
+    for (var i = 0; i < freqs.length; i++) {
+      (function (freq, delay) {
+        var osc  = ctx.createOscillator();
+        var gain = ctx.createGain();
+        var t    = ctx.currentTime + delay;
+        osc.type            = 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.28, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.9);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 1.0);
+      })(freqs[i], i * 0.38);
+    }
+  } catch (e) { /* チャイムエラーは無視しタイマーを継続 */ }
+}
+
+// ============================================================
+// 【11-pre】Material Design 風 日付ピッカー
+// ============================================================
+(function () {
+  var overlay      = null;
+  var gridEl       = null;
+  var monthLabel   = null;
+  var headerDate   = null;
+  var textWrap     = null;
+  var textInput    = null;
+  var bodyWrap     = null;
+  var triggerBtn   = null;
+  var triggerLabel = null;
+  var pendingDate  = null;   // 選択中の Date オブジェクト
+  var viewYear     = 0;
+  var viewMonth    = 0;      // 0-11
+  var onConfirm    = null;   // 確定コールバック
+
+  var MONTH_JA = ['1月','2月','3月','4月','5月','6月',
+                  '7月','8月','9月','10月','11月','12月'];
+  var WEEK_JA  = ['日','月','火','水','木','金','土'];
+
+  // YYYY-MM-DD → "M月D日(曜)" 形式
+  function formatHeaderDate(d) {
+    if (!d) { return '日付を選択'; }
+    return MONTH_JA[d.getMonth()] + d.getDate() + '日(' + WEEK_JA[d.getDay()] + ')';
+  }
+
+  // YYYY-MM-DD 文字列
+  function toIsoDate(d) {
+    if (!d) { return ''; }
+    return d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+
+  // カレンダーグリッドを描画
+  function renderGrid() {
+    gridEl.innerHTML = '';
+    monthLabel.textContent = viewYear + '年' + MONTH_JA[viewMonth];
+
+    var today    = new Date();
+    var todayStr = toIsoDate(today);
+    var selStr   = pendingDate ? toIsoDate(pendingDate) : '';
+
+    // 月初の曜日（0=日）
+    var firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    // 月末日
+    var lastDate = new Date(viewYear, viewMonth + 1, 0).getDate();
+    // 前月末日
+    var prevLast = new Date(viewYear, viewMonth, 0).getDate();
+
+    var cells = [];
+    // 前月の空白
+    for (var i = firstDay - 1; i >= 0; i--) {
+      cells.push({ day: prevLast - i, cur: false });
+    }
+    // 当月
+    for (var d = 1; d <= lastDate; d++) {
+      cells.push({ day: d, cur: true });
+    }
+    // 翌月の空白（6行×7=42マスになるよう）
+    var rest = 42 - cells.length;
+    for (var n = 1; n <= rest; n++) {
+      cells.push({ day: n, cur: false });
+    }
+
+    for (var c = 0; c < cells.length; c++) {
+      var cell    = cells[c];
+      var btn     = document.createElement('button');
+      var dateObj = cell.cur
+        ? new Date(viewYear, viewMonth, cell.day)
+        : null;
+      var isoStr  = dateObj ? toIsoDate(dateObj) : '';
+      var dow     = (c % 7); // 0=日, 6=土
+
+      btn.type      = 'button';
+      btn.textContent = cell.day;
+      btn.className = 'md-cal-day';
+      if (!cell.cur) { btn.className += ' other-month'; btn.disabled = true; }
+      if (cell.cur && isoStr === todayStr) { btn.className += ' today'; }
+      if (cell.cur && isoStr === selStr)   { btn.className += ' selected'; }
+      if (cell.cur && dow === 0) { btn.className += ' sunday'; }
+      if (cell.cur && dow === 6) { btn.className += ' saturday'; }
+
+      if (cell.cur) {
+        (function (iso, dt) {
+          btn.addEventListener('click', function () {
+            pendingDate = dt;
+            headerDate.textContent = formatHeaderDate(pendingDate);
+            renderGrid();
+          });
+        })(isoStr, dateObj);
+      }
+
+      gridEl.appendChild(btn);
+    }
+  }
+
+  // ダイアログを開く
+  function openCalendar(cb) {
+    onConfirm = cb;
+
+    // 初回のみ要素を取得
+    if (!overlay) {
+      overlay      = document.getElementById('md-cal-overlay');
+      gridEl       = document.getElementById('md-cal-grid');
+      monthLabel   = document.getElementById('md-cal-month-label');
+      headerDate   = document.getElementById('md-cal-header-date');
+      textWrap     = document.getElementById('md-cal-text-wrap');
+      textInput    = document.getElementById('md-cal-text-input');
+      bodyWrap     = document.getElementById('md-cal-body-wrap');
+      triggerBtn   = document.getElementById('md-date-trigger-btn');
+      triggerLabel = document.getElementById('md-date-trigger-label');
+
+      // 前月ボタン
+      document.getElementById('md-cal-prev').addEventListener('click', function () {
+        viewMonth--;
+        if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+        renderGrid();
+      });
+      // 次月ボタン
+      document.getElementById('md-cal-next').addEventListener('click', function () {
+        viewMonth++;
+        if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+        renderGrid();
+      });
+
+      // ✏️ ペンアイコン：カレンダー ⇔ テキスト入力切り替え
+      document.getElementById('md-cal-pen-btn').addEventListener('click', function () {
+        var isText = textWrap.classList.contains('active');
+        if (isText) {
+          textWrap.classList.remove('active');
+          bodyWrap.style.display = '';
+        } else {
+          textWrap.classList.add('active');
+          bodyWrap.style.display = 'none';
+          textInput.value = pendingDate ? toIsoDate(pendingDate) : '';
+          textInput.focus();
+        }
+      });
+
+      // テキスト入力変更時にプレビュー更新
+      textInput.addEventListener('input', function () {
+        var val = this.value.trim();
+        if (/^\d{4}-\d{2}-\d{2}$/.test(val)) {
+          var d = new Date(val);
+          if (!isNaN(d.getTime())) {
+            pendingDate = d;
+            headerDate.textContent = formatHeaderDate(pendingDate);
+          }
+        }
+      });
+
+      // キャンセル
+      document.getElementById('md-cal-cancel').addEventListener('click', function () {
+        closeCalendar(false);
+      });
+      // OK
+      document.getElementById('md-cal-ok').addEventListener('click', function () {
+        // テキストモードなら入力値を優先
+        if (textWrap.classList.contains('active')) {
+          var val = textInput.value.trim();
+          if (/^\d{4}-\d{2}-\d{2}$/.test(val)) {
+            var d = new Date(val);
+            if (!isNaN(d.getTime())) { pendingDate = d; }
+          }
+        }
+        closeCalendar(true);
+      });
+
+      // オーバーレイ背景クリックで閉じる
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) { closeCalendar(false); }
+      });
+      // ESCキー
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) {
+          closeCalendar(false);
+        }
+      });
+    }
+
+    // 今日を初期表示
+    var now = new Date();
+    viewYear  = now.getFullYear();
+    viewMonth = now.getMonth();
+    pendingDate = null;
+    headerDate.textContent = '日付を選択';
+    textWrap.classList.remove('active');
+    bodyWrap.style.display = '';
+    renderGrid();
+    overlay.classList.add('open');
+  }
+
+  function closeCalendar(confirmed) {
+    overlay.classList.remove('open');
+    if (confirmed && onConfirm) {
+      onConfirm(pendingDate ? toIsoDate(pendingDate) : '');
+    }
+  }
+
+  // グローバルに公開
+  window.openMdCalendar = openCalendar;
+})();
+
+// ============================================================
+// 【11】タブ③ リマインダー
+// ============================================================
+var reminders = [];
+try {
+  reminders = JSON.parse(localStorage.getItem('reminders') || '[]');
+  if (!Array.isArray(reminders)) { reminders = []; }
+} catch (e) { reminders = []; }
+
+function saveReminders() {
+  try { localStorage.setItem('reminders', JSON.stringify(reminders)); } catch (e) {}
+}
+
+// 期限までの日数（負値なら期限切れ）
+function daysUntil(ds) {
+  if (!ds) { return null; }
+  var t = new Date(); t.setHours(0, 0, 0, 0);
+  return Math.ceil((new Date(ds) - t) / 86400000);
+}
+
+// 日数に応じたバッジHTMLを返す
+function getBadgeHtml(days) {
+  if (days === null) { return ''; }
+  if (days < 0)      { return '<span class="deadline-badge badge-overdue">期限切れ</span>'; }
+  if (days === 0)    { return '<span class="deadline-badge badge-urgent">今日！</span>'; }
+  if (days <= 2)     { return '<span class="deadline-badge badge-urgent">あと' + days + '日！</span>'; }
+  if (days <= 7)     { return '<span class="deadline-badge badge-soon">あと' + days + '日</span>'; }
+  return '<span class="deadline-badge badge-safe">あと' + days + '日</span>';
+}
+
+function initReminderTab() {
+  // 今日の日付をトリガーボタンのデフォルト表示にセット
+  var today = new Date();
+  var todayIso = today.getFullYear() + '-' +
+    String(today.getMonth() + 1).padStart(2, '0') + '-' +
+    String(today.getDate()).padStart(2, '0');
+  document.getElementById('reminder-date').value = todayIso;
+  var WEEK_JA = ['日','月','火','水','木','金','土'];
+  var MONTH_JA = ['1月','2月','3月','4月','5月','6月',
+                  '7月','8月','9月','10月','11月','12月'];
+  document.getElementById('md-date-trigger-label').textContent =
+    MONTH_JA[today.getMonth()] + today.getDate() + '日(' + WEEK_JA[today.getDay()] + ')';
+
+  // トリガーボタンクリック → カレンダーを開く
+  document.getElementById('md-date-trigger-btn').addEventListener('click', function () {
+    window.openMdCalendar(function (isoDate) {
+      document.getElementById('reminder-date').value = isoDate;
+      if (isoDate) {
+        var d = new Date(isoDate);
+        document.getElementById('md-date-trigger-label').textContent =
+          MONTH_JA[d.getMonth()] + d.getDate() + '日(' + WEEK_JA[d.getDay()] + ')';
+      } else {
+        document.getElementById('md-date-trigger-label').textContent = '日付を選択';
+      }
+    });
+  });
+
+  document.getElementById('reminder-add-btn').addEventListener('click', addReminder);
+  document.getElementById('reminder-text').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { addReminder(); }
+  });
+
+  renderReminders();
+}
+
+function addReminder() {
+  var text = document.getElementById('reminder-text').value.trim();
+  var date = document.getElementById('reminder-date').value;
+  if (!text) { document.getElementById('reminder-text').focus(); return; }
+  reminders.push({ text: text, date: date || null });
+  saveReminders();
+  renderReminders();
+  document.getElementById('reminder-text').value = '';
+}
+
+function renderReminders() {
+  var listEl  = document.getElementById('reminder-list');
+  var emptyEl = document.getElementById('reminder-empty');
+  var badgeEl = document.getElementById('reminder-badge');
+  listEl.innerHTML = '';
+
+  // 期限順にソート（日付なしは末尾）
+  var sorted = reminders.slice().sort(function (a, b) {
+    if (!a.date && !b.date) { return 0; }
+    if (!a.date) { return 1; }
+    if (!b.date) { return -1; }
+    return new Date(a.date) - new Date(b.date);
+  });
+
+  // 7日以内の件数をナビバッジに反映
+  var urgentCount = 0;
+  for (var i = 0; i < reminders.length; i++) {
+    var d = daysUntil(reminders[i].date);
+    if (d !== null && d <= 7) { urgentCount++; }
+  }
+  if (urgentCount > 0) {
+    badgeEl.textContent   = urgentCount;
+    badgeEl.style.display = 'flex';
+  } else {
+    badgeEl.style.display = 'none';
+  }
+
+  if (sorted.length === 0) { emptyEl.style.display = 'block'; return; }
+  emptyEl.style.display = 'none';
+
+  for (var s = 0; s < sorted.length; s++) {
+    (function (r, origIdx) {
+      var days = daysUntil(r.date);
+      var li   = document.createElement('li');
+      li.className = 'reminder-item';
+      li.innerHTML =
+        getBadgeHtml(days) +
+        '<span class="reminder-text">' + escHtml(r.text) + '</span>' +
+        (r.date ? '<span class="reminder-date-text">' + r.date + '</span>' : '') +
+        '<button class="del-btn" title="削除">✕</button>';
+
+      li.querySelector('.del-btn').addEventListener('click', function (e) {
+        e.stopPropagation();
+        reminders.splice(origIdx, 1);
+        saveReminders();
+        renderReminders();
+      });
+
+      listEl.appendChild(li);
+    })(sorted[s], reminders.indexOf(sorted[s]));
+  }
+}
+
+// ============================================================
+// 【12】タブ④ 設定（カラーテーマ）
+// ============================================================
+
+// プリセットカラー定義
+var PRESET_COLORS = [
+  { hex: '#667eea', label: 'インディゴ' },
+  { hex: '#e53e3e', label: 'レッド' },
+  { hex: '#ed64a6', label: 'ピンク' },
+  { hex: '#9f7aea', label: 'パープル' },
+  { hex: '#4299e1', label: 'ブルー' },
+  { hex: '#00b5d8', label: 'シアン' },
+  { hex: '#38b2ac', label: 'ティール' },
+  { hex: '#48bb78', label: 'グリーン' },
+  { hex: '#68d391', label: 'ミント' },
+  { hex: '#f6e05e', label: 'イエロー' },
+  { hex: '#ed8936', label: 'オレンジ' },
+  { hex: '#f6ad55', label: 'アンバー' },
+  { hex: '#975a16', label: 'ブラウン' },
+  { hex: '#a0aec0', label: 'グレー' },
+  { hex: '#2d3748', label: 'チャコール' }
+];
+
+// hex → CSS変数セット（アクセントに合わせたパレット生成）
+function buildThemeVars(hex, isDark) {
+  // hex を RGB に変換
+  var r = parseInt(hex.slice(1,3),16);
+  var g = parseInt(hex.slice(3,5),16);
+  var b = parseInt(hex.slice(5,7),16);
+  // 輝度
+  var lum = 0.299*r + 0.587*g + 0.114*b;
+
+  // 淡色（pill-bg 用）
+  var pillR = Math.min(255, r + Math.round((255-r)*0.82));
+  var pillG = Math.min(255, g + Math.round((255-g)*0.82));
+  var pillB = Math.min(255, b + Math.round((255-b)*0.82));
+  var pillBg = 'rgb('+pillR+','+pillG+','+pillB+')';
+
+  // ダーク時は少し明るく
+  var accentHex = hex;
+  if (isDark) {
+    var dr = Math.min(255, r + 40);
+    var dg = Math.min(255, g + 40);
+    var db = Math.min(255, b + 40);
+    accentHex = '#' + dr.toString(16).padStart(2,'0') +
+                      dg.toString(16).padStart(2,'0') +
+                      db.toString(16).padStart(2,'0');
+  }
+
+  if (isDark) {
+    return {
+      '--accent':     accentHex,
+      '--bg':         '#1a202c',
+      '--surface':    '#2d3748',
+      '--surface2':   '#3a4a5c',
+      '--border':     '#4a5568',
+      '--text':       '#e2e8f0',
+      '--muted':      '#a0aec0',
+      '--header-bg':  'linear-gradient(135deg, '+accentHex+', #1a202c)',
+      '--nav-bg':     '#2d3748',
+      '--nav-border': '#4a5568',
+      '--pill-bg':    '#2a3550',
+      '--pill-color': accentHex,
+      '--tag-bg':     accentHex
+    };
+  } else {
+    return {
+      '--accent':     accentHex,
+      '--bg':         '#f0f4f8',
+      '--surface':    '#ffffff',
+      '--surface2':   '#f7f9fc',
+      '--border':     '#e2e8f0',
+      '--text':       '#2d3748',
+      '--muted':      '#718096',
+      '--header-bg':  'linear-gradient(135deg, '+accentHex+', '+hex+'bb)',
+      '--nav-bg':     '#ffffff',
+      '--nav-border': '#e2e8f0',
+      '--pill-bg':    pillBg,
+      '--pill-color': hex,
+      '--tag-bg':     accentHex
+    };
+  }
+}
+
+// CSS変数をルートに適用
+function applyCssVars(vars) {
+  var root = document.documentElement;
+  for (var k in vars) {
+    root.style.setProperty(k, vars[k]);
+  }
+}
+
+// 設定をlocalStorageに保存
+function saveColorSettings(hex, isDark) {
+  try {
+    localStorage.setItem('accentColor', hex);
+    localStorage.setItem('darkMode', isDark ? '1' : '0');
+  } catch(e) {}
+}
+
+// 設定をlocalStorageから読み込み
+function loadColorSettings() {
+  var hex    = '#667eea';
+  var isDark = false;
+  try {
+    hex    = localStorage.getItem('accentColor') || '#667eea';
+    isDark = localStorage.getItem('darkMode') === '1';
+  } catch(e) {}
+  return { hex: hex, isDark: isDark };
+}
+
+// プレビューを即時更新
+function updatePreview(hex) {
+  var btn = document.getElementById('preview-btn-primary');
+  var out = document.getElementById('preview-btn-outline');
+  var nav = document.querySelector('.preview-nav-item.active');
+  var border = document.querySelector('.preview-nav');
+  if (btn) { btn.style.background = hex; btn.style.boxShadow = '0 3px 10px '+hex+'55'; }
+  if (out) { out.style.borderColor = hex; out.style.color = hex; }
+  if (nav) { nav.style.color = hex; nav.style.borderTopColor = hex; }
+}
+
+// アクセントカラーを適用（プレビュー + 実CSS変数）
+function applyAccentColor(hex, isDark, save) {
+  var vars = buildThemeVars(hex, isDark);
+  applyCssVars(vars);
+  updatePreview(hex);
+  if (save) { saveColorSettings(hex, isDark); }
+  // パレットのアクティブ状態更新
+  var swatches = document.querySelectorAll('.color-swatch-btn');
+  for (var i = 0; i < swatches.length; i++) {
+    if (swatches[i].dataset.hex.toLowerCase() === hex.toLowerCase()) {
+      swatches[i].classList.add('active-color');
+    } else {
+      swatches[i].classList.remove('active-color');
+    }
+  }
+  // カスタムピッカーも同期
+  var picker = document.getElementById('custom-color-picker');
+  var hexEl  = document.getElementById('custom-color-hex');
+  if (picker) { picker.value = hex; }
+  if (hexEl)  { hexEl.textContent = hex; }
+}
+
+function initTheme() {
+  var s = loadColorSettings();
+  // CSS変数を直接セット（data-theme属性は使わない）
+  applyAccentColor(s.hex, s.isDark, false);
+  // ダークモードボタン初期状態
+  var lb = document.getElementById('mode-light-btn');
+  var db = document.getElementById('mode-dark-btn');
+  if (lb && db) {
+    if (s.isDark) {
+      db.classList.add('active-mode'); lb.classList.remove('active-mode');
+    } else {
+      lb.classList.add('active-mode'); db.classList.remove('active-mode');
+    }
+  }
+}
+
+function initSettingsTab() {
+  var s = loadColorSettings();
+
+  // ── パレット生成 ──
+  var palette = document.getElementById('preset-palette');
+  if (palette) {
+    for (var i = 0; i < PRESET_COLORS.length; i++) {
+      (function(pc) {
+        var btn = document.createElement('button');
+        btn.type              = 'button';
+        btn.className         = 'color-swatch-btn';
+        btn.dataset.hex       = pc.hex;
+        btn.title             = pc.label;
+        btn.style.background  = pc.hex;
+        if (pc.hex.toLowerCase() === s.hex.toLowerCase()) {
+          btn.classList.add('active-color');
+        }
+        btn.addEventListener('click', function() {
+          var isDark = document.getElementById('mode-dark-btn').classList.contains('active-mode');
+          applyAccentColor(pc.hex, isDark, true);
+        });
+        palette.appendChild(btn);
+      })(PRESET_COLORS[i]);
+    }
+  }
+
+  // ── カスタムカラーピッカー ──
+  var picker  = document.getElementById('custom-color-picker');
+  var hexEl   = document.getElementById('custom-color-hex');
+  var applyBtn = document.getElementById('custom-color-apply-btn');
+  if (picker) {
+    picker.value = s.hex;
+    picker.addEventListener('input', function() {
+      if (hexEl) { hexEl.textContent = this.value; }
+      updatePreview(this.value);
+    });
+  }
+  if (applyBtn) {
+    applyBtn.addEventListener('click', function() {
+      var hex = picker ? picker.value : s.hex;
+      var isDark = document.getElementById('mode-dark-btn').classList.contains('active-mode');
+      applyAccentColor(hex, isDark, true);
+    });
+  }
+
+  // ── ライト / ダーク モードボタン ──
+  var lightBtn = document.getElementById('mode-light-btn');
+  var darkBtn  = document.getElementById('mode-dark-btn');
+  if (lightBtn) {
+    lightBtn.addEventListener('click', function() {
+      lightBtn.classList.add('active-mode');
+      darkBtn.classList.remove('active-mode');
+      var hex = picker ? picker.value : s.hex;
+      applyAccentColor(hex, false, true);
+    });
+  }
+  if (darkBtn) {
+    darkBtn.addEventListener('click', function() {
+      darkBtn.classList.add('active-mode');
+      lightBtn.classList.remove('active-mode');
+      var hex = picker ? picker.value : s.hex;
+      applyAccentColor(hex, true, true);
+    });
+  }
+
+  // 初期プレビュー
+  updatePreview(s.hex);
+}
+
+// ============================================================
+// 【13-pre-2】① おみくじ機能
+// ============================================================
+
+var OMIKUJI_RANKS = [
+  { rank: '大吉', weight: 10 },
+  { rank: '吉',   weight: 20 },
+  { rank: '中吉', weight: 25 },
+  { rank: '小吉', weight: 20 },
+  { rank: '末吉', weight: 15 },
+  { rank: '凶',   weight: 10 }
+];
+
+var OMIKUJI_MSGS = {
+  '大吉': [
+    '{item}を持っていくと最高の一日に！授業の指名も難なくクリア！',
+    '{item}があなたに幸運をもたらす！先生の質問にもバッチリ答えられる！',
+    '{item}の力で今日の授業は全集中！成績アップ間違いなし！'
+  ],
+  '吉': [
+    '{item}を忘れずに持参すれば授業も順調！友人関係も良好な予感。',
+    '{item}が鍵を握る一日。積極的に使うと運気アップ！',
+    '{item}と一緒に頑張ろう！きっと良い結果が待っている。'
+  ],
+  '中吉': [
+    '{item}を活用すると予想外の発見あり！授業に集中してみて。',
+    'コツコツ使った{item}が実力を引き出す。焦らず丁寧に。',
+    '{item}があれば少しの努力で大きな成果！諦めないで。'
+  ],
+  '小吉': [
+    '{item}は今日の隠れた味方。小さな親切が吉を呼ぶ。',
+    '{item}を丁寧に扱うと運気が少し上向くかも。',
+    '地道に{item}を使い続けると後半から好転のサイン！'
+  ],
+  '末吉': [
+    '{item}は持って行くだけで御守り代わり。油断は禁物。',
+    'ゆっくりペースの一日。{item}は丁寧に扱って吉。',
+    '{item}を信じて着実に進もう。運気は後から付いてくる。'
+  ],
+  '凶': [
+    '今日は慎重に！{item}を二重チェックして忘れ物ゼロにしよう。',
+    '焦りは禁物。{item}を落ち着いてカバンに確認してから出発！',
+    '逆境こそチャンス！{item}をしっかり準備すれば運気は必ず回る。'
+  ]
+};
+
+// 重み付きランダムで運勢を選ぶ
+function drawOmikujiRank() {
+  var total = 0;
+  for (var i = 0; i < OMIKUJI_RANKS.length; i++) { total += OMIKUJI_RANKS[i].weight; }
+  var r = Math.random() * total;
+  var cum = 0;
+  for (var j = 0; j < OMIKUJI_RANKS.length; j++) {
+    cum += OMIKUJI_RANKS[j].weight;
+    if (r < cum) { return OMIKUJI_RANKS[j].rank; }
+  }
+  return '吉';
+}
+
+// 今日の時間割から持ち物をランダム選択
+function pickLuckyItem() {
+  var dayIdx  = getTargetDayIndex();
+  var periods = TIMETABLE[dayIdx];
+  var allItems = [];
+  for (var i = 0; i < periods.length; i++) {
+    var items = BELONGINGS[periods[i]] || [];
+    for (var j = 0; j < items.length; j++) {
+      if (allItems.indexOf(items[j]) === -1) { allItems.push(items[j]); }
+    }
+  }
+  if (allItems.length === 0) { return '筆記用具'; }
+  return allItems[Math.floor(Math.random() * allItems.length)];
+}
+
+function drawAndShowOmikuji() {
+  var rank   = drawOmikujiRank();
+  var item   = pickLuckyItem();
+  var msgs   = OMIKUJI_MSGS[rank] || OMIKUJI_MSGS['吉'];
+  var rawMsg = msgs[Math.floor(Math.random() * msgs.length)];
+  var msg    = rawMsg.replace(/\{item\}/g, item);
+
+  document.getElementById('omikuji-rank').textContent = rank;
+  document.getElementById('omikuji-item').textContent = item;
+  document.getElementById('omikuji-msg').textContent  = '「' + msg + '」';
+}
+
+function openOmikuji() {
+  drawAndShowOmikuji();
+  var overlay = document.getElementById('omikuji-overlay');
+  overlay.classList.add('show');
+}
+
+function initOmikuji() {
+  var overlay   = document.getElementById('omikuji-overlay');
+  var triggerBtn = document.getElementById('omikuji-trigger-btn');
+  var drawBtn   = document.getElementById('omikuji-draw-btn');
+  var closeBtn  = document.getElementById('omikuji-close-btn');
+
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', openOmikuji);
+  }
+  if (drawBtn) {
+    drawBtn.addEventListener('click', drawAndShowOmikuji);
+  }
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      overlay.classList.remove('show');
+    });
+  }
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) { overlay.classList.remove('show'); }
+    });
+  }
+}
+
+// ============================================================
+// 【13-pre-3】② 教科メモ機能
+// ============================================================
+
+function loadMemos() {
+  try {
+    var raw = localStorage.getItem('subjectMemos');
+    var obj = raw ? JSON.parse(raw) : {};
+    return (obj && typeof obj === 'object') ? obj : {};
+  } catch(e) { return {}; }
+}
+
+function saveMemo(subject, text) {
+  var memos = loadMemos();
+  if (text.trim()) {
+    memos[subject] = text.trim();
+  } else {
+    delete memos[subject];
+  }
+  try { localStorage.setItem('subjectMemos', JSON.stringify(memos)); } catch(e) {}
+}
+
+var _memoCurrentSubject = '';
+
+function openMemoDialog(subject) {
+  _memoCurrentSubject = subject;
+  var memos = loadMemos();
+  var overlay   = document.getElementById('memo-dialog-overlay');
+  var subjLabel = document.getElementById('memo-dialog-subject');
+  var textarea  = document.getElementById('memo-textarea');
+  if (!overlay) { return; }
+  subjLabel.textContent = subject;
+  textarea.value = memos[subject] || '';
+  overlay.classList.add('show');
+  setTimeout(function() { textarea.focus(); }, 80);
+}
+
+function initMemoDialog() {
+  var overlay    = document.getElementById('memo-dialog-overlay');
+  var saveBtn    = document.getElementById('memo-save-btn');
+  var cancelBtn  = document.getElementById('memo-cancel-btn');
+  var clearBtn   = document.getElementById('memo-clear-btn');
+  var textarea   = document.getElementById('memo-textarea');
+
+  function closeMemo() { overlay.classList.remove('show'); }
+
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function() {
+      saveMemo(_memoCurrentSubject, textarea.value);
+      closeMemo();
+      renderTimetable(getCurrentDisplayDayIndex());
+    });
+  }
+  if (cancelBtn) { cancelBtn.addEventListener('click', closeMemo); }
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
+      saveMemo(_memoCurrentSubject, '');
+      closeMemo();
+      renderTimetable(getCurrentDisplayDayIndex());
+    });
+  }
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) { closeMemo(); }
+    });
+  }
+  // ESCキー
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay && overlay.classList.contains('show')) {
+      closeMemo();
+    }
+  });
+}
+
+// 現在表示中の曜日インデックスを返す（アクティブなday-btn から取得）
+function getCurrentDisplayDayIndex() {
+  var active = document.querySelector('.day-btn.active');
+  return active ? parseInt(active.dataset.day, 10) : getTargetDayIndex();
+}
+
+// ============================================================
+// 【13-pre-4】③ 準備忘れアラートバナー
+// ============================================================
+
+function showAlertBanner(dayIndex) {
+  var banner  = document.getElementById('prep-alert-banner');
+  var textEl  = document.getElementById('prep-alert-text');
+  if (!banner) { return; }
+
+  // その日の持ち物リストから代表アイテムを最大3つ選んでメッセージ化
+  var periods  = TIMETABLE[dayIndex];
+  var allItems = [];
+  var seen = {};
+  for (var i = 0; i < periods.length; i++) {
+    var its = BELONGINGS[periods[i]] || [];
+    for (var j = 0; j < its.length; j++) {
+      if (!seen[its[j]]) { seen[its[j]] = true; allItems.push(its[j]); }
+    }
+  }
+  var sample = allItems.slice(0, 3);
+  var itemStr = sample.length > 0
+    ? sample.map(function(s){ return '「' + s + '」'; }).join('や')
+    : '持ち物';
+
+  var DAY = ['月', '火', '水', '木', '金'];
+  textEl.innerHTML =
+    '<strong>⚠️ ' + DAY[dayIndex] + '曜日の準備はできてる？</strong><br>' +
+    itemStr + 'はカバンに入れた？全チェックすると消えます！';
+
+  banner.classList.add('show');
+
+  // 閉じるボタン
+  var closeBtn = document.getElementById('prep-alert-close');
+  if (closeBtn) {
+    closeBtn.onclick = function() { banner.classList.remove('show'); };
+  }
+}
+
+function hideAlertBanner() {
+  var banner = document.getElementById('prep-alert-banner');
+  if (banner) { banner.classList.remove('show'); }
+}
+
+// ============================================================
+// 【13-pre】ストリーク＆称号システム
+// ============================================================
+
+// 称号定義 { days: 必要連続日数, emoji, name, msg }
+var TITLES = [
+  { days:  1, emoji: '🔰', name: '見習い工業生',       msg: '工業の道への第一歩を踏み出しました！' },
+  { days:  3, emoji: '⚡', name: '回路の初心者',       msg: '3日連続！電気の流れを感じ始めた！' },
+  { days:  5, emoji: '💻', name: 'プログラミングの鋭気', msg: '5日連続！コードへの情熱が目覚めた！' },
+  { days:  7, emoji: '🎒', name: '忘れ物ゼロの達人',   msg: '7日連続！完璧な準備の習慣を習得！' },
+  { days: 14, emoji: '⚙️', name: '工業基礎の支配者',   msg: '14日連続！基礎を完全に制覇した！' },
+  { days: 30, emoji: '👑', name: '伝説のマイスター',   msg: '30日連続！あなたは工業の頂点に立った！' }
+];
+
+// ストリークデータの読み書き
+// { streak, best, lastDate, unlockedDays[] }
+function loadStreak() {
+  try {
+    var raw = localStorage.getItem('streakData');
+    var obj = raw ? JSON.parse(raw) : {};
+    return {
+      streak:       obj.streak       || 0,
+      best:         obj.best         || 0,
+      lastDate:     obj.lastDate     || '',
+      unlockedDays: Array.isArray(obj.unlockedDays) ? obj.unlockedDays : []
+    };
+  } catch(e) {
+    return { streak: 0, best: 0, lastDate: '', unlockedDays: [] };
+  }
+}
+function saveStreak(data) {
+  try { localStorage.setItem('streakData', JSON.stringify(data)); } catch(e) {}
+}
+
+// ストリーク加算（source: 'checklist' | 'timer'）
+// 同日内は1回だけカウント。翌日以降は継続 or リセット。
+function incrementStreak(source) {
+  var data  = loadStreak();
+  var today = todayKey();                 // "YYYY-MM-DD"
+
+  // 今日すでにカウント済みなら何もしない
+  if (data.lastDate === today) { return; }
+
+  // 前日チェック（連続か）
+  var yesterday = (function() {
+    var d = new Date(); d.setDate(d.getDate() - 1);
+    return d.getFullYear() + '-' +
+      String(d.getMonth()+1).padStart(2,'0') + '-' +
+      String(d.getDate()).padStart(2,'0');
+  })();
+
+  if (data.lastDate === yesterday) {
+    data.streak += 1;            // 連続継続
+  } else {
+    data.streak = 1;             // 途切れたのでリセット
+  }
+  data.lastDate = today;
+  if (data.streak > data.best) { data.best = data.streak; }
+
+  // 新たに解放された称号を検出
+  var newlyUnlocked = [];
+  for (var i = 0; i < TITLES.length; i++) {
+    var t = TITLES[i];
+    if (data.streak >= t.days && data.unlockedDays.indexOf(t.days) === -1) {
+      data.unlockedDays.push(t.days);
+      newlyUnlocked.push(t);
+    }
+  }
+
+  saveStreak(data);
+  renderStreakCard();
+
+  // 解放演出（最高称号から順に表示）
+  if (newlyUnlocked.length > 0) {
+    var top = newlyUnlocked[newlyUnlocked.length - 1];
+    showTitleUnlock(top);
+  }
+}
+
+// ストリークカードを描画
+function renderStreakCard() {
+  var data = loadStreak();
+
+  // カウント・ベスト
+  var cntEl = document.getElementById('streak-count');
+  var bstEl = document.getElementById('streak-best-badge');
+  if (cntEl) { cntEl.textContent = data.streak; }
+  if (bstEl) { bstEl.textContent = '最高 ' + data.best + '日'; }
+
+  // 現在の最高称号
+  var currentTitle = null;
+  for (var i = TITLES.length - 1; i >= 0; i--) {
+    if (data.unlockedDays.indexOf(TITLES[i].days) !== -1) {
+      currentTitle = TITLES[i]; break;
+    }
+  }
+  var iconEl = document.getElementById('streak-title-icon');
+  var nameEl = document.getElementById('streak-title-name');
+  if (iconEl) { iconEl.textContent = currentTitle ? currentTitle.emoji : '🔰'; }
+  if (nameEl) {
+    nameEl.textContent = currentTitle ? currentTitle.name : 'まだ称号がありません';
+  }
+
+  // 称号グリッド
+  var grid = document.getElementById('titles-grid');
+  if (!grid) { return; }
+  grid.innerHTML = '';
+  for (var j = 0; j < TITLES.length; j++) {
+    var t       = TITLES[j];
+    var unlocked = data.unlockedDays.indexOf(t.days) !== -1;
+    var isNew    = unlocked &&
+      data.unlockedDays[data.unlockedDays.length - 1] === t.days &&
+      data.streak === t.days;   // 今まさに解放日
+
+    var item = document.createElement('div');
+    item.className = 'title-item ' + (unlocked ? 'unlocked' : 'locked');
+
+    item.innerHTML =
+      (unlocked ? '' : '<span class="title-lock-icon">🔒</span>') +
+      '<span class="title-emoji">' + t.emoji + '</span>' +
+      '<span class="title-name">'  + t.name  + '</span>' +
+      '<span class="title-req">'   + t.days  + '日達成</span>';
+
+    grid.appendChild(item);
+  }
+}
+
+// 称号解放ポップアップを表示
+function showTitleUnlock(title) {
+  var overlay = document.getElementById('title-unlock-overlay');
+  if (!overlay) { return; }
+
+  document.getElementById('popup-trophy').textContent    = title.emoji;
+  document.getElementById('popup-title-name').textContent = '［' + title.name + '］';
+  document.getElementById('popup-msg').textContent       = title.msg;
+
+  overlay.classList.add('show');
+
+  // 紙吹雪も同時起動
+  launchConfetti();
+
+  document.getElementById('popup-close-btn').onclick = function() {
+    overlay.classList.remove('show');
+  };
+  // オーバーレイ外クリックでも閉じる
+  overlay.onclick = function(e) {
+    if (e.target === overlay) { overlay.classList.remove('show'); }
+  };
+}
+
+// 設定タブ表示時にカードを更新
+function initStreakCard() {
+  renderStreakCard();
+}
+
+// ============================================================
+// 【15】授業スケジュール・次の授業表示・Haptic・単発メモ
+//       学習カレンダー・バックアップ
+// ============================================================
+
+// ── 授業時間スケジュール ──
+var CLASS_SCHEDULE = [
+  { period: 1, start: '08:40', end: '09:30' },
+  { period: 2, start: '09:40', end: '10:30' },
+  { period: 3, start: '10:40', end: '11:30' },
+  { period: 4, start: '11:40', end: '12:30' },
+  { period: 5, start: '13:15', end: '14:05' },
+  { period: 6, start: '14:15', end: '15:05' }
+];
+
+// 時刻文字列 "HH:MM" → 今日の分数に変換
+function timeStrToMinutes(t) {
+  var parts = t.split(':');
+  return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+}
+
+// 次の授業バッジを更新（1分ごとに呼ばれる）
+function updateNextClass() {
+  var badge   = document.getElementById('next-class-badge');
+  var textEl  = document.getElementById('next-class-text');
+  if (!badge || !textEl) { return; }
+
+  var now     = new Date();
+  var dow     = now.getDay(); // 0=日,6=土
+  if (dow === 0 || dow === 6) { badge.classList.remove('show'); return; }
+
+  var dayIdx  = dow - 1; // 月=0〜金=4
+  var nowMin  = now.getHours() * 60 + now.getMinutes();
+  var periods = TIMETABLE[dayIdx];
+
+  var found   = null;
+  for (var i = 0; i < CLASS_SCHEDULE.length; i++) {
+    var sc      = CLASS_SCHEDULE[i];
+    var startM  = timeStrToMinutes(sc.start);
+    var endM    = timeStrToMinutes(sc.end);
+    if (nowMin < endM) {         // まだ終わっていない
+      var subj = periods[i] || '?';
+      if (nowMin >= startM) {
+        // 授業中
+        found = '📖 ' + sc.period + '限 ' + subj + ' (' + sc.end + ' 終)';
+      } else {
+        // 次の授業
+        var diffMin = startM - nowMin;
+        var diffStr = diffMin >= 60
+          ? Math.floor(diffMin / 60) + 'h' + (diffMin % 60 > 0 ? (diffMin % 60) + 'm' : '')
+          : diffMin + '分後';
+        found = '次：' + sc.period + '限 ' + subj + ' (' + diffStr + ')';
+      }
+      break;
+    }
+  }
+
+  if (found) {
+    textEl.textContent = found;
+    badge.classList.add('show');
+  } else {
+    badge.classList.remove('show');
+  }
+}
+
+// ── Haptic フィードバック ──
+function haptic(ms) {
+  ms = ms || 20;
+  try {
+    if (navigator.vibrate) { navigator.vibrate(ms); }
+  } catch(e) {}
+}
+
+// ── 単発持ち物メモ ──
+function loadTodayItems() {
+  try {
+    var key  = 'todayItems_' + todayKey();
+    var raw  = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e) { return []; }
+}
+function saveTodayItems(items) {
+  try {
+    var key = 'todayItems_' + todayKey();
+    localStorage.setItem(key, JSON.stringify(items));
+  } catch(e) {}
+}
+
+function renderTodayItems() {
+  var listEl = document.getElementById('today-items-list');
+  if (!listEl) { return; }
+  var items = loadTodayItems();
+  listEl.innerHTML = '';
+  for (var i = 0; i < items.length; i++) {
+    (function(item, idx, total) {
+      var li   = document.createElement('li');
+      li.className = 'today-item-li' + (item.done ? ' done' : '');
+
+      var cb   = document.createElement('input');
+      cb.type  = 'checkbox';
+      cb.className = 'today-item-check';
+      cb.checked   = !!item.done;
+      cb.addEventListener('change', function() {
+        haptic(20);
+        var arr = loadTodayItems();
+        arr[idx].done = this.checked;
+        saveTodayItems(arr);
+        renderTodayItems();
+      });
+
+      var span = document.createElement('span');
+      span.className   = 'today-item-text';
+      span.textContent = item.text;
+
+      var del  = document.createElement('button');
+      del.className   = 'today-item-del';
+      del.textContent = '✕';
+      del.title       = '削除';
+      del.addEventListener('click', function(e) {
+        e.stopPropagation();
+        haptic(15);
+        var arr = loadTodayItems();
+        arr.splice(idx, 1);
+        saveTodayItems(arr);
+        renderTodayItems();
+      });
+
+      li.appendChild(cb);
+      li.appendChild(span);
+      li.appendChild(del);
+      li.addEventListener('click', function(ev) {
+        if (ev.target !== cb && ev.target !== del) {
+          cb.checked = !cb.checked;
+          var ce = document.createEvent('Event');
+          ce.initEvent('change', true, true);
+          cb.dispatchEvent(ce);
+        }
+      });
+      listEl.appendChild(li);
+    })(items[i], i, items.length);
+  }
+}
+
+function initTodayItems() {
+  renderTodayItems();
+  var input  = document.getElementById('today-item-input');
+  var addBtn = document.getElementById('today-item-add-btn');
+  if (!addBtn || !input) { return; }
+
+  function addItem() {
+    var text = input.value.trim();
+    if (!text) { input.focus(); return; }
+    haptic(20);
+    var items = loadTodayItems();
+    items.push({ text: text, done: false });
+    saveTodayItems(items);
+    renderTodayItems();
+    input.value = '';
+    input.focus();
+  }
+  addBtn.addEventListener('click', addItem);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { addItem(); }
+  });
+}
+
+// ── 控えめ紙吹雪（少なめ・上品） ──
+function launchConfettiLight() {
+  var canvas = document.getElementById('confetti-canvas');
+  var ctx    = canvas.getContext('2d');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  var COLORS = ['#667eea','#48bb78','#ed8936','#e53e3e','#f6e05e','#9f7aea'];
+  var ps = [];
+  for (var i = 0; i < 55; i++) {          // 少なめ55粒
+    ps.push({
+      x:     Math.random() * canvas.width,
+      y:     Math.random() * -canvas.height * 0.5,
+      w:     Math.random() * 7 + 4,
+      h:     Math.random() * 4 + 3,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      speed: Math.random() * 2.5 + 1.5,
+      angle: Math.random() * Math.PI * 2,
+      spin:  (Math.random() - 0.5) * 0.15,
+      drift: (Math.random() - 0.5) * 1.2,
+      alpha: 1
+    });
+  }
+  var elapsed = 0;
+  var confId  = null;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < ps.length; i++) {
+      var p = ps[i];
+      p.y += p.speed; p.x += p.drift; p.angle += p.spin;
+      if (elapsed > 100) { p.alpha = Math.max(0, p.alpha - 0.015); }  // フェードアウト
+      if (p.y > canvas.height + 10) { p.y = -10; p.alpha = 1; }
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x, p.y); ctx.rotate(p.angle);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    elapsed++;
+    if (elapsed < 160) {
+      confId = requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+  if (confettiId) { cancelAnimationFrame(confettiId); }
+  confId = requestAnimationFrame(animate);
+}
+
+// ── 学習カレンダー ──
+var calViewYear  = new Date().getFullYear();
+var calViewMonth = new Date().getMonth();  // 0-11
+
+function renderStudyCalendar() {
+  var titleEl = document.getElementById('cal-month-title');
+  var gridEl  = document.getElementById('cal-days-grid');
+  var summEl  = document.getElementById('cal-summary');
+  if (!gridEl) { return; }
+
+  var log    = loadStudyLog();
+  var today  = new Date();
+  var todayStr = todayKey();
+
+  var MONTH_JA = ['1月','2月','3月','4月','5月','6月',
+                  '7月','8月','9月','10月','11月','12月'];
+  if (titleEl) { titleEl.textContent = calViewYear + '年' + MONTH_JA[calViewMonth]; }
+
+  gridEl.innerHTML = '';
+
+  var firstDow = new Date(calViewYear, calViewMonth, 1).getDay();   // 0=日
+  var lastDate = new Date(calViewYear, calViewMonth + 1, 0).getDate();
+  var prevLast = new Date(calViewYear, calViewMonth, 0).getDate();
+
+  var cells = [];
+  for (var i = firstDow - 1; i >= 0; i--) {
+    cells.push({ day: prevLast - i, cur: false });
+  }
+  for (var d = 1; d <= lastDate; d++) {
+    cells.push({ day: d, cur: true });
+  }
+  while (cells.length % 7 !== 0) { cells.push({ day: cells.length - firstDow - lastDate + 1, cur: false }); }
+
+  var monthTotal = 0;
+  var studyDays  = 0;
+
+  for (var c = 0; c < cells.length; c++) {
+    var cell  = cells[c];
+    var div   = document.createElement('div');
+    div.className = 'cal-day' + (cell.cur ? '' : ' other-month');
+
+    if (cell.cur) {
+      var isoStr = calViewYear + '-' +
+        String(calViewMonth + 1).padStart(2, '0') + '-' +
+        String(cell.day).padStart(2, '0');
+      var mins = log[isoStr] || 0;
+      if (isoStr === todayStr) { div.classList.add('today'); }
+      if (mins > 0) {
+        div.classList.add('has-study');
+        monthTotal += mins;
+        studyDays++;
+        var minLabel = document.createElement('span');
+        minLabel.className   = 'cal-day-min';
+        minLabel.textContent = mins >= 60
+          ? Math.floor(mins / 60) + 'h'
+          : mins + 'm';
+        div.appendChild(minLabel);
+      }
+    }
+    var num = document.createElement('span');
+    num.textContent = cell.day;
+    div.insertBefore(num, div.firstChild);
+    gridEl.appendChild(div);
+  }
+
+  // 月集計サマリ
+  if (summEl) {
+    var totalH = monthTotal >= 60 ? (monthTotal / 60).toFixed(1) + '時間' : monthTotal + '分';
+    summEl.innerHTML =
+      '<span>📅 勉強日数：<strong>' + studyDays + '日</strong></span>' +
+      '<span>⏱ 合計：<strong>' + totalH + '</strong></span>';
+  }
+}
+
+function initStudyCalendar() {
+  renderStudyCalendar();
+  var prevBtn = document.getElementById('cal-prev');
+  var nextBtn = document.getElementById('cal-next');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      calViewMonth--;
+      if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
+      renderStudyCalendar();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      calViewMonth++;
+      if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
+      renderStudyCalendar();
+    });
+  }
+}
+
+// ── バックアップ（エクスポート・インポート） ──
+var BACKUP_KEYS = [
+  'studyLog', 'reminders', 'streakData', 'subjectMemos',
+  'goalHours', 'accentColor', 'darkMode', 'theme'
+];
+
+function exportData() {
+  var data = { version: 1, exported: new Date().toISOString() };
+  for (var i = 0; i < BACKUP_KEYS.length; i++) {
+    var k = BACKUP_KEYS[i];
+    try { data[k] = JSON.parse(localStorage.getItem(k) || 'null'); } catch(e) { data[k] = null; }
+  }
+  // todayItems も含める
+  var todayKey_ = 'todayItems_' + todayKey();
+  try { data['todayItems_today'] = JSON.parse(localStorage.getItem(todayKey_) || 'null'); } catch(e) {}
+
+  var json = JSON.stringify(data, null, 2);
+  var blob = new Blob([json], { type: 'application/json' });
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href   = url;
+  a.download = 'nobesuke_backup_' + todayKey() + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showBackupMsg('✅ 保存完了！');
+}
+
+function importData(file) {
+  if (!file) { return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var data = JSON.parse(e.target.result);
+      if (!data || data.version !== 1) {
+        showBackupMsg('⚠️ ファイル形式が無効です');
+        return;
+      }
+      for (var i = 0; i < BACKUP_KEYS.length; i++) {
+        var k = BACKUP_KEYS[i];
+        if (data[k] !== undefined && data[k] !== null) {
+          localStorage.setItem(k, JSON.stringify(data[k]));
+        }
+      }
+      showBackupMsg('✅ 復元完了！ページを更新します…');
+      setTimeout(function() { location.reload(); }, 1200);
+    } catch(ex) {
+      showBackupMsg('⚠️ 読み込みエラー：' + ex.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function showBackupMsg(msg) {
+  var el = document.getElementById('backup-msg');
+  if (!el) { return; }
+  el.textContent = msg;
+  setTimeout(function() { el.textContent = ''; }, 3500);
+}
+
+function initBackup() {
+  var expBtn    = document.getElementById('backup-export-btn');
+  var impInput  = document.getElementById('backup-import-input');
+  if (expBtn) {
+    expBtn.addEventListener('click', function() { haptic(20); exportData(); });
+  }
+  if (impInput) {
+    impInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) { importData(this.files[0]); }
+      this.value = '';
+    });
+  }
+}
+
+// ============================================================
+// 【13】リサイズ時にキャンバスサイズを追随
+// ============================================================
+
+// ============================================================
+// 【14】クイック検索・フィルター
+// ============================================================
+function initSearch() {
+  var input     = document.getElementById('timetable-search');
+  var clearBtn  = document.getElementById('search-clear-btn');
+  var countEl   = document.getElementById('search-result-count');
+  if (!input) { return; }
+
+  function doSearch() {
+    var q = input.value.trim().toLowerCase();
+    clearBtn.classList.toggle('visible', q.length > 0);
+
+    // カード検索
+    var cards = document.querySelectorAll('.period-card');
+    var matchCount = 0;
+
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      card.classList.remove('search-match', 'search-dim');
+      // ハイライト解除（以前のmarkを消す）
+      card.querySelectorAll('mark.search-hl').forEach(function(m) {
+        m.outerHTML = m.textContent;
+      });
+    }
+
+    // チェックリスト
+    var items = document.querySelectorAll('#checklist li');
+    for (var j = 0; j < items.length; j++) {
+      items[j].classList.remove('search-match-item', 'search-dim-item');
+    }
+
+    if (!q) {
+      if (countEl) { countEl.textContent = ''; }
+      return;
+    }
+
+    // カードをフィルター・ハイライト
+    for (var c = 0; c < cards.length; c++) {
+      var card2 = cards[c];
+      var text  = card2.textContent.toLowerCase();
+      if (text.includes(q)) {
+        card2.classList.add('search-match');
+        matchCount++;
+        // テキストノードをハイライト
+        highlightText(card2, q);
+      } else {
+        card2.classList.add('search-dim');
+      }
+    }
+
+    // チェックリストをフィルター
+    for (var k = 0; k < items.length; k++) {
+      var itemText = items[k].textContent.toLowerCase();
+      if (itemText.includes(q)) {
+        items[k].classList.add('search-match-item');
+      } else {
+        items[k].classList.add('search-dim-item');
+      }
+    }
+
+    if (countEl) {
+      countEl.textContent = matchCount > 0
+        ? matchCount + ' 件の教科・持ち物が見つかりました'
+        : '「' + input.value.trim() + '」は見つかりませんでした';
+    }
+  }
+
+  // テキストノード内のキーワードを<mark>でハイライト
+  function highlightText(el, q) {
+    var walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [];
+    var node;
+    while ((node = walk.nextNode())) { nodes.push(node); }
+    for (var i = 0; i < nodes.length; i++) {
+      var n   = nodes[i];
+      var txt = n.nodeValue;
+      var idx = txt.toLowerCase().indexOf(q);
+      if (idx === -1) { continue; }
+      var span = document.createElement('span');
+      span.innerHTML =
+        escHtml(txt.substring(0, idx)) +
+        '<mark class="search-hl">' + escHtml(txt.substring(idx, idx + q.length)) + '</mark>' +
+        escHtml(txt.substring(idx + q.length));
+      n.parentNode.replaceChild(span, n);
+    }
+  }
+
+  input.addEventListener('input', doSearch);
+  clearBtn.addEventListener('click', function() {
+    input.value = '';
+    doSearch();
+    input.focus();
+  });
+}
+
+window.addEventListener('resize', function () {
+  var cv    = document.getElementById('confetti-canvas');
+  cv.width  = window.innerWidth;
+  cv.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
