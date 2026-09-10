@@ -17,7 +17,8 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+    import { getAuth, GoogleAuthProvider, signInWithRedirect,
+             getRedirectResult, signOut, onAuthStateChanged }
       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
     import { getFirestore, doc, setDoc, getDoc, collection,
              query, orderBy, limit, onSnapshot, serverTimestamp, getDocs }
@@ -42,7 +43,7 @@
     window._fbDb   = db;
     window._fbProviders = { google: new GoogleAuthProvider() };
     window._fbFns = {
-      signInWithPopup, signOut, onAuthStateChanged,
+      signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged,
       doc, setDoc, getDoc, collection, query, orderBy,
       limit, onSnapshot, serverTimestamp, getDocs
     };
@@ -3989,10 +3990,19 @@ function initFirebase() {
   var logoutBtn   = document.getElementById('logout-btn');
   var loginBanner = document.getElementById('login-prompt-banner');
 
+  // リダイレクト結果を処理（ログイン後のページ復帰時）
+  fns.getRedirectResult(auth).then(function(result) {
+    if (result && result.user) {
+      // ログイン成功（リダイレクト戻り）
+    }
+  }).catch(function(e) {
+    console.error('redirect result error', e);
+  });
+
   if (loginBtn) {
     loginBtn.addEventListener('click', function () {
       haptic(20);
-      fns.signInWithPopup(auth, window._fbProviders.google).catch(function(e){ console.error(e); });
+      fns.signInWithRedirect(auth, window._fbProviders.google);
     });
   }
   if (logoutBtn) {
@@ -4002,7 +4012,7 @@ function initFirebase() {
   }
   if (loginBanner) {
     loginBanner.addEventListener('click', function () {
-      fns.signInWithPopup(auth, window._fbProviders.google).catch(function(){});
+      fns.signInWithRedirect(auth, window._fbProviders.google);
     });
   }
 
