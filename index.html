@@ -453,6 +453,181 @@ body {
 }
 
 /* ==============================
+   成績記録
+============================== */
+.grade-wrap {
+  max-width: 600px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 16px; padding: 8px 0 24px;
+}
+.grade-input-card {
+  background: var(--surface); border-radius: 16px;
+  padding: 18px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.grade-form-row {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.grade-subject-sel, .grade-score-input, .grade-max-input {
+  padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.88rem; outline: none;
+}
+.grade-subject-sel { flex: 2; min-width: 110px; }
+.grade-score-input { flex: 1; min-width: 70px; text-align: center; }
+.grade-max-input   { flex: 1; min-width: 70px; text-align: center; }
+.grade-subject-sel:focus, .grade-score-input:focus, .grade-max-input:focus {
+  border-color: var(--accent);
+}
+.grade-exam-input {
+  flex: 2; min-width: 120px;
+  padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text); font-size: 0.88rem; outline: none;
+}
+.grade-exam-input:focus { border-color: var(--accent); }
+.grade-add-btn {
+  padding: 9px 18px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s; white-space: nowrap;
+}
+.grade-add-btn:hover { opacity: 0.85; }
+
+/* 成績グラフカード */
+.grade-chart-card {
+  background: var(--surface); border-radius: 16px;
+  padding: 18px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.grade-filter-row {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.grade-filter-sel {
+  flex: 1; min-width: 110px;
+  padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text); font-size: 0.82rem; outline: none;
+}
+.grade-chart-wrap { position: relative; width: 100%; height: 220px; }
+.grade-list-card {
+  background: var(--surface); border-radius: 16px;
+  padding: 18px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.grade-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.grade-table th {
+  padding: 7px 10px; text-align: left;
+  font-weight: 700; color: var(--muted);
+  border-bottom: 2px solid var(--border);
+}
+.grade-table td {
+  padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text);
+}
+.grade-table tr:last-child td { border-bottom: none; }
+.grade-score-cell { font-weight: 800; }
+.grade-score-cell.high  { color: #38a169; }
+.grade-score-cell.mid   { color: #ed8936; }
+.grade-score-cell.low   { color: #e53e3e; }
+.grade-del-btn {
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; font-size: 0.8rem; padding: 2px 5px; border-radius: 4px;
+}
+.grade-del-btn:hover { background: #fed7d7; color: #e53e3e; }
+.grade-empty { font-size: 0.82rem; color: var(--muted); text-align: center; padding: 14px 0; }
+.grade-avg-row {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  padding-top: 8px; margin-top: 4px; border-top: 1px solid var(--border);
+  font-size: 0.78rem; color: var(--muted);
+}
+.grade-avg-row strong { color: var(--text); }
+
+/* ==============================
+   ルーレット
+============================== */
+.roulette-card {
+  width: 100%; background: var(--surface);
+  border-radius: 20px; padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.roulette-canvas-wrap {
+  position: relative; width: 240px; height: 240px;
+}
+#roulette-canvas { width: 100%; height: 100%; }
+.roulette-needle {
+  position: absolute; top: -8px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 22px solid #e53e3e;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.roulette-spin-btn {
+  padding: 12px 36px; border-radius: 99px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.95rem; font-weight: 800; cursor: pointer;
+  box-shadow: 0 4px 14px rgba(102,126,234,0.35);
+  transition: opacity 0.15s, transform 0.12s;
+}
+.roulette-spin-btn:hover:not(:disabled) { transform: scale(1.05); }
+.roulette-spin-btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+.roulette-result {
+  font-size: 1.1rem; font-weight: 800; color: var(--text);
+  min-height: 28px; text-align: center;
+  animation: pop-in 0.4s ease;
+}
+.roulette-items-row {
+  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+  font-size: 0.72rem; color: var(--muted);
+}
+.roulette-item-tag {
+  background: var(--pill-bg); color: var(--pill-color);
+  border-radius: 99px; padding: 2px 10px; font-weight: 600;
+}
+
+/* ==============================
+   週間レポート
+============================== */
+.weekly-report-card {
+  background: var(--surface); border-radius: 16px;
+  padding: 18px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.report-header-row {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.report-gen-btn {
+  padding: 8px 18px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.report-gen-btn:hover { opacity: 0.85; }
+.report-body {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.report-section {
+  background: var(--surface2); border-radius: 10px;
+  padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;
+}
+.report-section-title {
+  font-size: 0.75rem; font-weight: 800; color: var(--accent);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.report-section-text { font-size: 0.85rem; color: var(--text); line-height: 1.6; }
+.report-stat-row {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.report-stat {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--surface); border-radius: 10px;
+  padding: 10px 16px; flex: 1; min-width: 80px;
+  border: 1px solid var(--border);
+}
+.report-stat-val { font-size: 1.4rem; font-weight: 900; color: var(--accent); line-height: 1; }
+.report-stat-lbl { font-size: 0.65rem; color: var(--muted); margin-top: 3px; }
+.report-empty { font-size: 0.82rem; color: var(--muted); text-align: center; padding: 10px 0; }
+
+/* ==============================
    経験値・レベルシステム
 ============================== */
 .xp-card {
@@ -1746,6 +1921,18 @@ mark.search-hl {
   <div id="tab-pomodoro" class="tab-page">
     <div class="pomodoro-wrap">
 
+      <!-- ルーレット -->
+      <div class="roulette-card">
+        <h2 class="col-title" style="margin-bottom:0;">🎯 今日何を勉強する？</h2>
+        <div class="roulette-canvas-wrap">
+          <canvas id="roulette-canvas" width="240" height="240"></canvas>
+          <div class="roulette-needle"></div>
+        </div>
+        <div class="roulette-result" id="roulette-result"></div>
+        <button class="roulette-spin-btn" id="roulette-spin-btn">🎲 ルーレットを回す</button>
+        <div class="roulette-items-row" id="roulette-items-row"></div>
+      </div>
+
       <!-- 今日の名言 -->
       <div class="quote-card">
         <div class="quote-mark">"</div>
@@ -1860,6 +2047,66 @@ mark.search-hl {
             </div>
             <div class="pie-legend" id="pie-legend"></div>
           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== タブ⑤ 成績記録 ===== -->
+  <div id="tab-grade" class="tab-page">
+    <div class="grade-wrap">
+
+      <!-- 成績入力 -->
+      <div class="grade-input-card">
+        <h2 class="col-title">✏️ 成績を入力</h2>
+        <div class="grade-form-row">
+          <select class="grade-subject-sel" id="grade-subject-sel">
+            <option value="現国">現国</option>
+            <option value="歴総">歴総</option>
+            <option value="数Ⅰ">数Ⅰ</option>
+            <option value="英コⅠ">英コⅠ</option>
+            <option value="科人">科人</option>
+            <option value="回路">回路</option>
+            <option value="工業基礎">工業基礎</option>
+            <option value="プロ技">プロ技</option>
+            <option value="工情数">工情数</option>
+            <option value="芸術">芸術</option>
+            <option value="体育">体育</option>
+            <option value="保健">保健</option>
+          </select>
+          <input id="grade-exam-input" class="grade-exam-input"
+            type="text" placeholder="テスト名（例：中間）" maxlength="15">
+        </div>
+        <div class="grade-form-row">
+          <input id="grade-score-input" class="grade-score-input"
+            type="number" min="0" max="999" placeholder="得点">
+          <span style="align-self:center;color:var(--muted);font-size:0.85rem;">／</span>
+          <input id="grade-max-input" class="grade-max-input"
+            type="number" min="1" max="999" placeholder="満点" value="100">
+          <button class="grade-add-btn" id="grade-add-btn">記録</button>
+        </div>
+      </div>
+
+      <!-- グラフ -->
+      <div class="grade-chart-card">
+        <h2 class="col-title" style="margin-bottom:0;">📈 成績グラフ</h2>
+        <div class="grade-filter-row">
+          <select class="grade-filter-sel" id="grade-filter-sel">
+            <option value="all">全教科</option>
+          </select>
+        </div>
+        <div class="grade-chart-wrap">
+          <canvas id="grade-chart"></canvas>
+        </div>
+        <div class="grade-avg-row" id="grade-avg-row"></div>
+      </div>
+
+      <!-- 成績一覧 -->
+      <div class="grade-list-card">
+        <h2 class="col-title">📋 成績一覧</h2>
+        <div id="grade-table-wrap">
+          <p class="grade-empty">まだ成績が記録されていません</p>
         </div>
       </div>
 
@@ -2011,6 +2258,17 @@ mark.search-hl {
         </ul>
       </div>
 
+      <!-- 週間レポート -->
+      <div class="weekly-report-card">
+        <div class="report-header-row">
+          <h2 class="col-title" style="margin-bottom:0;">📝 週間学習レポート</h2>
+          <button class="report-gen-btn" id="report-gen-btn">📊 今週のレポートを作成</button>
+        </div>
+        <div id="report-body" class="report-body">
+          <p class="report-empty">ボタンを押すと今週の学習まとめが表示されます</p>
+        </div>
+      </div>
+
       <!-- 学習カレンダー -->
       <div class="settings-box">
         <h2 class="col-title">📅 学習カレンダー</h2>
@@ -2068,6 +2326,10 @@ mark.search-hl {
     <span class="nav-icon">🚨</span>
     <span class="nav-label">リマインダー</span>
     <span id="reminder-badge" class="reminder-badge" style="display:none;">0</span>
+  </button>
+  <button class="nav-btn" data-tab="grade">
+    <span class="nav-icon">📊</span>
+    <span class="nav-label">成績</span>
   </button>
   <button class="nav-btn" data-tab="settings">
     <span class="nav-icon">⚙️</span>
@@ -2444,6 +2706,9 @@ document.addEventListener('DOMContentLoaded', function () {
   initCountdown();      // テストカウントダウン
   initQuote();          // 今日の名言
   initTimetableEdit();  // 時間割編集
+  initGrade();          // 成績記録
+  initRoulette();       // ルーレット
+  initWeeklyReport();   // 週間レポート
 
   // ストリーク継続ミッション自動チェック
   (function() {
@@ -2508,6 +2773,7 @@ function initNav() {
         timetable: '📅 時間割',
         pomodoro:  '⏱️ 集中タイマー',
         reminder:  '🚨 リマインダー',
+        grade:     '📊 成績記録',
         settings:  '⚙️ 設定'
       };
       document.getElementById('header-title').textContent = titles[target] || '';
@@ -4020,6 +4286,204 @@ function showTitleUnlock(title) {
 function initStreakCard() {
   renderStreakCard();
 }
+
+// ============================================================
+// 【17】成績記録・ルーレット・週間レポート
+// ============================================================
+
+// -- 成績記録 --
+var gradeChartInstance = null;
+function loadGrades(){try{var r=localStorage.getItem('grades');return r?JSON.parse(r):[];}catch(e){return[];}}
+function saveGrades(a){try{localStorage.setItem('grades',JSON.stringify(a));}catch(e){}}
+
+function addGrade(){
+  var subj=document.getElementById('grade-subject-sel').value;
+  var exam=(document.getElementById('grade-exam-input').value.trim()||'無題');
+  var score=parseInt(document.getElementById('grade-score-input').value,10);
+  var max=parseInt(document.getElementById('grade-max-input').value,10)||100;
+  if(isNaN(score)||score<0){document.getElementById('grade-score-input').focus();return;}
+  haptic(20);
+  var grades=loadGrades();
+  grades.push({subject:subj,exam:exam,score:score,max:max,date:todayKey()});
+  saveGrades(grades);renderGradeTable();renderGradeChart();updateGradeFilter();addXP(15);
+  completeMission('memo_add');
+  document.getElementById('grade-score-input').value='';
+  document.getElementById('grade-exam-input').value='';
+}
+
+function renderGradeTable(){
+  var wrap=document.getElementById('grade-table-wrap');
+  var avgRow=document.getElementById('grade-avg-row');
+  if(!wrap){return;}
+  var grades=loadGrades();
+  var filterSel=document.getElementById('grade-filter-sel');
+  var filter=filterSel?filterSel.value:'all';
+  var filtered=filter==='all'?grades:grades.filter(function(g){return g.subject===filter;});
+  if(filtered.length===0){wrap.innerHTML='<p class="grade-empty">まだ成績が記録されていません</p>';if(avgRow){avgRow.innerHTML='';}return;}
+  var sorted=filtered.slice().sort(function(a,b){return b.date.localeCompare(a.date);});
+  var html='<table class="grade-table"><thead><tr><th>教科</th><th>テスト</th><th>得点</th><th>日付</th><th></th></tr></thead><tbody>';
+  var totalPct=0;
+  for(var i=0;i<sorted.length;i++){
+    var g=sorted[i];var pct=Math.round(g.score/g.max*100);
+    var cls=pct>=80?'high':pct>=60?'mid':'low';totalPct+=pct;
+    html+='<tr><td>'+escHtml(g.subject)+'</td><td>'+escHtml(g.exam)+'</td>'+
+      '<td class="grade-score-cell '+cls+'">'+g.score+'/'+g.max+' <span style="font-size:0.7rem;opacity:0.7;">('+pct+'%)</span></td>'+
+      '<td>'+g.date+'</td>'+
+      '<td><button class="grade-del-btn" data-idx="'+grades.indexOf(sorted[i])+'">✕</button></td></tr>';
+  }
+  html+='</tbody></table>';
+  wrap.innerHTML=html;
+  wrap.querySelectorAll('.grade-del-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){haptic(15);var arr=loadGrades();arr.splice(parseInt(this.dataset.idx,10),1);saveGrades(arr);renderGradeTable();renderGradeChart();updateGradeFilter();});
+  });
+  if(avgRow&&sorted.length>0){var avg=Math.round(totalPct/sorted.length);avgRow.innerHTML='<span>表示中: <strong>'+sorted.length+'件</strong></span><span>平均: <strong>'+avg+'%</strong></span>';}
+}
+
+function renderGradeChart(){
+  var canvas=document.getElementById('grade-chart');if(!canvas){return;}
+  var grades=loadGrades();
+  var filterSel=document.getElementById('grade-filter-sel');
+  var filter=filterSel?filterSel.value:'all';
+  var filtered=filter==='all'?grades:grades.filter(function(g){return g.subject===filter;});
+  if(gradeChartInstance){gradeChartInstance.destroy();gradeChartInstance=null;}
+  if(filtered.length===0){return;}
+  var sorted=filtered.slice().sort(function(a,b){return a.date.localeCompare(b.date);});
+  var labels=sorted.map(function(g){return g.subject+'('+g.exam+')';});
+  var data=sorted.map(function(g){return Math.round(g.score/g.max*100);});
+  var bgColors=data.map(function(v){return v>=80?'#48bb78':v>=60?'#ed8936':'#e53e3e';});
+  var muted=getComputedStyle(document.documentElement).getPropertyValue('--muted').trim()||'#718096';
+  var border=getComputedStyle(document.documentElement).getPropertyValue('--border').trim()||'#e2e8f0';
+  gradeChartInstance=new Chart(canvas.getContext('2d'),{
+    type:'bar',data:{labels:labels,datasets:[{label:'得点率(%)',data:data,backgroundColor:bgColors,borderRadius:6,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y+'%';}}}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:10},color:muted}},y:{beginAtZero:true,max:100,ticks:{callback:function(v){return v+'%';},font:{size:10},color:muted},grid:{color:border}}}}});
+}
+
+function updateGradeFilter(){
+  var sel=document.getElementById('grade-filter-sel');if(!sel){return;}
+  var grades=loadGrades();var subjects=['all'];
+  grades.forEach(function(g){if(subjects.indexOf(g.subject)===-1){subjects.push(g.subject);}});
+  var cur=sel.value;sel.innerHTML='<option value="all">全教科</option>';
+  subjects.slice(1).forEach(function(s){var opt=document.createElement('option');opt.value=s;opt.textContent=s;if(s===cur){opt.selected=true;}sel.appendChild(opt);});
+  if(subjects.indexOf(cur)===-1){sel.value='all';}
+}
+
+function initGrade(){
+  updateGradeFilter();renderGradeTable();renderGradeChart();
+  var addBtn=document.getElementById('grade-add-btn');
+  if(addBtn){addBtn.addEventListener('click',addGrade);}
+  var scoreInp=document.getElementById('grade-score-input');
+  if(scoreInp){scoreInp.addEventListener('keydown',function(e){if(e.key==='Enter'){addGrade();}});}
+  var filterSel=document.getElementById('grade-filter-sel');
+  if(filterSel){filterSel.addEventListener('change',function(){renderGradeTable();renderGradeChart();});}
+}
+
+// -- ルーレット --
+var rouletteSpinning=false;
+var rouletteAngle=0;
+var ROULETTE_COLORS=['#667eea','#e53e3e','#ed64a6','#48bb78','#ed8936','#9f7aea','#4299e1','#f6a623','#38b2ac','#fc8181'];
+
+function getRouletteItems(){
+  var timetable=getCurrentTimetable();
+  var today=new Date().getDay();
+  var dayIdx=(today===0||today===6)?0:today-1;
+  var periods=timetable[dayIdx];
+  var seen={},items=[];
+  for(var i=0;i<periods.length;i++){if(!seen[periods[i]]&&periods[i]!=='LHR'){seen[periods[i]]=true;items.push(periods[i]);}}
+  if(items.length===0){items=['数Ⅰ','現国','英コⅠ','回路','工情数'];}
+  return items;
+}
+
+function drawRoulette(angle){
+  var canvas=document.getElementById('roulette-canvas');if(!canvas){return;}
+  var ctx=canvas.getContext('2d');
+  var items=getRouletteItems();var n=items.length;
+  var cx=canvas.width/2;var cy=canvas.height/2;var r=cx-8;var slice=Math.PI*2/n;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(var i=0;i<n;i++){
+    var start=angle+i*slice-Math.PI/2;var end=start+slice;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,end);ctx.closePath();
+    ctx.fillStyle=ROULETTE_COLORS[i%ROULETTE_COLORS.length];ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.fill();ctx.stroke();
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(start+slice/2);
+    ctx.textAlign='right';ctx.fillStyle='#fff';ctx.font='bold 13px sans-serif';
+    ctx.shadowColor='rgba(0,0,0,0.3)';ctx.shadowBlur=3;ctx.fillText(items[i],r-10,5);ctx.restore();
+  }
+  ctx.beginPath();ctx.arc(cx,cy,18,0,Math.PI*2);ctx.fillStyle='#fff';
+  ctx.shadowColor='rgba(0,0,0,0.2)';ctx.shadowBlur=6;ctx.fill();ctx.shadowBlur=0;
+}
+
+function initRoulette(){
+  drawRoulette(0);
+  var row=document.getElementById('roulette-items-row');
+  var items=getRouletteItems();
+  if(row){row.innerHTML=items.map(function(s){return '<span class="roulette-item-tag">'+escHtml(s)+'</span>';}).join('');}
+  var btn=document.getElementById('roulette-spin-btn');
+  if(btn){btn.addEventListener('click',function(){
+    if(rouletteSpinning){return;}
+    haptic(30);rouletteSpinning=true;btn.disabled=true;
+    document.getElementById('roulette-result').textContent='';
+    var items=getRouletteItems();var n=items.length;var sliceDeg=360/n;
+    var extraSpin=(5+Math.random()*3)*360;var stopAngle=rouletteAngle+extraSpin;
+    var startTime=null;var duration=4000;
+    function easeOut(t){return 1-Math.pow(1-t,3);}
+    function animate(ts){
+      if(!startTime){startTime=ts;}
+      var elapsed=ts-startTime;var progress=Math.min(elapsed/duration,1);
+      var current=rouletteAngle+(stopAngle-rouletteAngle)*easeOut(progress);
+      drawRoulette(current*Math.PI/180);
+      if(progress<1){requestAnimationFrame(animate);}
+      else{
+        rouletteAngle=stopAngle%360;rouletteSpinning=false;btn.disabled=false;
+        var normalized=((360-(rouletteAngle%360))+90)%360;
+        var idx=Math.floor(normalized/sliceDeg)%n;
+        haptic(40);
+        var resEl=document.getElementById('roulette-result');
+        if(resEl){resEl.textContent='🎯 '+items[idx]+' に決まり！';}
+        addXP(5);
+      }
+    }
+    requestAnimationFrame(animate);
+  });}
+}
+
+// -- 週間レポート --
+function generateWeeklyReport(){
+  var log=loadStudyLog();var streak=loadStreak();var grades=loadGrades();
+  var DAY_JA=['日','月','火','水','木','金','土'];
+  var weekTotal=0;var studyDays=0;var maxDay={label:'',min:0};
+  for(var i=6;i>=0;i--){
+    var d=new Date();d.setDate(d.getDate()-i);
+    var key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    var min=log[key]||0;var label=(i===0?'今日':DAY_JA[d.getDay()]+'曜');
+    weekTotal+=min;if(min>0){studyDays++;}if(min>maxDay.min){maxDay={label:label,min:min};}
+  }
+  var weekStart=(function(){var d2=new Date();var dow=d2.getDay();d2.setDate(d2.getDate()-(dow===0?6:dow-1));return d2.getFullYear()+'-'+String(d2.getMonth()+1).padStart(2,'0')+'-'+String(d2.getDate()).padStart(2,'0');})();
+  var weekGrades=grades.filter(function(g){return g.date>=weekStart;});
+  var avgScore=weekGrades.length>0?Math.round(weekGrades.reduce(function(s,g){return s+Math.round(g.score/g.max*100);},0)/weekGrades.length):null;
+  var studyComment=weekTotal===0?'今週はまだ勉強時間が記録されていません。明日からスタートしよう！':weekTotal>=300?'素晴らしい！今週は'+(weekTotal/60).toFixed(1)+'時間も集中できた！この調子で来週も！':weekTotal>=120?'今週は'+(weekTotal/60).toFixed(1)+'時間学習。もう少し増やすと更に力がつく！':'今週は'+weekTotal+'分の学習。毎日少しずつ積み重ねよう！';
+  var streakComment=streak.streak>=7?'🔥 '+streak.streak+'日連続達成中！圧倒的なストリーク！':streak.streak>=3?'🔥 '+streak.streak+'日連続！いいリズムだ。':streak.streak>0?'連続'+streak.streak+'日。継続して習慣にしよう！':'今週はストリークを作れなかった。明日から再スタートしよう！';
+  var gradeComment=avgScore===null?'今週はテストの記録なし。':avgScore>=80?'今週の平均得点率 '+avgScore+'% — 絶好調！':avgScore>=60?'今週の平均得点率 '+avgScore+'% — もう一踏ん張り！':'今週の平均得点率 '+avgScore+'% — 苦手分野を重点的に復習しよう。';
+  var body=document.getElementById('report-body');if(!body){return;}
+  body.innerHTML=
+    '<div class="report-section"><div class="report-section-title">📊 今週のサマリー</div>'+
+    '<div class="report-stat-row">'+
+      '<div class="report-stat"><span class="report-stat-val">'+(weekTotal>=60?(weekTotal/60).toFixed(1)+'h':weekTotal+'m')+'</span><span class="report-stat-lbl">学習時間</span></div>'+
+      '<div class="report-stat"><span class="report-stat-val">'+studyDays+'日</span><span class="report-stat-lbl">勉強日数</span></div>'+
+      '<div class="report-stat"><span class="report-stat-val">'+streak.streak+'日</span><span class="report-stat-lbl">ストリーク</span></div>'+
+      (avgScore!==null?'<div class="report-stat"><span class="report-stat-val">'+avgScore+'%</span><span class="report-stat-lbl">平均得点率</span></div>':'')+
+    '</div></div>'+
+    '<div class="report-section"><div class="report-section-title">⏱ 学習時間</div><div class="report-section-text">'+studyComment+'</div>'+(maxDay.min>0?'<div class="report-section-text" style="font-size:0.78rem;color:var(--muted);">最も勉強した日：'+maxDay.label+' ('+maxDay.min+'分)</div>':'')+'</div>'+
+    '<div class="report-section"><div class="report-section-title">🔥 ストリーク</div><div class="report-section-text">'+streakComment+'</div><div class="report-section-text" style="font-size:0.78rem;color:var(--muted);">最高記録: '+streak.best+'日連続</div></div>'+
+    '<div class="report-section"><div class="report-section-title">📝 成績</div><div class="report-section-text">'+gradeComment+'</div>'+(weekGrades.length>0?'<div class="report-section-text" style="font-size:0.78rem;color:var(--muted);">今週の記録: '+weekGrades.map(function(g){return g.subject+'('+g.score+'/'+g.max+')';}).join('・')+'</div>':'')+'</div>'+
+    '<div class="report-section"><div class="report-section-title">🎯 来週に向けて</div><div class="report-section-text">'+(weekTotal>=300?'この勢いを維持しよう！週7日、毎日少しでも勉強する習慣を大切に。':weekTotal>=60?'来週は今週より30分多く勉強することを目標にしよう！':'来週は毎日10分からでいい。まず机に座る習慣を作ろう！')+'</div></div>';
+  haptic(20);addXP(10);
+}
+
+function initWeeklyReport(){
+  var btn=document.getElementById('report-gen-btn');
+  if(btn){btn.addEventListener('click',generateWeeklyReport);}
+}
+
 
 // ============================================================
 // 【16】経験値・レベル・デイリーミッション・テストカウントダウン
