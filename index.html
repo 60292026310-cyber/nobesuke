@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja" data-theme="normal">
 <head>
   <meta charset="UTF-8">
@@ -450,6 +450,236 @@ body {
   font-size: 0.58rem; font-weight: 700;
   border-radius: 50%; width: 15px; height: 15px;
   display: flex; align-items: center; justify-content: center;
+}
+
+/* ==============================
+   経験値・レベルシステム
+============================== */
+.xp-card {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 18px; padding: 18px 20px;
+  color: #fff; display: flex; flex-direction: column; gap: 12px;
+  box-shadow: 0 4px 20px rgba(102,126,234,0.35);
+}
+.xp-top {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.xp-level-badge {
+  background: rgba(255,255,255,0.22); border-radius: 99px;
+  padding: 4px 14px; font-size: 0.82rem; font-weight: 800;
+  letter-spacing: 0.04em; backdrop-filter: blur(4px);
+}
+.xp-title-name { font-size: 1rem; font-weight: 700; }
+.xp-bar-wrap { display: flex; flex-direction: column; gap: 4px; }
+.xp-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.68rem; opacity: 0.85;
+}
+.xp-bar-track {
+  height: 8px; background: rgba(255,255,255,0.25);
+  border-radius: 99px; overflow: hidden;
+}
+.xp-bar-fill {
+  height: 100%; background: #fff; border-radius: 99px;
+  transition: width 0.8s cubic-bezier(0.34,1.2,0.64,1);
+}
+
+/* ==============================
+   デイリーミッション
+============================== */
+.mission-list { display: flex; flex-direction: column; gap: 8px; }
+.mission-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 13px; border-radius: 11px;
+  background: var(--surface2); border: 2px solid var(--border);
+  transition: border-color 0.15s;
+}
+.mission-item.done {
+  border-color: #48bb78; background: #f0fff4;
+}
+[data-theme="dark"] .mission-item.done { background: #1c3a2a; }
+.mission-icon { font-size: 1.3rem; flex-shrink: 0; }
+.mission-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.mission-label { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+.mission-sub   { font-size: 0.68rem; color: var(--muted); }
+.mission-xp {
+  font-size: 0.72rem; font-weight: 800;
+  color: var(--accent); white-space: nowrap;
+}
+.mission-check { font-size: 1.2rem; flex-shrink: 0; }
+.mission-reset-note {
+  font-size: 0.7rem; color: var(--muted); text-align: right; margin-top: 2px;
+}
+
+/* ==============================
+   テストカウントダウン
+============================== */
+.countdown-card {
+  width: 100%; background: var(--surface);
+  border-radius: 20px; padding: 18px 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.countdown-list { display: flex; flex-direction: column; gap: 8px; }
+.countdown-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 11px;
+  background: var(--surface2); border: 1px solid var(--border);
+}
+.countdown-days {
+  font-size: 1.6rem; font-weight: 900; line-height: 1;
+  min-width: 42px; text-align: center; flex-shrink: 0;
+}
+.countdown-days.urgent { color: #e53e3e; }
+.countdown-days.soon   { color: #ed8936; }
+.countdown-days.safe   { color: #48bb78; }
+.countdown-days.today  { color: #e53e3e; animation: pulse-dot 1s infinite; }
+.countdown-info { flex: 1; display: flex; flex-direction: column; gap: 1px; }
+.countdown-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+.countdown-date { font-size: 0.7rem; color: var(--muted); }
+.countdown-del-btn {
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; font-size: 0.85rem; padding: 3px 6px;
+  border-radius: 5px;
+}
+.countdown-del-btn:hover { background: #fed7d7; color: #e53e3e; }
+.countdown-add-row {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px;
+}
+.countdown-input {
+  flex: 1; min-width: 120px; padding: 8px 12px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.85rem; outline: none;
+}
+.countdown-input:focus { border-color: var(--accent); }
+.countdown-date-input {
+  padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text);
+  font-size: 0.85rem; outline: none; cursor: pointer;
+}
+.countdown-date-input:focus { border-color: var(--accent); }
+.countdown-add-btn {
+  padding: 8px 16px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.countdown-add-btn:hover { opacity: 0.85; }
+.countdown-empty { font-size: 0.82rem; color: var(--muted); text-align: center; padding: 10px 0; }
+
+/* ==============================
+   今日の名言
+============================== */
+.quote-card {
+  width: 100%; background: var(--surface);
+  border-radius: 20px; padding: 18px 22px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; gap: 10px;
+  position: relative;
+}
+.quote-mark {
+  font-size: 3rem; line-height: 0.8;
+  color: var(--accent); opacity: 0.18;
+  font-family: Georgia, serif;
+  position: absolute; top: 12px; left: 16px;
+}
+.quote-text {
+  font-size: 0.92rem; font-weight: 600; color: var(--text);
+  line-height: 1.65; padding-left: 8px;
+  font-style: italic;
+}
+.quote-author {
+  font-size: 0.75rem; color: var(--muted); text-align: right; font-weight: 600;
+}
+.quote-refresh-btn {
+  align-self: flex-end; background: none; border: 1px solid var(--border);
+  color: var(--muted); font-size: 0.72rem; cursor: pointer;
+  padding: 4px 10px; border-radius: 6px; transition: background 0.15s;
+}
+.quote-refresh-btn:hover { background: var(--pill-bg); color: var(--accent); }
+
+/* ==============================
+   時間割編集
+============================== */
+.timetable-edit-btn {
+  padding: 6px 14px; border-radius: 8px; border: none;
+  background: var(--surface2); color: var(--muted);
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--border);
+  transition: border-color 0.15s, color 0.15s;
+  margin-bottom: 10px;
+}
+.timetable-edit-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+#timetable-edit-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 10003;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.22s;
+}
+#timetable-edit-overlay.show { opacity: 1; pointer-events: auto; }
+.timetable-edit-dialog {
+  background: var(--surface); border-radius: 20px;
+  padding: 22px 20px 18px; width: 92%; max-width: 500px;
+  max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.3);
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex; flex-direction: column; gap: 14px;
+}
+#timetable-edit-overlay.show .timetable-edit-dialog {
+  transform: scale(1) translateY(0);
+}
+.edit-day-tabs {
+  display: flex; gap: 4px; flex-wrap: wrap;
+}
+.edit-day-tab {
+  padding: 6px 14px; border-radius: 8px; border: none;
+  background: var(--surface2); color: var(--muted);
+  font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  border: 1px solid var(--border); transition: background 0.15s;
+}
+.edit-day-tab.active-tab {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+.edit-periods-grid {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.edit-period-row {
+  display: flex; align-items: center; gap: 8px;
+}
+.edit-period-label {
+  font-size: 0.78rem; font-weight: 700; color: var(--muted);
+  width: 32px; flex-shrink: 0; text-align: center;
+}
+.edit-subject-input {
+  flex: 1; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text); font-size: 0.88rem; outline: none;
+}
+.edit-subject-input:focus { border-color: var(--accent); }
+.edit-footer {
+  display: flex; justify-content: flex-end; gap: 8px; padding-top: 4px;
+}
+.edit-cancel-btn {
+  padding: 9px 18px; border-radius: 9px; border: none;
+  background: var(--surface2); color: var(--muted);
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+}
+.edit-save-btn {
+  padding: 9px 22px; border-radius: 9px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.edit-save-btn:hover { opacity: 0.85; }
+.edit-reset-btn {
+  padding: 9px 16px; border-radius: 9px; border: none;
+  background: none; color: #e53e3e;
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  margin-right: auto;
 }
 
 /* ==============================
@@ -1485,6 +1715,7 @@ mark.search-hl {
 
       <!-- 左：時間割カード -->
       <div class="col-left">
+        <button class="timetable-edit-btn" id="timetable-edit-btn">✏️ 時間割を編集する</button>
         <div id="timetable-cards"></div>
       </div>
 
@@ -1514,6 +1745,28 @@ mark.search-hl {
   <!-- ===== タブ② ポモドーロタイマー（シンプル版） ===== -->
   <div id="tab-pomodoro" class="tab-page">
     <div class="pomodoro-wrap">
+
+      <!-- 今日の名言 -->
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <p class="quote-text" id="quote-text">読み込み中...</p>
+        <div class="quote-author" id="quote-author">— —</div>
+        <button class="quote-refresh-btn" id="quote-refresh-btn">🔄 次の名言</button>
+      </div>
+
+      <!-- テストカウントダウン -->
+      <div class="countdown-card">
+        <h2 class="col-title" style="margin-bottom:0;">📆 テストまでのカウントダウン</h2>
+        <div id="countdown-list" class="countdown-list">
+          <p class="countdown-empty" id="countdown-empty">テスト日程を追加しよう</p>
+        </div>
+        <div class="countdown-add-row">
+          <input id="countdown-name-input" class="countdown-input"
+            type="text" placeholder="例：期末テスト" maxlength="20">
+          <input id="countdown-date-input" class="countdown-date-input" type="date">
+          <button class="countdown-add-btn" id="countdown-add-btn">追加</button>
+        </div>
+      </div>
 
       <!-- 今日の合計集中時間バナー -->
       <div class="today-study-banner">
@@ -1647,6 +1900,24 @@ mark.search-hl {
 
       <!-- ストリーク＆称号カード -->
       <div class="streak-card" id="streak-card">
+
+        <!-- 経験値・レベル表示 -->
+        <div class="xp-card" id="xp-card" style="margin-bottom:4px;">
+          <div class="xp-top">
+            <span class="xp-level-badge" id="xp-level-badge">Lv.1</span>
+            <span class="xp-title-name" id="xp-title-name">見習い工業生</span>
+          </div>
+          <div class="xp-bar-wrap">
+            <div class="xp-bar-label">
+              <span>XP: <span id="xp-current">0</span> / <span id="xp-next">100</span></span>
+              <span id="xp-pct">0%</span>
+            </div>
+            <div class="xp-bar-track">
+              <div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+
         <div class="streak-top">
           <div class="streak-flame-count">
             <span class="streak-flame">🔥</span>
@@ -1671,6 +1942,13 @@ mark.search-hl {
         <h2 class="col-title">🏅 称号コレクション</h2>
         <div id="titles-grid" class="titles-grid"></div>
         <p class="streak-reset-note">毎日持ち物チェックまたはタイマー完了でストリーク継続！</p>
+      </div>
+
+      <!-- デイリーミッション -->
+      <div class="settings-box">
+        <h2 class="col-title">🎯 デイリーミッション</h2>
+        <div id="mission-list" class="mission-list"></div>
+        <p class="mission-reset-note" id="mission-reset-note"></p>
       </div>
 
       <!-- ダーク／ライト モード -->
@@ -1799,6 +2077,26 @@ mark.search-hl {
 
 <!-- 紙吹雪キャンバス -->
 <canvas id="confetti-canvas"></canvas>
+
+<!-- 時間割編集ダイアログ -->
+<div id="timetable-edit-overlay">
+  <div class="timetable-edit-dialog">
+    <h2 class="col-title" style="margin-bottom:0;">✏️ 時間割を編集</h2>
+    <div class="edit-day-tabs" id="edit-day-tabs">
+      <button class="edit-day-tab active-tab" data-edit-day="0">月</button>
+      <button class="edit-day-tab" data-edit-day="1">火</button>
+      <button class="edit-day-tab" data-edit-day="2">水</button>
+      <button class="edit-day-tab" data-edit-day="3">木</button>
+      <button class="edit-day-tab" data-edit-day="4">金</button>
+    </div>
+    <div id="edit-periods-grid" class="edit-periods-grid"></div>
+    <div class="edit-footer">
+      <button class="edit-reset-btn" id="edit-reset-btn">🗑 初期値に戻す</button>
+      <button class="edit-cancel-btn" id="edit-cancel-btn">キャンセル</button>
+      <button class="edit-save-btn" id="edit-save-btn">保存</button>
+    </div>
+  </div>
+</div>
 
 <!-- ① おみくじポップアップ -->
 <div id="omikuji-overlay">
@@ -2138,7 +2436,28 @@ document.addEventListener('DOMContentLoaded', function () {
   initSearch();
   initTodayItems();      // 📌 単発持ち物メモ
   initStudyCalendar();   // 📅 学習カレンダー
-  initBackup();          // � バックアップ
+  initBackup();
+
+  // -- 新機能初期化 --
+  updateXPDisplay();    // 経験値・レベル
+  renderMissions();     // デイリーミッション
+  initCountdown();      // テストカウントダウン
+  initQuote();          // 今日の名言
+  initTimetableEdit();  // 時間割編集
+
+  // ストリーク継続ミッション自動チェック
+  (function() {
+    var data = loadStreak();
+    var yesterday = (function(){
+      var d=new Date(); d.setDate(d.getDate()-1);
+      return d.getFullYear()+'-'+
+        String(d.getMonth()+1).padStart(2,'0')+'-'+
+        String(d.getDate()).padStart(2,'0');
+    })();
+    if (data.lastDate === yesterday || data.lastDate === todayKey()) {
+      completeMission('streak_cont');
+    }
+  })();
 
   // 次の授業表示（初回 + 1分ごと更新）
   updateNextClass();
@@ -3701,6 +4020,436 @@ function showTitleUnlock(title) {
 function initStreakCard() {
   renderStreakCard();
 }
+
+// ============================================================
+// 【16】経験値・レベル・デイリーミッション・テストカウントダウン
+//        名言表示・時間割編集
+// ============================================================
+
+// ── 経験値・レベルシステム ──
+var XP_TABLE = [0,100,250,450,700,1000,1400,1900,2500,3200,4000];
+var XP_GAINS = { checkAll:30, timerDone:20, mission:40, memoAdd:25, reminderAdd:20 };
+
+function loadXP() {
+  try { return parseInt(localStorage.getItem('totalXP')||'0',10); } catch(e){ return 0; }
+}
+function saveXP(xp) { try { localStorage.setItem('totalXP',String(xp)); } catch(e){} }
+
+function addXP(amount) {
+  var prev = loadXP();
+  var next = prev + amount;
+  saveXP(next);
+  updateXPDisplay();
+  if (calcLevel(next) > calcLevel(prev)) { showLevelUpToast(calcLevel(next)); }
+}
+
+function calcLevel(xp) {
+  var lv = 1;
+  for (var i = 1; i < XP_TABLE.length; i++) {
+    if (xp >= XP_TABLE[i]) { lv = i + 1; } else { break; }
+  }
+  return lv;
+}
+
+function updateXPDisplay() {
+  var xp   = loadXP();
+  var lv   = calcLevel(xp);
+  var cur  = XP_TABLE[lv-1] || 0;
+  var nxt  = XP_TABLE[lv]   || XP_TABLE[XP_TABLE.length-1];
+  var pct  = nxt > cur ? Math.min(100, Math.round((xp-cur)/(nxt-cur)*100)) : 100;
+  var badge = document.getElementById('xp-level-badge');
+  var curEl = document.getElementById('xp-current');
+  var nxtEl = document.getElementById('xp-next');
+  var pctEl = document.getElementById('xp-pct');
+  var barEl = document.getElementById('xp-bar-fill');
+  var ttlEl = document.getElementById('xp-title-name');
+  if (badge) { badge.textContent = 'Lv.'+lv; }
+  if (curEl) { curEl.textContent = xp-cur; }
+  if (nxtEl) { nxtEl.textContent = nxt-cur; }
+  if (pctEl) { pctEl.textContent = pct+'%'; }
+  if (barEl) { barEl.style.width = pct+'%'; }
+  var data = loadStreak();
+  var title = null;
+  for (var i = TITLES.length-1; i >= 0; i--) {
+    if (data.unlockedDays.indexOf(TITLES[i].days) !== -1) { title = TITLES[i]; break; }
+  }
+  if (ttlEl) { ttlEl.textContent = title ? title.name : 'Lv.'+lv+' 工業生'; }
+}
+
+function showLevelUpToast(lv) {
+  haptic(50);
+  var t = document.createElement('div');
+  t.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%) scale(0.8);' +
+    'background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:12px 24px;' +
+    'border-radius:99px;font-size:0.88rem;font-weight:800;z-index:20000;' +
+    'box-shadow:0 4px 20px rgba(102,126,234,0.5);transition:transform 0.3s,opacity 0.3s;' +
+    'opacity:0;white-space:nowrap;';
+  t.textContent = '🎉 Level Up! → Lv.'+lv;
+  document.body.appendChild(t);
+  setTimeout(function(){ t.style.transform='translateX(-50%) scale(1)'; t.style.opacity='1'; }, 10);
+  setTimeout(function(){ t.style.opacity='0'; setTimeout(function(){ t.remove(); },300); }, 2500);
+}
+
+// ── デイリーミッション ──
+var MISSIONS_DEF = [
+  { id:'check_all',    icon:'🎒', label:'持ち物を全チェック',    sub:'今日の準備物を全部チェックしよう', xp:30 },
+  { id:'timer_25',     icon:'⏱',  label:'25分タイマーを完走',    sub:'ポモドーロ1セット集中しよう',     xp:20 },
+  { id:'streak_cont',  icon:'🔥', label:'ストリークを継続する',   sub:'昨日から連続で達成中なら完了',    xp:40 },
+  { id:'memo_add',     icon:'📝', label:'教科メモを1件追加',      sub:'宿題や提出物をメモしよう',        xp:25 },
+  { id:'reminder_add', icon:'🔔', label:'リマインダーを1件追加',  sub:'忘れ物防止のリマインダーを追加',  xp:20 }
+];
+
+function loadMissionState() {
+  try { var r=localStorage.getItem('missions_'+todayKey()); return r?JSON.parse(r):{};} catch(e){return {};}
+}
+function saveMissionState(s) { try{localStorage.setItem('missions_'+todayKey(),JSON.stringify(s));}catch(e){} }
+
+function completeMission(id) {
+  var state = loadMissionState();
+  if (state[id]) { return; }
+  state[id] = true;
+  saveMissionState(state);
+  var m = null;
+  for (var i=0;i<MISSIONS_DEF.length;i++){if(MISSIONS_DEF[i].id===id){m=MISSIONS_DEF[i];break;}}
+  addXP(m ? m.xp : 20);
+  renderMissions();
+  haptic(25);
+}
+
+function renderMissions() {
+  var listEl = document.getElementById('mission-list');
+  var noteEl = document.getElementById('mission-reset-note');
+  if (!listEl) { return; }
+  listEl.innerHTML = '';
+  var state = loadMissionState();
+  var done = 0;
+  for (var i=0;i<MISSIONS_DEF.length;i++) {
+    var m    = MISSIONS_DEF[i];
+    var isDone = !!state[m.id];
+    if (isDone) { done++; }
+    var div = document.createElement('div');
+    div.className = 'mission-item'+(isDone?' done':'');
+    div.innerHTML =
+      '<span class="mission-icon">'+m.icon+'</span>'+
+      '<div class="mission-info">'+
+        '<span class="mission-label">'+m.label+'</span>'+
+        '<span class="mission-sub">'+m.sub+'</span>'+
+      '</div>'+
+      '<span class="mission-xp">+'+m.xp+' XP</span>'+
+      '<span class="mission-check">'+(isDone?'✅':'⬜')+'</span>';
+    listEl.appendChild(div);
+  }
+  if (noteEl) { noteEl.textContent = done+' / '+MISSIONS_DEF.length+' 完了 · 毎日0時にリセット'; }
+}
+
+// ── テストカウントダウン ──
+function loadCountdowns() {
+  try { var r=localStorage.getItem('countdowns'); return r?JSON.parse(r):[]; } catch(e){ return []; }
+}
+function saveCountdowns(a) { try{localStorage.setItem('countdowns',JSON.stringify(a));}catch(e){} }
+
+function renderCountdowns() {
+  var listEl = document.getElementById('countdown-list');
+  if (!listEl) { return; }
+  var items = loadCountdowns();
+  listEl.innerHTML = '';
+  if (items.length === 0) {
+    listEl.innerHTML = '<p class="countdown-empty">テスト日程を追加しよう</p>';
+    return;
+  }
+  var today = new Date(); today.setHours(0,0,0,0);
+  var sorted = items.slice().sort(function(a,b){ return new Date(a.date)-new Date(b.date); });
+  for (var i=0;i<sorted.length;i++) {
+    (function(item, origIdx) {
+      var d = new Date(item.date); d.setHours(0,0,0,0);
+      var diff = Math.round((d-today)/86400000);
+      var cls   = diff<=0?'today':diff<=3?'urgent':diff<=7?'soon':'safe';
+      var label = diff<0?'終了':diff===0?'今日！':diff+'日';
+      var div = document.createElement('div');
+      div.className = 'countdown-item';
+      div.innerHTML =
+        '<div class="countdown-days '+cls+'">'+label+'</div>'+
+        '<div class="countdown-info">'+
+          '<span class="countdown-name">'+escHtml(item.name)+'</span>'+
+          '<span class="countdown-date">'+item.date+'</span>'+
+        '</div>'+
+        '<button class="countdown-del-btn">✕</button>';
+      div.querySelector('.countdown-del-btn').addEventListener('click', function(){
+        haptic(15);
+        var arr=loadCountdowns(); arr.splice(origIdx,1); saveCountdowns(arr); renderCountdowns();
+      });
+      listEl.appendChild(div);
+    })(sorted[i], items.indexOf(sorted[i]));
+  }
+}
+
+function initCountdown() {
+  renderCountdowns();
+  var dateInp = document.getElementById('countdown-date-input');
+  if (dateInp) { dateInp.value = todayKey(); }
+  var addBtn  = document.getElementById('countdown-add-btn');
+  var nameInp = document.getElementById('countdown-name-input');
+  if (addBtn) {
+    addBtn.addEventListener('click', function(){
+      var name=nameInp?nameInp.value.trim():'';
+      var date=dateInp?dateInp.value:'';
+      if (!name||!date){ if(nameInp){nameInp.focus();} return; }
+      haptic(20);
+      var arr=loadCountdowns(); arr.push({name:name,date:date}); saveCountdowns(arr);
+      renderCountdowns(); if(nameInp){nameInp.value='';}
+    });
+  }
+  if (nameInp) { nameInp.addEventListener('keydown',function(e){if(e.key==='Enter'&&addBtn){addBtn.click();}}); }
+}
+
+// ── 今日の名言 ──
+var QUOTES = [
+  {text:'千里の道も一歩から。',author:'老子'},
+  {text:'努力は必ず報われる。もし報われない努力があるならば、それはまだ努力と呼べない。',author:'王貞治'},
+  {text:'今日できることを明日に延ばすな。',author:'ベンジャミン・フランクリン'},
+  {text:'人生は10%が何が起きるかで、90%がそれにどう反応するかだ。',author:'チャールズ・スウィンドル'},
+  {text:'失敗しないためのコツは、もっと多く挑戦することだ。',author:'トーマス・エジソン'},
+  {text:'夢を見ることができれば、それは実現できる。',author:'ウォルト・ディズニー'},
+  {text:'継続は力なり。',author:'ことわざ'},
+  {text:'自分が変われば、相手も変わる。相手を変えたければ、まず自分から。',author:'中村天風'},
+  {text:'困難は鍛錬の機会であり、苦労は成長の種だ。',author:'吉田松陰'},
+  {text:'やる前から諦めるのが一番の失敗だ。',author:'本田宗一郎'},
+  {text:'勉強は裏切らない。',author:'ことわざ'},
+  {text:'小さな積み重ねが、大きな結果を生む。',author:'ことわざ'},
+  {text:'今日の自分は昨日の自分より少し賢い。',author:'ことわざ'},
+  {text:'知識は最強の武器だ。',author:'ネルソン・マンデラ'},
+  {text:'天才とは1%のひらめきと99%の努力だ。',author:'トーマス・エジソン'}
+];
+var currentQuoteIdx = -1;
+
+function showQuote(idx) {
+  currentQuoteIdx = (idx !== undefined && idx >= 0) ? idx : Math.floor(Math.random()*QUOTES.length);
+  var q = QUOTES[currentQuoteIdx];
+  var tEl = document.getElementById('quote-text');
+  var aEl = document.getElementById('quote-author');
+  if (tEl) { tEl.textContent = q.text; }
+  if (aEl) { aEl.textContent = '— '+q.author; }
+}
+
+function initQuote() {
+  var day = new Date().getDate() + new Date().getMonth()*31;
+  showQuote(day % QUOTES.length);
+  var btn = document.getElementById('quote-refresh-btn');
+  if (btn) { btn.addEventListener('click', function(){
+    haptic(15); showQuote((currentQuoteIdx+1)%QUOTES.length);
+  }); }
+}
+
+// ── 時間割編集 ──
+function loadCustomTimetable() {
+  try {
+    var raw = localStorage.getItem('customTimetable');
+    if (!raw) { return null; }
+    var p = JSON.parse(raw);
+    if (Array.isArray(p) && p.length===5 && p[0].length===6) { return p; }
+  } catch(e) {}
+  return null;
+}
+function saveCustomTimetable(data) { try{localStorage.setItem('customTimetable',JSON.stringify(data));}catch(e){} }
+function getCurrentTimetable() { return loadCustomTimetable() || TIMETABLE; }
+
+var editCurrentDay = 0;
+var editBuffer     = [];
+
+function initEditBuffer() {
+  var tt = getCurrentTimetable();
+  editBuffer = [];
+  for (var d=0;d<5;d++){
+    var row=[];
+    for (var p=0;p<6;p++){row.push(tt[d][p]);}
+    editBuffer.push(row);
+  }
+}
+
+function renderEditPeriods(dayIdx) {
+  var grid = document.getElementById('edit-periods-grid');
+  if (!grid) { return; }
+  grid.innerHTML = '';
+  for (var i=0;i<6;i++) {
+    var row = document.createElement('div');
+    row.className = 'edit-period-row';
+    row.innerHTML =
+      '<span class="edit-period-label">'+(i+1)+'限</span>'+
+      '<input class="edit-subject-input" data-period="'+i+'" '+
+             'value="'+escHtml(editBuffer[dayIdx][i])+'" maxlength="20">';
+    grid.appendChild(row);
+  }
+}
+
+function flushCurrentDayInputs() {
+  document.querySelectorAll('.edit-subject-input').forEach(function(inp){
+    var p = parseInt(inp.dataset.period,10);
+    editBuffer[editCurrentDay][p] = inp.value.trim() || TIMETABLE[editCurrentDay][p];
+  });
+}
+
+function initTimetableEdit() {
+  var overlay   = document.getElementById('timetable-edit-overlay');
+  var openBtn   = document.getElementById('timetable-edit-btn');
+  var saveBtn   = document.getElementById('edit-save-btn');
+  var cancelBtn = document.getElementById('edit-cancel-btn');
+  var resetBtn  = document.getElementById('edit-reset-btn');
+  if (!overlay) { return; }
+
+  if (openBtn) {
+    openBtn.addEventListener('click', function(){
+      haptic(20);
+      initEditBuffer();
+      editCurrentDay = 0;
+      document.querySelectorAll('.edit-day-tab').forEach(function(b,i){
+        b.classList.toggle('active-tab', i===0);
+      });
+      renderEditPeriods(0);
+      overlay.classList.add('show');
+    });
+  }
+
+  document.querySelectorAll('.edit-day-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      flushCurrentDayInputs();
+      editCurrentDay = parseInt(this.dataset.editDay,10);
+      document.querySelectorAll('.edit-day-tab').forEach(function(b){
+        b.classList.toggle('active-tab', parseInt(b.dataset.editDay,10)===editCurrentDay);
+      });
+      renderEditPeriods(editCurrentDay);
+    });
+  });
+
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function(){
+      haptic(25);
+      flushCurrentDayInputs();
+      saveCustomTimetable(editBuffer.map(function(row){ return row.slice(); }));
+      overlay.classList.remove('show');
+      // 表示を即時更新
+      var activeDayBtn = document.querySelector('.day-btn.active');
+      var activeDay = activeDayBtn ? parseInt(activeDayBtn.dataset.day,10) : 0;
+      renderTimetable(activeDay);
+      renderChecklist(activeDay);
+      showSaveToast('✅ 時間割を保存しました');
+    });
+  }
+  if (cancelBtn) { cancelBtn.addEventListener('click', function(){ overlay.classList.remove('show'); }); }
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function(){
+      if (!confirm('時間割を初期データに戻しますか？')) { return; }
+      haptic(20);
+      saveCustomTimetable(null);
+      localStorage.removeItem('customTimetable');
+      initEditBuffer();
+      renderEditPeriods(editCurrentDay);
+      showSaveToast('🔄 初期値に戻しました');
+    });
+  }
+  // オーバーレイ外クリックで閉じる
+  overlay.addEventListener('click', function(e){
+    if (e.target===overlay) { overlay.classList.remove('show'); }
+  });
+}
+
+function showSaveToast(msg) {
+  var t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);' +
+    'background:#2d3748;color:#fff;padding:10px 22px;border-radius:99px;' +
+    'font-size:0.82rem;font-weight:700;z-index:20000;opacity:0;' +
+    'transition:opacity 0.25s;white-space:nowrap;';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function(){ t.style.opacity='1'; },10);
+  setTimeout(function(){ t.style.opacity='0'; setTimeout(function(){t.remove();},300); },2000);
+}
+
+// ── renderTimetable を getCurrentTimetable に対応させる ──
+// renderTimetableをオーバーライドしてカスタム時間割を使うようにする
+var _origRenderTimetable = renderTimetable;
+renderTimetable = function(dayIndex) {
+  var container = document.getElementById('timetable-cards');
+  container.innerHTML = '';
+  var timetable = getCurrentTimetable();
+  var periods   = timetable[dayIndex];
+  for (var i=0;i<periods.length;i++) {
+    var subject = periods[i];
+    var items   = BELONGINGS[subject] || [];
+    var card    = document.createElement('div');
+    card.className = 'period-card';
+    var pe = document.createElement('div');
+    pe.className = 'card-period';
+    pe.innerHTML = '<span class="period-num">'+(i+1)+'</span><span class="period-lbl">限</span>';
+    var be = document.createElement('div');
+    be.className = 'card-body';
+    var memos    = loadMemos();
+    var subjRow  = document.createElement('div');
+    subjRow.className = 'card-subject-row';
+    var se = document.createElement('p');
+    se.className = 'card-subject'; se.textContent = subject;
+    subjRow.appendChild(se);
+    if (memos[subject]) {
+      var mi = document.createElement('span');
+      mi.className='card-memo-icon'; mi.textContent='📝'; mi.title=memos[subject];
+      subjRow.appendChild(mi);
+    }
+    (function(subj){ subjRow.style.cursor='pointer';
+      subjRow.addEventListener('click',function(){ openMemoDialog(subj); }); })(subject);
+    be.appendChild(subjRow);
+    if (items.length>0){
+      var ul=document.createElement('ul'); ul.className='card-items';
+      for(var j=0;j<items.length;j++){var li=document.createElement('li');li.textContent=items[j];ul.appendChild(li);}
+      be.appendChild(ul);
+    } else {
+      var ni=document.createElement('span'); ni.className='card-no-items'; ni.textContent='持ち物なし'; be.appendChild(ni);
+    }
+    card.appendChild(pe); card.appendChild(be); container.appendChild(card);
+  }
+};
+
+// renderChecklist も getCurrentTimetable に対応
+var _origRenderChecklist = renderChecklist;
+renderChecklist = function(dayIndex) {
+  var listEl=document.getElementById('checklist');
+  var stEl=document.getElementById('checklist-status');
+  var msgEl=document.getElementById('complete-message');
+  var omikujiBtn=document.getElementById('omikuji-trigger-btn');
+  msgEl.style.display='none'; listEl.innerHTML='';
+  if(omikujiBtn){omikujiBtn.style.display='none';}
+  var timetable=getCurrentTimetable();
+  var seen={},checkItems=[],periods=timetable[dayIndex];
+  for(var i=0;i<periods.length;i++){
+    var subject=periods[i]; var its=BELONGINGS[subject]||[];
+    for(var j=0;j<its.length;j++){
+      var key=subject+':'+its[j];
+      if(!seen[key]){seen[key]=true;checkItems.push({subject:subject,item:its[j],key:key});}
+    }
+  }
+  if(checkItems.length===0){stEl.textContent='今日は持ち物がありません 🎈';return;}
+  stEl.textContent=checkItems.length+' 個のアイテムを確認しよう！';
+  for(var c=0;c<checkItems.length;c++){
+    (function(info,total){
+      var li=document.createElement('li');
+      var cb=document.createElement('input'); cb.type='checkbox';
+      cb.id='chk_'+info.key.replace(/[^a-zA-Z0-9]/g,'_');
+      var lbl=document.createElement('label'); lbl.htmlFor=cb.id;
+      lbl.style.cssText='cursor:pointer;flex:1;display:flex;align-items:center;gap:5px;';
+      var tag=document.createElement('span'); tag.className='subject-tag'; tag.textContent=info.subject;
+      var txt=document.createElement('span'); txt.className='item-text'; txt.textContent='の'+info.item;
+      lbl.appendChild(tag); lbl.appendChild(txt);
+      cb.addEventListener('change',function(){
+        haptic(18);
+        if(this.checked){li.classList.add('checked');}else{li.classList.remove('checked');}
+        checkAllDone(total);
+      });
+      li.addEventListener('click',function(e){
+        if(e.target!==cb){cb.checked=!cb.checked;
+          var ev=document.createEvent('Event'); ev.initEvent('change',true,true); cb.dispatchEvent(ev);}
+      });
+      li.appendChild(cb); li.appendChild(lbl); listEl.appendChild(li);
+    })(checkItems[c],checkItems.length);
+  }
+};
 
 // ============================================================
 // 【15】授業スケジュール・次の授業表示・Haptic・単発メモ
