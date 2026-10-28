@@ -212,9 +212,16 @@ body {
    タブ② ポモドーロ ― シンプル版
 ============================== */
 .pomodoro-wrap {
-  max-width: 400px; margin: 0 auto;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 10px; padding: 4px 0 12px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 10px;
+  padding: 4px 0 12px;
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .pomodoro-wrap { grid-template-columns: 1fr; }
 }
 
 /* タイマー本体 */
@@ -456,9 +463,13 @@ body {
    成績記録
 ============================== */
 .grade-wrap {
-  max-width: 600px; margin: 0 auto;
-  display: flex; flex-direction: column; gap: 8px; padding: 4px 0 12px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px; padding: 4px 0 12px;
+  align-items: start;
 }
+@media (max-width: 700px) { .grade-wrap { grid-template-columns: 1fr; } }
 $112px 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   display: flex; flex-direction: column; gap: 12px;
 }
@@ -576,6 +587,39 @@ $112px 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   background: var(--pill-bg); color: var(--pill-color);
   border-radius: 99px; padding: 2px 10px; font-weight: 600;
 }
+
+/* ルーレット教科選択 */
+.roulette-subject-sel-wrap {
+  background: var(--surface2); border-radius: 10px;
+  padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;
+}
+.roulette-sel-label {
+  font-size: 0.72rem; font-weight: 700; color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.roulette-subject-checks {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.roulette-check-label {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 99px; padding: 4px 12px;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  color: var(--text); user-select: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.roulette-check-label:hover { border-color: var(--accent); }
+.roulette-check-label input[type="checkbox"] { display: none; }
+.roulette-check-label.checked {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+.roulette-sel-all-btn {
+  padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--muted);
+  font-size: 0.72rem; font-weight: 600; cursor: pointer;
+  transition: background 0.15s;
+}
+.roulette-sel-all-btn:hover { background: var(--pill-bg); color: var(--accent); }
 
 /* ==============================
    週間レポート
@@ -1486,7 +1530,8 @@ mark.search-hl {
 /* ==============================
    タブ④ 設定
 ============================== */
-.settings-wrap { max-width: 520px; display: flex; flex-direction: column; gap: 8px; }
+.settings-wrap { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: start; }
+@media (max-width: 700px) { .settings-wrap { grid-template-columns: 1fr; } }
 .settings-box {
   background: var(--surface); border-radius: 14px;
   padding: 12px 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
@@ -1916,15 +1961,29 @@ mark.search-hl {
     <div class="pomodoro-wrap">
 
       <!-- ルーレット -->
-      <div class="roulette-card">
+      <div class="roulette-card" style="grid-column:1/-1;">
         <h2 class="col-title" style="margin-bottom:0;">🎯 今日何を勉強する？</h2>
-        <div class="roulette-canvas-wrap">
-          <canvas id="roulette-canvas" width="240" height="240"></canvas>
-          <div class="roulette-needle"></div>
+
+        <!-- 教科チェックボックス選択 -->
+        <div class="roulette-subject-sel-wrap">
+          <p class="roulette-sel-label">ルーレットに入れる教科を選ぼう</p>
+          <div class="roulette-subject-checks" id="roulette-subject-checks"></div>
+          <div style="display:flex;gap:6px;margin-top:6px;">
+            <button class="roulette-sel-all-btn" id="roulette-sel-all">全選択</button>
+            <button class="roulette-sel-all-btn" id="roulette-sel-none">全解除</button>
+          </div>
         </div>
-        <div class="roulette-result" id="roulette-result"></div>
-        <button class="roulette-spin-btn" id="roulette-spin-btn">🎲 ルーレットを回す</button>
-        <div class="roulette-items-row" id="roulette-items-row"></div>
+
+        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;">
+          <div class="roulette-canvas-wrap">
+            <canvas id="roulette-canvas" width="240" height="240"></canvas>
+            <div class="roulette-needle"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+            <div class="roulette-result" id="roulette-result"></div>
+            <button class="roulette-spin-btn" id="roulette-spin-btn">🎲 ルーレットを回す</button>
+          </div>
+        </div>
       </div>
 
       <!-- 今日の名言 -->
@@ -2097,7 +2156,7 @@ mark.search-hl {
       </div>
 
       <!-- 成績一覧 -->
-      <div class="grade-list-card">
+      <div class="grade-list-card" style="grid-column:1/-1;">
         <h2 class="col-title">📋 成績一覧</h2>
         <div id="grade-table-wrap">
           <p class="grade-empty">まだ成績が記録されていません</p>
@@ -4378,16 +4437,39 @@ var rouletteAngle=0;
 var ROULETTE_COLORS=['#667eea','#e53e3e','#ed64a6','#48bb78','#ed8936','#9f7aea','#4299e1','#f6a623','#38b2ac','#fc8181'];
 
 function getRouletteItems(){
-  var timetable=getCurrentTimetable();
-  var today=new Date().getDay();
-  var dayIdx=(today===0||today===6)?0:today-1;
-  var periods=timetable[dayIdx];
+  try{var saved=localStorage.getItem('rouletteSelected');
+    if(saved){var arr=JSON.parse(saved);if(Array.isArray(arr)&&arr.length>0){return arr;}}
+  }catch(e){}
+  var timetable=getCurrentTimetable();var today=new Date().getDay();
+  var dayIdx=(today===0||today===6)?0:today-1;var periods=timetable[dayIdx];
   var seen={},items=[];
   for(var i=0;i<periods.length;i++){if(!seen[periods[i]]&&periods[i]!=='LHR'){seen[periods[i]]=true;items.push(periods[i]);}}
   if(items.length===0){items=['数Ⅰ','現国','英コⅠ','回路','工情数'];}
   return items;
 }
-
+var ALL_SUBJECTS=['現国','歴総','数Ⅰ','英コⅠ','科人','回路','工業基礎','プロ技','工情数','芸術','体育','保健'];
+function buildRouletteCheckboxes(){
+  var wrap=document.getElementById('roulette-subject-checks');if(!wrap){return;}
+  wrap.innerHTML='';var selected=getRouletteItems();
+  ALL_SUBJECTS.forEach(function(subj){
+    var label=document.createElement('label');
+    label.className='roulette-check-label'+(selected.indexOf(subj)!==-1?' checked':'');
+    var cb=document.createElement('input');cb.type='checkbox';cb.checked=selected.indexOf(subj)!==-1;
+    cb.addEventListener('change',function(){
+      label.classList.toggle('checked',cb.checked);
+      saveRouletteSelection();drawRoulette(rouletteAngle*Math.PI/180);
+      if(getRouletteItems().length===0){document.getElementById('roulette-result').textContent='⚠️ 1つ以上選んでね';}
+    });
+    label.appendChild(cb);label.appendChild(document.createTextNode(subj));
+    wrap.appendChild(label);
+  });
+}
+function saveRouletteSelection(){
+  var checked=[];
+  document.querySelectorAll('#roulette-subject-checks input[type=checkbox]:checked')
+    .forEach(function(cb){checked.push(cb.parentNode.textContent.trim());});
+  try{localStorage.setItem('rouletteSelected',JSON.stringify(checked));}catch(e){}
+}
 function drawRoulette(angle){
   var canvas=document.getElementById('roulette-canvas');if(!canvas){return;}
   var ctx=canvas.getContext('2d');
@@ -4405,18 +4487,28 @@ function drawRoulette(angle){
   ctx.beginPath();ctx.arc(cx,cy,18,0,Math.PI*2);ctx.fillStyle='#fff';
   ctx.shadowColor='rgba(0,0,0,0.2)';ctx.shadowBlur=6;ctx.fill();ctx.shadowBlur=0;
 }
-
 function initRoulette(){
-  drawRoulette(0);
-  var row=document.getElementById('roulette-items-row');
-  var items=getRouletteItems();
-  if(row){row.innerHTML=items.map(function(s){return '<span class="roulette-item-tag">'+escHtml(s)+'</span>';}).join('');}
+  buildRouletteCheckboxes();drawRoulette(0);
+  var selAll=document.getElementById('roulette-sel-all');
+  var selNone=document.getElementById('roulette-sel-none');
+  if(selAll){selAll.addEventListener('click',function(){
+    document.querySelectorAll('#roulette-subject-checks input[type=checkbox]')
+      .forEach(function(cb){cb.checked=true;cb.parentNode.classList.add('checked');});
+    saveRouletteSelection();drawRoulette(rouletteAngle*Math.PI/180);
+  });}
+  if(selNone){selNone.addEventListener('click',function(){
+    document.querySelectorAll('#roulette-subject-checks input[type=checkbox]')
+      .forEach(function(cb){cb.checked=false;cb.parentNode.classList.remove('checked');});
+    saveRouletteSelection();
+  });}
   var btn=document.getElementById('roulette-spin-btn');
   if(btn){btn.addEventListener('click',function(){
     if(rouletteSpinning){return;}
+    var items=getRouletteItems();
+    if(items.length===0){document.getElementById('roulette-result').textContent='⚠️ 1つ以上選んでね';return;}
     haptic(30);rouletteSpinning=true;btn.disabled=true;
     document.getElementById('roulette-result').textContent='';
-    var items=getRouletteItems();var n=items.length;var sliceDeg=360/n;
+    var n=items.length;var sliceDeg=360/n;
     var extraSpin=(5+Math.random()*3)*360;var stopAngle=rouletteAngle+extraSpin;
     var startTime=null;var duration=4000;
     function easeOut(t){return 1-Math.pow(1-t,3);}
@@ -4426,18 +4518,15 @@ function initRoulette(){
       var current=rouletteAngle+(stopAngle-rouletteAngle)*easeOut(progress);
       drawRoulette(current*Math.PI/180);
       if(progress<1){requestAnimationFrame(animate);}
-      else{
-        rouletteAngle=stopAngle%360;rouletteSpinning=false;btn.disabled=false;
+      else{rouletteAngle=stopAngle%360;rouletteSpinning=false;btn.disabled=false;
         var normalized=((360-(rouletteAngle%360))+90)%360;
-        var idx=Math.floor(normalized/sliceDeg)%n;
-        haptic(40);
+        var idx=Math.floor(normalized/sliceDeg)%n;haptic(40);
         var resEl=document.getElementById('roulette-result');
-        if(resEl){resEl.textContent='🎯 '+items[idx]+' に決まり！';}
-        addXP(5);
-      }
+        if(resEl){resEl.textContent='🎯 '+items[idx]+' に決まり！';}addXP(5);}
     }
     requestAnimationFrame(animate);
   });}
+}
 }
 
 // -- 週間レポート --
