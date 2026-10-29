@@ -2536,6 +2536,33 @@ var BELONGINGS = {
 
 var DAY_NAMES = ['月', '火', '水', '木', '金'];
 
+// ── 早期定義（renderTimetableより前に必要な関数） ──
+
+// カスタム時間割を読み込む
+function getCurrentTimetable() {
+  try {
+    var raw = localStorage.getItem('customTimetable');
+    if (!raw) { return TIMETABLE; }
+    var p = JSON.parse(raw);
+    if (Array.isArray(p) && p.length === 5 && p[0].length === 6) { return p; }
+  } catch(e) {}
+  return TIMETABLE;
+}
+
+// 教科メモを読み込む
+function loadMemos() {
+  try {
+    var raw = localStorage.getItem('subjectMemos');
+    var obj = raw ? JSON.parse(raw) : {};
+    return (obj && typeof obj === 'object') ? obj : {};
+  } catch(e) { return {}; }
+}
+
+// メモダイアログを開く（本体は後ろで定義、ここでは転送のみ）
+function openMemoDialog(subject) {
+  if (typeof _openMemoDialogImpl === 'function') { _openMemoDialogImpl(subject); }
+}
+
 // ============================================================
 // 【3】タイマー用グローバル変数
 // ============================================================
@@ -4065,13 +4092,7 @@ function initOmikuji() {
 // 【13-pre-3】② 教科メモ機能
 // ============================================================
 
-function loadMemos() {
-  try {
-    var raw = localStorage.getItem('subjectMemos');
-    var obj = raw ? JSON.parse(raw) : {};
-    return (obj && typeof obj === 'object') ? obj : {};
-  } catch(e) { return {}; }
-}
+// loadMemosは先頭部分で定義済み
 
 function saveMemo(subject, text) {
   var memos = loadMemos();
@@ -4085,7 +4106,7 @@ function saveMemo(subject, text) {
 
 var _memoCurrentSubject = '';
 
-function openMemoDialog(subject) {
+function _openMemoDialogImpl(subject) {
   _memoCurrentSubject = subject;
   var memos = loadMemos();
   var overlay   = document.getElementById('memo-dialog-overlay');
@@ -4797,7 +4818,7 @@ function loadCustomTimetable() {
   return null;
 }
 function saveCustomTimetable(data) { try{localStorage.setItem('customTimetable',JSON.stringify(data));}catch(e){} }
-function getCurrentTimetable() { return loadCustomTimetable() || TIMETABLE; }
+// getCurrentTimetableは先頭部分で定義済み
 
 var editCurrentDay = 0;
 var editBuffer     = [];
