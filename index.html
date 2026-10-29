@@ -2879,7 +2879,8 @@ function initTimetableTab() {
 function renderTimetable(dayIndex) {
   var container = document.getElementById('timetable-cards');
   container.innerHTML = '';
-  var periods = TIMETABLE[dayIndex];
+  var timetable = getCurrentTimetable();   // カスタム時間割対応
+  var periods   = timetable[dayIndex];
 
   for (var i = 0; i < periods.length; i++) {
     var subject = periods[i];
@@ -2898,30 +2899,27 @@ function renderTimetable(dayIndex) {
     var be = document.createElement('div');
     be.className = 'card-body';
 
+    var memos   = loadMemos();
+    var subjRow = document.createElement('div');
+    subjRow.className = 'card-subject-row';
+
     var se = document.createElement('p');
     se.className   = 'card-subject';
     se.textContent = subject;
+    subjRow.appendChild(se);
 
-    // ② 教科メモアイコン（メモあり時に📝バッジ表示）
-    var memos = loadMemos();
-    var subjectRow = document.createElement('div');
-    subjectRow.className = 'card-subject-row';
-    subjectRow.appendChild(se);
     if (memos[subject]) {
       var memoIcon = document.createElement('span');
       memoIcon.className   = 'card-memo-icon';
       memoIcon.textContent = '📝';
       memoIcon.title       = memos[subject];
-      subjectRow.appendChild(memoIcon);
+      subjRow.appendChild(memoIcon);
     }
-    // カード全体クリックでメモダイアログを開く
     (function(subj) {
-      subjectRow.style.cursor = 'pointer';
-      subjectRow.addEventListener('click', function(e) {
-        openMemoDialog(subj);
-      });
+      subjRow.style.cursor = 'pointer';
+      subjRow.addEventListener('click', function() { openMemoDialog(subj); });
     })(subject);
-    be.appendChild(subjectRow);
+    be.appendChild(subjRow);
 
     if (items.length > 0) {
       var ul = document.createElement('ul');
@@ -2945,17 +2943,20 @@ function renderTimetable(dayIndex) {
   }
 }
 
+
 // 持ち物チェックリストを描画
 function renderChecklist(dayIndex) {
   var listEl = document.getElementById('checklist');
   var stEl   = document.getElementById('checklist-status');
   var msgEl  = document.getElementById('complete-message');
+  var omikujiBtn = document.getElementById('omikuji-trigger-btn');
 
   msgEl.style.display = 'none';
   listEl.innerHTML    = '';
+  if (omikujiBtn) { omikujiBtn.style.display = 'none'; }
 
-  // 教科×持ち物の組み合わせを重複なく収集
-  var seen = {}, checkItems = [], periods = TIMETABLE[dayIndex];
+  var timetable  = getCurrentTimetable();   // カスタム時間割対応
+  var seen = {}, checkItems = [], periods = timetable[dayIndex];
   for (var i = 0; i < periods.length; i++) {
     var subject = periods[i];
     var items   = BELONGINGS[subject] || [];
@@ -2974,7 +2975,6 @@ function renderChecklist(dayIndex) {
   }
   stEl.textContent = checkItems.length + ' 個のアイテムを確認しよう！';
 
-  // クロージャを避けるため IIFE で各アイテムを生成
   for (var c = 0; c < checkItems.length; c++) {
     (function (info, total) {
       var li  = document.createElement('li');
@@ -2998,13 +2998,12 @@ function renderChecklist(dayIndex) {
       lbl.appendChild(txt);
 
       cb.addEventListener('change', function () {
-        haptic(18);  // ✅ チェック振動
+        haptic(18);
         if (this.checked) { li.classList.add('checked'); }
         else              { li.classList.remove('checked'); }
         checkAllDone(total);
       });
 
-      // li全体クリックでもチェック切り替え
       li.addEventListener('click', function (e) {
         if (e.target !== cb) {
           cb.checked = !cb.checked;
@@ -4913,92 +4912,6 @@ function showSaveToast(msg) {
 
 // ── renderTimetable を getCurrentTimetable に対応させる ──
 // renderTimetableをオーバーライドしてカスタム時間割を使うようにする
-var _origRenderTimetable = renderTimetable;
-renderTimetable = function(dayIndex) {
-  var container = document.getElementById('timetable-cards');
-  container.innerHTML = '';
-  var timetable = getCurrentTimetable();
-  var periods   = timetable[dayIndex];
-  for (var i=0;i<periods.length;i++) {
-    var subject = periods[i];
-    var items   = BELONGINGS[subject] || [];
-    var card    = document.createElement('div');
-    card.className = 'period-card';
-    var pe = document.createElement('div');
-    pe.className = 'card-period';
-    pe.innerHTML = '<span class="period-num">'+(i+1)+'</span><span class="period-lbl">限</span>';
-    var be = document.createElement('div');
-    be.className = 'card-body';
-    var memos    = loadMemos();
-    var subjRow  = document.createElement('div');
-    subjRow.className = 'card-subject-row';
-    var se = document.createElement('p');
-    se.className = 'card-subject'; se.textContent = subject;
-    subjRow.appendChild(se);
-    if (memos[subject]) {
-      var mi = document.createElement('span');
-      mi.className='card-memo-icon'; mi.textContent='📝'; mi.title=memos[subject];
-      subjRow.appendChild(mi);
-    }
-    (function(subj){ subjRow.style.cursor='pointer';
-      subjRow.addEventListener('click',function(){ openMemoDialog(subj); }); })(subject);
-    be.appendChild(subjRow);
-    if (items.length>0){
-      var ul=document.createElement('ul'); ul.className='card-items';
-      for(var j=0;j<items.length;j++){var li=document.createElement('li');li.textContent=items[j];ul.appendChild(li);}
-      be.appendChild(ul);
-    } else {
-      var ni=document.createElement('span'); ni.className='card-no-items'; ni.textContent='持ち物なし'; be.appendChild(ni);
-    }
-    card.appendChild(pe); card.appendChild(be); container.appendChild(card);
-  }
-};
-
-// renderChecklist も getCurrentTimetable に対応
-var _origRenderChecklist = renderChecklist;
-renderChecklist = function(dayIndex) {
-  var listEl=document.getElementById('checklist');
-  var stEl=document.getElementById('checklist-status');
-  var msgEl=document.getElementById('complete-message');
-  var omikujiBtn=document.getElementById('omikuji-trigger-btn');
-  msgEl.style.display='none'; listEl.innerHTML='';
-  if(omikujiBtn){omikujiBtn.style.display='none';}
-  var timetable=getCurrentTimetable();
-  var seen={},checkItems=[],periods=timetable[dayIndex];
-  for(var i=0;i<periods.length;i++){
-    var subject=periods[i]; var its=BELONGINGS[subject]||[];
-    for(var j=0;j<its.length;j++){
-      var key=subject+':'+its[j];
-      if(!seen[key]){seen[key]=true;checkItems.push({subject:subject,item:its[j],key:key});}
-    }
-  }
-  if(checkItems.length===0){stEl.textContent='今日は持ち物がありません 🎈';return;}
-  stEl.textContent=checkItems.length+' 個のアイテムを確認しよう！';
-  for(var c=0;c<checkItems.length;c++){
-    (function(info,total){
-      var li=document.createElement('li');
-      var cb=document.createElement('input'); cb.type='checkbox';
-      cb.id='chk_'+info.key.replace(/[^a-zA-Z0-9]/g,'_');
-      var lbl=document.createElement('label'); lbl.htmlFor=cb.id;
-      lbl.style.cssText='cursor:pointer;flex:1;display:flex;align-items:center;gap:5px;';
-      var tag=document.createElement('span'); tag.className='subject-tag'; tag.textContent=info.subject;
-      var txt=document.createElement('span'); txt.className='item-text'; txt.textContent='の'+info.item;
-      lbl.appendChild(tag); lbl.appendChild(txt);
-      cb.addEventListener('change',function(){
-        haptic(18);
-        if(this.checked){li.classList.add('checked');}else{li.classList.remove('checked');}
-        checkAllDone(total);
-      });
-      li.addEventListener('click',function(e){
-        if(e.target!==cb){cb.checked=!cb.checked;
-          var ev=document.createEvent('Event'); ev.initEvent('change',true,true); cb.dispatchEvent(ev);}
-      });
-      li.appendChild(cb); li.appendChild(lbl); listEl.appendChild(li);
-    })(checkItems[c],checkItems.length);
-  }
-};
-
-// ============================================================
 // 【15】授業スケジュール・次の授業表示・Haptic・単発メモ
 //       学習カレンダー・バックアップ
 // ============================================================
